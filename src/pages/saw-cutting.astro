@@ -1,0 +1,855 @@
+---
+// src/pages/saw-cutting.astro
+import Layout from "../layouts/Layout.astro";
+
+/**
+ * ✅ صفحة "قص الخرسانة بالمنشار" بتصميم صفحة الكور (مطابقة في الهيكل والشكل)
+ * - Schema قوي: FAQ + LocalBusiness + Organization + Service + WebPage + Breadcrumb
+ * - FAQ موحّد (UI + Schema)
+ * - جدول تنقل سريع + IDs للأقسام (services/equipment/pricing/gallery/faq)
+ * - E-E-A-T
+ * - Gallery
+ * - نموذج تسعير سريع يفتح واتساب برسالة جاهزة
+ */
+
+// ====== بيانات أساسية ======
+const BRAND = "رواد الخرسانة";
+const PHONE = "01070046464";
+const PHONE_INT = "+20" + PHONE.replace(/^0/, "");
+const WHATSAPP = `https://wa.me/${PHONE_INT.replace("+", "")}`; // ✅ 201070046464
+const SITE_URL = "https://rkhrsana.com";
+const PAGE_URL = `${SITE_URL}/saw-cutting`;
+const LOGO_URL = `${SITE_URL}/logo.png`;
+
+// ====== SEO ======
+const TITLE = `قص خرسانة ليزر | قص الخرسانة بالمنشار الماسي بدون تكسير | اتصل الآن ${PHONE}`;
+const DESCRIPTION =
+  `خدمة قص خرسانة ليزر (قص دقيق) باستخدام منشار قص الخرسانة الماسي لقص الجدران والأسقف والأرضيات وفتح الأبواب والشبابيك وفواصل التمدد بأمان وبدون اهتزازات صدمية. اتصل الآن ${PHONE}.`;
+
+// ====== FAQ موحّد: يظهر في الصفحة + Schema ======
+const faqItems = [
+  {
+    q: "ما هو الفرق بين قص الخرسانة بالليزر والمنشار العادي؟",
+    a: "مصطلح قص خرسانة ليزر يُستخدم في السوق لوصف الدقة والنظافة التي يحققها منشار قص الخرسانة الماسي. المنشار الماسي يعطي حواف مستقيمة وناعمة بدون تكسير عشوائي مقارنة بالطرق التقليدية."
+  },
+  {
+    q: "كيف يتم تحديد اسعار قص الخرسانة؟",
+    a: "اسعار قص الخرسانة تتحدد حسب: السمك، طول مسار القطع بالمتر الطولي، كثافة التسليح (الحديد)، نوع العمل (جدار/سقف/أرضيات)، صعوبة الموقع (ارتفاع/سقالات/ضيق)، وخدمة نقل المخلفات إن وُجدت. للتسعير السريع اتصل على 01070046464."
+  },
+  {
+    q: "هل قص خرسانة السقف يؤثر على سلامة المبنى؟",
+    a: "عند التنفيذ بواسطة مقاول قص خرسانة محترف وبعد مراجعة مواضع العناصر الإنشائية مع المهندس، فإن منشار تقطيع الخرسانة يقلل الاهتزازات الصدمية مقارنة بالتكسير، ما يجعله أكثر أماناً."
+  },
+  {
+    q: "متى يتم استخدام صاروخ قص الخرسانة بدل المنشار الجداري؟",
+    a: "يُستخدم صاروخ قص الخرسانة في المساحات الضيقة والتعديلات الصغيرة والأعماق المتوسطة، بينما المنشار الجداري/الأرضي يُفضّل للمسارات الطويلة والقص المستقيم والأعماق الأكبر وفتحات الأبواب والشبابيك."
+  },
+  {
+    q: "هل يمكن قص جدار بالمنشار لعمل باب دون إخلاء المنزل؟",
+    a: "نعم، مع تجهيز حماية للمكان وتغطية للأثاث وتقليل الغبار باستخدام تبريد بالمياه وتجميع/شفط حسب ظروف الموقع. يُنصح بإبعاد الأشياء الحساسة القريبة فقط."
+  },
+  {
+    q: "هل تقدمون إزالة الكتل الخرسانية بعد القص؟",
+    a: "نعم كخدمة إضافية حسب الاتفاق: تقطيع الكتلة لأجزاء مناسبة ثم تحميلها ونقلها والتخلص منها."
+  },
+  {
+    q: "كم يستغرق قص فتحة باب أو شباك في حائط خرسانة؟",
+    a: "المدة تعتمد على السمك والتسليح وطول المسار وتجهيز المكان. كثير من الفتحات القياسية يمكن إنهاؤها خلال ساعات قليلة بعد تجهيز الحماية وتحديد المسار."
+  },
+  {
+    q: "هل يوجد ضوضاء أو تكسير أثناء قص الخرسانة؟",
+    a: "يوجد صوت تشغيل طبيعي للمعدة، لكن بدون موجات صدمية مثل الدقاق. والقص أقل تكسيراً بكثير من الطرق التقليدية، مع تقليل الغبار بواسطة المياه/الشفط."
+  }
+];
+
+// ====== Schema: FAQPage ======
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqItems.map((x) => ({
+    "@type": "Question",
+    "name": x.q,
+    "acceptedAnswer": { "@type": "Answer", "text": x.a }
+  }))
+};
+
+// ====== Schema: LocalBusiness ======
+const localBusinessSchema = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "رواد الخرسانة لقص وتخريم الخرسانة",
+  "image": LOGO_URL,
+  "telephone": PHONE,
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "الحي العاشر",
+    "addressLocality": "مدينة نصر",
+    "addressRegion": "القاهرة",
+    "addressCountry": "EG"
+  },
+  "url": PAGE_URL,
+  "priceRange": "$$"
+};
+
+// ====== Schema: Organization ======
+const orgSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "رواد الخرسانة لقص وتخريم الخرسانة",
+  "url": SITE_URL,
+  "logo": LOGO_URL,
+  "telephone": PHONE,
+  "sameAs": [
+    "https://www.facebook.com/",
+    "https://www.instagram.com/"
+  ]
+};
+
+// ====== Schema: Service ======
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "قص الخرسانة بالمنشار الماسي (Wall & Floor Saw)",
+  "serviceType": "Concrete Saw Cutting",
+  "provider": {
+    "@type": "LocalBusiness",
+    "name": "رواد الخرسانة لقص وتخريم الخرسانة",
+    "telephone": PHONE,
+    "url": PAGE_URL
+  },
+  "areaServed": [
+    { "@type": "AdministrativeArea", "name": "القاهرة" },
+    { "@type": "AdministrativeArea", "name": "الجيزة" },
+    { "@type": "AdministrativeArea", "name": "القليوبية" }
+  ],
+  "url": PAGE_URL,
+  "description": DESCRIPTION
+};
+
+// ====== Schema: WebPage ======
+const webPageSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "قص خرسانة ليزر وقص الخرسانة بالمنشار الماسي",
+  "url": PAGE_URL,
+  "isPartOf": { "@type": "WebSite", "name": "rkhrsana", "url": SITE_URL }
+};
+
+// ====== Schema: Breadcrumb ======
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "الرئيسية", "item": `${SITE_URL}/` },
+    { "@type": "ListItem", "position": 2, "name": "قص الخرسانة بالمنشار", "item": PAGE_URL }
+  ]
+};
+
+// ====== رسالة واتساب جاهزة (تتكون من الفورم في الأسفل) ======
+const buildWhatsAppMessage = (workType, thickness, meters, city, notes) => {
+  const lines = [
+    `مرحباً ${BRAND}`,
+    `محتاج تسعير سريع لـ قص خرسانة ليزر / قص بالمنشار الماسي.`,
+    `- نوع الشغل: ${workType}`,
+    `- سمك الخرسانة: ${thickness}`,
+    `- طول مسار القص (متر طولي): ${meters}`,
+    `- المنطقة/المدينة: ${city}`,
+    notes ? `- ملاحظات: ${notes}` : null,
+    `رقمي للتواصل: ${PHONE}`
+  ].filter(Boolean);
+
+  return encodeURIComponent(lines.join("\n"));
+};
+---
+
+<Layout title={TITLE} description={DESCRIPTION}>
+  {/* ✅ Canonical */}
+  <link rel="canonical" href={PAGE_URL} />
+
+  {/* ✅ Schema JSON-LD */}
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(localBusinessSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(orgSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(webPageSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+
+  {/* ========================================= */}
+  {/* 1) Hero Section (نفس الكور) */}
+  {/* ========================================= */}
+  <section class="relative bg-slate-900 text-white py-24 lg:py-32 overflow-hidden border-b-4 border-yellow-500">
+    <div class="absolute inset-0 bg-slate-800 opacity-90"></div>
+    <div class="absolute inset-0 bg-[url('https://placehold.co/1920x1080/0f172a/0f172a?text=Concrete+Saw+Cutting')] bg-cover bg-center mix-blend-overlay opacity-25"></div>
+
+    <div class="relative z-10 container mx-auto px-4 lg:px-8">
+      <div class="grid lg:grid-cols-12 gap-10 items-center">
+        <div class="lg:col-span-7 text-center md:text-right">
+          <span class="inline-block bg-yellow-500 text-slate-900 font-bold px-4 py-1 rounded-full text-sm md:text-base mb-6 shadow-lg">
+            قص دقيق “قص خرسانة ليزر” بحواف ناعمة
+          </span>
+
+          <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6 leading-tight text-white drop-shadow-lg">
+            قص خرسانة وتقطيع الخرسانة المسلحة بالمنشار الماسي بدون تكسير
+          </h1>
+
+          <p class="text-lg md:text-2xl mb-8 text-slate-300 leading-relaxed font-light">
+            لو محتاج <strong class="text-white font-bold">قص جدار بالمنشار</strong> لعمل باب/شباك،
+            أو <strong class="text-white font-bold">قص خرسانة السقف</strong> لفتحة سلم/مصعد،
+            أو فواصل تمدد للأرضيات… خدمة{" "}
+            <strong class="text-white font-bold">منشار قص الخرسانة</strong>{" "}
+            هي الحل الأنظف والأكثر أماناً من التكسير العشوائي.
+          </p>
+
+          <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+            <a
+              href={`tel:${PHONE}`}
+              class="inline-flex items-center justify-center gap-3 bg-yellow-500 text-slate-900 px-8 py-4 rounded-lg text-xl font-bold hover:bg-yellow-400 hover:scale-105 transition-all shadow-xl shadow-yellow-500/20"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+                />
+              </svg>
+              احجز معاينة: {PHONE}
+            </a>
+
+            <a
+              href="#comprehensive-guide"
+              class="inline-flex items-center justify-center gap-2 bg-transparent border-2 border-slate-600 text-white px-8 py-4 rounded-lg text-lg font-medium hover:border-yellow-500 hover:text-yellow-500 transition-colors"
+            >
+              اقرأ الدليل الشامل للخدمة ↓
+            </a>
+          </div>
+
+          <p class="mt-6 text-sm text-slate-400">
+            نغطي القاهرة والجيزة والمحافظات حسب حجم المشروع.
+          </p>
+        </div>
+
+        {/* بطاقة سريعة (CRO) - نفس الكور */}
+        <div class="lg:col-span-5">
+          <div class="bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-sm">
+            <div class="flex items-center justify-between mb-4">
+              <h2 class="text-xl font-bold text-white">تسعير فوري على واتساب</h2>
+              <span class="text-xs bg-yellow-500 text-slate-900 px-3 py-1 rounded-full font-bold">سريع</span>
+            </div>
+
+            <ul class="space-y-3 text-slate-200 text-sm">
+              <li class="flex gap-3 items-start">
+                <span class="text-yellow-400 mt-1">✓</span>
+                <span>حدد نوع الشغل (جدار/سقف/أرضيات) + المقاس + السمك.</span>
+              </li>
+              <li class="flex gap-3 items-start">
+                <span class="text-yellow-400 mt-1">✓</span>
+                <span>قص مستقيم بحواف ناعمة يقلل الترميم بعد التنفيذ.</span>
+              </li>
+              <li class="flex gap-3 items-start">
+                <span class="text-yellow-400 mt-1">✓</span>
+                <span>بدون اهتزازات صدمية مثل الدقاق/الجاك هامر.</span>
+              </li>
+            </ul>
+
+            <a
+              href={`${WHATSAPP}?text=${encodeURIComponent(
+                `مرحباً ${BRAND}، محتاج تسعير لـ قص خرسانة ليزر / قص بالمنشار الماسي. اتصلوا بي على ${PHONE}`
+              )}`}
+              target="_blank"
+              rel="noopener"
+              class="mt-6 inline-flex w-full items-center justify-center gap-2 bg-[#25D366] text-white px-6 py-3 rounded-xl font-bold hover:bg-green-600 transition-colors shadow-lg"
+            >
+              راسلنا على واتساب الآن
+            </a>
+
+            <div class="mt-4 text-xs text-slate-300">
+              أو اتصل مباشرة:{" "}
+              <a class="font-bold text-yellow-300 hover:underline" href={`tel:${PHONE}`}>
+                {PHONE}
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* ========================================= */}
+  {/* 2) مقدمة + جدول تنقل سريع (نفس الكور) */}
+  {/* ========================================= */}
+  <section id="comprehensive-guide" class="py-16 bg-white">
+    <div class="container mx-auto px-4 lg:px-8">
+      <div class="max-w-5xl mx-auto text-right">
+        {/* جدول تنقل */}
+        <div class="bg-slate-50 border border-slate-200 rounded-2xl p-4 mb-10">
+          <div class="flex flex-wrap gap-3 justify-end">
+            <a href="#services" class="px-4 py-2 rounded-lg bg-white border border-slate-200 hover:border-yellow-500">
+              الخدمات
+            </a>
+            <a href="#equipment" class="px-4 py-2 rounded-lg bg-white border border-slate-200 hover:border-yellow-500">
+              المعدات
+            </a>
+            <a href="#pricing" class="px-4 py-2 rounded-lg bg-white border border-slate-200 hover:border-yellow-500">
+              الأسعار
+            </a>
+            <a href="#gallery" class="px-4 py-2 rounded-lg bg-white border border-slate-200 hover:border-yellow-500">
+              مشاريعنا
+            </a>
+            <a href="#faq" class="px-4 py-2 rounded-lg bg-white border border-slate-200 hover:border-yellow-500">
+              الأسئلة الشائعة
+            </a>
+            <a href={`tel:${PHONE}`} class="px-4 py-2 rounded-lg bg-yellow-500 font-bold text-slate-900">
+              اتصال سريع
+            </a>
+          </div>
+        </div>
+
+        <div class="prose prose-lg prose-slate max-w-none">
+          <h2 class="text-3xl font-bold text-slate-900 mb-6">
+            الدليل الشامل: ما هو قص الخرسانة بالمنشار ولماذا هو بديل التكسير؟
+          </h2>
+
+          <p class="text-slate-700 leading-loose mb-6">
+            في التجديدات والمشاريع الحديثة، تحتاج أحيانًا لفتحة باب جديدة، توسعة شباك، فتحة سلم/مصعد، أو فواصل تمدد
+            للأرضيات. المشكلة أن التكسير العشوائي يسبب فوضى واهتزازات وترميمات كبيرة.
+          </p>
+
+          <p class="text-slate-700 leading-loose mb-6">
+            هنا يأتي دور <strong class="text-yellow-600">قص خرسانة ليزر</strong> — وهو وصف شائع لنتيجة القص الماسي الدقيقة.
+            عمليًا يتم التنفيذ باستخدام <strong class="text-slate-900">منشار قص الخرسانة</strong> بشفرات ألماسية تقطع
+            الخرسانة والحديد بكفاءة، لتسليم حواف مستقيمة وناعمة.
+          </p>
+
+          <p class="text-slate-700 leading-loose">
+            نحن في "{BRAND}" ننفذ القص بخطة واضحة: تحديد المسار بالمقاس، حماية المكان، تشغيل منظم، وتسليم نظيف يقلل
+            أعمال الترميم بعد التنفيذ.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* ========================================= */}
+  {/* 3) لماذا المنشار أفضل؟ (نفس ستايل الكور) */}
+  {/* ========================================= */}
+  <section class="py-20 bg-slate-50 border-t border-slate-200">
+    <div class="container mx-auto px-4 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-6">
+          لماذا قص الخرسانة بالمنشار أفضل من التكسير أو التخريم العشوائي؟
+        </h2>
+        <div class="w-24 h-1 bg-yellow-500 mx-auto rounded-full mb-6"></div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+        {[
+          {
+            n: "1",
+            t: "قص مستقيم بحواف ناعمة",
+            p: "النتيجة نظيفة وتقلل المحارة والترميم بعد التنفيذ، وتسهّل تركيب الإطارات للأبواب والشبابيك."
+          },
+          {
+            n: "2",
+            t: "اهتزاز أقل = أمان أعلى",
+            p: "المنشار يقطع بدل ما يكسّر، لذلك يقلل الاهتزازات الصدمية ويحمي العناصر المجاورة والتشطيبات."
+          },
+          {
+            n: "3",
+            t: "كفاءة في الخرسانة المسلحة",
+            p: "الشفرات الألماسية تقطع الخرسانة والحديد معًا بكفاءة، ومناسبة للسمكات المختلفة."
+          },
+          {
+            n: "4",
+            t: "سرعة تنفيذ وتكلفة نهائية أقل",
+            p: "قص منظم يقلل وقت العمل والترميمات والمخلفات مقارنة بالتكسير العشوائي."
+          }
+        ].map((x) => (
+          <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 flex flex-col md:flex-row gap-6 hover:shadow-md transition-shadow">
+            <div class="w-16 h-16 shrink-0 bg-slate-900 text-yellow-500 rounded-2xl flex items-center justify-center text-3xl font-black">
+              {x.n}
+            </div>
+            <div>
+              <h3 class="text-2xl font-bold text-slate-800 mb-3">{x.t}</h3>
+              <p class="text-slate-600 leading-relaxed">{x.p}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {/* ========================================= */}
+  {/* 4) خدماتنا الأساسية (ID: services) - نفس الكور */}
+  {/* ========================================= */}
+  <section id="services" class="py-20 bg-white">
+    <div class="container mx-auto px-4 lg:px-8 max-w-6xl">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-5xl font-bold text-slate-900 mb-6">خدماتنا الأساسية في قص وتقطيع الخرسانة</h2>
+        <p class="text-lg text-slate-600 max-w-3xl mx-auto">
+          نقدم في "{BRAND}" كل أعمال <strong>تقطيع الخرسانة</strong> بالمنشار الماسي للمشاريع والسكني بدقة واحتراف.
+        </p>
+      </div>
+
+      <div class="space-y-12">
+        <div class="flex flex-col md:flex-row gap-8 items-center bg-slate-50 rounded-2xl overflow-hidden border border-slate-100">
+          <div class="w-full md:w-1/3 h-64 bg-slate-200 relative">
+            <img
+              src="https://placehold.co/900x600/0f172a/f59e0b?text=Wall+Saw+Door+Window"
+              alt="قص جدار بالمنشار لعمل أبواب وشبابيك"
+              class="object-cover w-full h-full"
+              loading="lazy"
+            />
+          </div>
+          <div class="w-full md:w-2/3 p-6 md:p-8 text-right">
+            <h3 class="text-2xl font-bold text-slate-900 mb-4">قص جدار بالمنشار لعمل أبواب وشبابيك</h3>
+            <ul class="space-y-2 text-slate-700 list-disc list-inside mb-4">
+              <li>فتح باب جديد أو توسعة فتحة قائمة.</li>
+              <li>فتح شباك أو تعديل فتحة واجهة.</li>
+              <li>قص مستقيم بحواف جاهزة للتشطيب.</li>
+            </ul>
+            <p class="text-slate-600 text-sm">نحدد المسار بالمقاس ونؤمّن المنطقة قبل القص لضمان نتيجة نظيفة.</p>
+          </div>
+        </div>
+
+        <div class="flex flex-col md:flex-row-reverse gap-8 items-center bg-slate-50 rounded-2xl overflow-hidden border border-slate-100">
+          <div class="w-full md:w-1/3 h-64 bg-slate-200 relative">
+            <img
+              src="https://placehold.co/900x600/0f172a/f59e0b?text=Ceiling+Slab+Cutting"
+              alt="قص خرسانة السقف لفتحات السلم والمصعد"
+              class="object-cover w-full h-full"
+              loading="lazy"
+            />
+          </div>
+          <div class="w-full md:w-2/3 p-6 md:p-8 text-right">
+            <h3 class="text-2xl font-bold text-slate-900 mb-4">قص خرسانة السقف لفتحات السلم/المصعد</h3>
+            <p class="text-slate-700 leading-relaxed mb-4">
+              قص السقف يحتاج دقة وأمان عالي. ننفذ بترتيب حماية وتقليل غبار، وتحديد مسار بعيدًا عن العناصر الحساسة قدر الإمكان
+              وفق توجيهات المهندس.
+            </p>
+          </div>
+        </div>
+
+        <div class="flex flex-col md:flex-row gap-8 items-center bg-slate-50 rounded-2xl overflow-hidden border border-slate-100">
+          <div class="w-full md:w-1/3 h-64 bg-slate-200 relative">
+            <img
+              src="https://placehold.co/900x600/0f172a/f59e0b?text=Floor+Saw+Expansion+Joints"
+              alt="قص أرضيات خرسانية وفواصل تمدد"
+              class="object-cover w-full h-full"
+              loading="lazy"
+            />
+          </div>
+          <div class="w-full md:w-2/3 p-6 md:p-8 text-right">
+            <h3 class="text-2xl font-bold text-slate-900 mb-4">قص الأرضيات وفواصل التمدد</h3>
+            <p class="text-slate-700 leading-relaxed mb-4">
+              مناسب للأرضيات الصناعية والجراجات والممرات، وعمل فواصل تمدد بمسارات طويلة مستقيمة.
+            </p>
+          </div>
+        </div>
+
+        <div class="flex flex-col md:flex-row gap-8 items-center bg-yellow-50 rounded-2xl overflow-hidden border-2 border-yellow-400 shadow-md">
+          <div class="w-full md:w-1/3 h-64 bg-slate-200 relative">
+            <img
+              src="https://placehold.co/900x600/0f172a/f59e0b?text=Site+Safety+Saw"
+              alt="سلامة قص الخرسانة بالمنشار"
+              class="object-cover w-full h-full"
+              loading="lazy"
+            />
+          </div>
+          <div class="w-full md:w-2/3 p-6 md:p-8 text-right">
+            <h3 class="text-2xl font-bold text-red-700 mb-4 flex items-center gap-2">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
+                />
+              </svg>
+              السلامة أولاً (قص محسوب وليس تكسير)
+            </h3>
+
+            <p class="text-slate-800 leading-relaxed mb-4 font-medium">
+              القص يتطلب تحديد المسار بدقة، حماية المكان، تقليل الغبار بالمياه/الشفط حسب الظروف، وتأمين الكتلة بعد الفصل.
+              هدفنا تسليم نظيف بدون فوضى وتكسير عشوائي.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* ========================================= */}
+  {/* 4.5) E-E-A-T (نفس الكور) */}
+  {/* ========================================= */}
+  <section class="py-16 bg-white border-t border-slate-100">
+    <div class="container mx-auto px-4 lg:px-8 max-w-6xl">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4">ماذا يميزنا فعلاً في قص خرسانة ليزر؟</h2>
+        <p class="text-slate-600 max-w-3xl mx-auto">
+          مش بس منشار… ده نظام تنفيذ وتسليم. قياس، تحديد مسار، حماية، تشغيل منظم، وتسليم.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="p-6 rounded-2xl border border-slate-200">
+          <h3 class="text-xl font-bold text-slate-900 mb-2">دقة المسار قبل القص</h3>
+          <p class="text-slate-600 leading-relaxed">بنحدد المسار بالمقاس لضمان فتحة مستقيمة وحواف جاهزة للتشطيب.</p>
+        </div>
+
+        <div class="p-6 rounded-2xl border border-slate-200">
+          <h3 class="text-xl font-bold text-slate-900 mb-2">نظافة وتقليل الغبار</h3>
+          <p class="text-slate-600 leading-relaxed">تبريد بالمياه + حلول تجميع/شفط حسب المكان لتقليل الفوضى.</p>
+        </div>
+
+        <div class="p-6 rounded-2xl border border-slate-200">
+          <h3 class="text-xl font-bold text-slate-900 mb-2">خبرة في الحالات الحساسة</h3>
+          <p class="text-slate-600 leading-relaxed">قص السقف وفتحات المصاعد والسلالم يحتاج دراسة وتجهيز وتنفيذ مضبوط.</p>
+        </div>
+      </div>
+
+      <div class="mt-10 bg-slate-900 text-white rounded-2xl p-8 border-l-4 border-yellow-500">
+        <p class="text-lg leading-relaxed">
+          "قص خرسانة ليزر الحقيقي مش اسم… ده نتيجة: استقامة + حواف ناعمة + ترميم أقل + أمان أعلى."
+        </p>
+      </div>
+    </div>
+  </section>
+
+  {/* ========================================= */}
+  {/* 5) المعدات وخطوات العمل (ID: equipment) - نفس الكور */}
+  {/* ========================================= */}
+  <section id="equipment" class="py-20 bg-slate-900 text-slate-300">
+    <div class="container mx-auto px-4 lg:px-8 max-w-6xl">
+      <div class="mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold text-yellow-500 mb-6 border-b-2 border-slate-700 pb-4 inline-block">
+          المعدات المستخدمة: منشار جداري ومنشار أرضي وشفرات ألماس
+        </h2>
+        <p class="text-lg leading-relaxed mt-4">التنفيذ الاحترافي يعتمد على أدوات مناسبة وتجهيز صحيح. نحن نعتمد على:</p>
+
+        <ul class="mt-6 space-y-4 text-lg">
+          {[
+            { t: "منشار جداري (Wall Saw):", d: "للجدران وفتحات الأبواب والشبابيك والقص المستقيم." },
+            { t: "منشار أرضي (Floor Saw):", d: "للأرضيات وفواصل التمدد ومسارات القص الطويلة." },
+            { t: "شفرات ألماس (Diamond Blades):", d: "لقص الخرسانة المسلحة وكثافات الحديد المختلفة." },
+            { t: "مياه/شفط عند الحاجة:", d: "لتقليل الحرارة والغبار وتحسين جودة القص." }
+          ].map((x) => (
+            <li class="flex items-start gap-3">
+              <svg class="w-6 h-6 text-yellow-500 shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              <div>
+                <strong class="text-white">{x.t}</strong> {x.d}
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="text-3xl md:text-4xl font-bold text-yellow-500 mb-8 border-b-2 border-slate-700 pb-4 inline-block">
+          خطوات تنفيذ قص الخرسانة بالمنشار بشكل احترافي
+        </h2>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-5 gap-6">
+          {[
+            ["1", "تحديد المسار", "بنحدد المسار بالمقاس ونراجع الهدف (باب/شباك/سقف/أرضيات)."],
+            ["2", "اختيار الأداة", "Wall Saw أو Floor Saw أو صاروخ حسب المكان والسمك."],
+            ["3", "حماية المكان", "تغطية وتجهيز تقليل غبار/مياه حسب ظروف الشقة أو الموقع."],
+            ["4", "تنفيذ القص", "تشغيل منظم لتحقيق قص مستقيم وحواف ناعمة بدون تكسير عشوائي."],
+            ["5", "تسليم وتنظيف", "تسليم فتحة جاهزة للتشطيب + خيار نقل مخلفات حسب الاتفاق."]
+          ].map((s) => (
+            <div class="bg-slate-800 p-6 rounded-xl border border-slate-700 relative">
+              <div class="absolute -top-4 -right-4 w-10 h-10 bg-yellow-500 text-slate-900 font-bold rounded-full flex items-center justify-center text-xl">
+                {s[0]}
+              </div>
+              <h4 class="text-xl font-bold text-white mb-3 mt-2">{s[1]}</h4>
+              <p class="text-sm text-slate-400">{s[2]}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* ========================================= */}
+  {/* 6) التسعير (ID: pricing) + نموذج واتساب (نفس الكور) */}
+  {/* ========================================= */}
+  <section id="pricing" class="py-20 bg-slate-50 border-b border-slate-200">
+    <div class="container mx-auto px-4 lg:px-8 max-w-5xl">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-6">
+          عوامل تحديد اسعار قص الخرسانة وسعر المتر الطولي
+        </h2>
+        <div class="w-24 h-1 bg-yellow-500 mx-auto rounded-full mb-6"></div>
+        <p class="text-lg text-slate-600">
+          السعر يتحدد حسب السمك + المتر الطولي + الحديد + صعوبة الموقع + نقل المخلفات (اختياري).
+        </p>
+      </div>
+
+      <div class="bg-white p-8 rounded-2xl shadow-lg border border-slate-100">
+        <div class="grid md:grid-cols-2 gap-8">
+          <ul class="space-y-4">
+            {[
+              ["السمك", "كل ما زاد السمك زاد وقت القص واستهلاك الشفرات."],
+              ["المتر الطولي", "طول مسار القص الكلي (محيط الفتحة/مسار الفواصل)."],
+              ["كثافة الحديد", "الخرسانة المسلحة تستهلك الشفرة أكثر وتحتاج وقت أكبر."]
+            ].map(([t, d]) => (
+              <li class="flex gap-4 items-start">
+                <span class="w-6 h-6 rounded-full bg-yellow-100 text-yellow-600 flex items-center justify-center shrink-0 mt-1">✔</span>
+                <div>
+                  <strong class="block text-slate-900 text-lg mb-1">{t}:</strong>
+                  <span class="text-slate-600 text-sm">{d}</span>
+                </div>
+              </li>
+            ))}
+          </ul>
+
+          <ul class="space-y-4">
+            {[
+              ["نوع العمل", "جدار/سقف/أرضيات/فواصل — كل نوع له تجهيز مختلف."],
+              ["صعوبة الوصول", "ارتفاعات/سقالات/ضيق المكان تؤثر على التجهيز والزمن."],
+              ["نقل المخلفات", "اختياري حسب الاتفاق وحجم الكتل."]
+            ].map(([t, d]) => (
+              <li class="flex gap-4 items-start">
+                <span class="w-6 h-6 rounded-full bg-yellow-100 text-yellow-600 flex items-center justify-center shrink-0 mt-1">✔</span>
+                <div>
+                  <strong class="block text-slate-900 text-lg mb-1">{t}:</strong>
+                  <span class="text-slate-600 text-sm">{d}</span>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div class="mt-10 grid md:grid-cols-2 gap-8 items-start">
+          <div class="bg-slate-900 p-6 rounded-xl">
+            <p class="text-white text-lg font-medium mb-4">
+              لو عايز تسعير سريع:
+            </p>
+            <p class="text-slate-300 text-sm mb-6">
+              ابعت نوع الشغل + السمك + طول المسار + موقعك… وهنرجع لك بتقدير واضح أو نحدد معاينة.
+            </p>
+
+            <a
+              href={`${WHATSAPP}?text=${encodeURIComponent(
+                `مرحباً ${BRAND}، محتاج تسعير لـ قص خرسانة ليزر / قص بالمنشار الماسي.`
+              )}`}
+              target="_blank"
+              rel="noopener"
+              class="inline-flex w-full items-center justify-center gap-2 bg-[#25D366] text-white px-8 py-3 rounded-lg font-bold hover:bg-green-600 transition-colors shadow-lg"
+            >
+              راسلنا على الواتساب للتسعير
+            </a>
+          </div>
+
+          <div class="bg-white border border-slate-200 rounded-2xl p-6">
+            <h3 class="text-xl font-bold text-slate-900 mb-4">كوّن رسالة تسعير جاهزة في 20 ثانية</h3>
+
+            <form
+              class="space-y-4"
+              onsubmit={`(function(e){
+                e.preventDefault();
+                const f = e.target;
+                const workType = f.workType.value || 'غير محدد';
+                const thickness = f.thickness.value || 'غير محدد';
+                const meters = f.meters.value || 'غير محدد';
+                const city = f.city.value || 'غير محدد';
+                const notes = f.notes.value || '';
+                const msg = ${buildWhatsAppMessage.toString()}(workType, thickness, meters, city, notes);
+                window.open('${WHATSAPP}?text=' + msg, '_blank');
+              })(event);`}
+            >
+              <div>
+                <label class="block text-sm font-bold text-slate-700 mb-1">نوع الشغل</label>
+                <select name="workType" class="w-full border border-slate-200 rounded-xl px-4 py-3">
+                  <option value="قص جدار بالمنشار (باب/شباك)">قص جدار (باب/شباك)</option>
+                  <option value="قص خرسانة السقف (سلم/مصعد)">قص سقف (سلم/مصعد)</option>
+                  <option value="قص أرضيات/فواصل تمدد">أرضيات/فواصل</option>
+                  <option value="تعديل صغير (صاروخ قص الخرسانة)">تعديل صغير (صاروخ)</option>
+                  <option value="غير متأكد">غير متأكد</option>
+                </select>
+              </div>
+
+              <div>
+                <label class="block text-sm font-bold text-slate-700 mb-1">سمك الخرسانة</label>
+                <select name="thickness" class="w-full border border-slate-200 rounded-xl px-4 py-3">
+                  <option value="10 - 15 سم">10 - 15 سم</option>
+                  <option value="15 - 25 سم">15 - 25 سم</option>
+                  <option value="25 - 40 سم">25 - 40 سم</option>
+                  <option value="أكثر/غير متأكد">أكثر/غير متأكد</option>
+                </select>
+              </div>
+
+              <div>
+                <label class="block text-sm font-bold text-slate-700 mb-1">طول مسار القص (متر طولي)</label>
+                <input
+                  name="meters"
+                  type="text"
+                  placeholder="مثال: 6 متر / 12 متر"
+                  class="w-full border border-slate-200 rounded-xl px-4 py-3"
+                />
+              </div>
+
+              <div>
+                <label class="block text-sm font-bold text-slate-700 mb-1">المنطقة/المدينة</label>
+                <input
+                  name="city"
+                  type="text"
+                  placeholder="مثال: مدينة نصر / التجمع / أكتوبر"
+                  class="w-full border border-slate-200 rounded-xl px-4 py-3"
+                />
+              </div>
+
+              <div>
+                <label class="block text-sm font-bold text-slate-700 mb-1">ملاحظات (اختياري)</label>
+                <textarea
+                  name="notes"
+                  rows="3"
+                  placeholder="مثال: شقة متشطبة، مطلوب تقليل الغبار، يوجد أثاث..."
+                  class="w-full border border-slate-200 rounded-xl px-4 py-3"
+                ></textarea>
+              </div>
+
+              <button
+                type="submit"
+                class="w-full bg-yellow-500 text-slate-900 font-black py-3 rounded-xl hover:bg-yellow-400 transition-colors"
+              >
+                إرسال رسالة تسعير على واتساب
+              </button>
+
+              <p class="text-xs text-slate-500 text-right">
+                أو اتصل مباشرة: <a class="font-bold text-slate-900 hover:underline" href={`tel:${PHONE}`}>{PHONE}</a>
+              </p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* ========================================= */}
+  {/* 8) Gallery (ID: gallery) - نفس الكور */}
+  {/* ========================================= */}
+  <section id="gallery" class="py-20 bg-slate-50 border-t border-slate-200">
+    <div class="container mx-auto px-4 lg:px-8 max-w-6xl">
+      <div class="text-center mb-14">
+        <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-5">صور من مشاريعنا في قص الخرسانة بالمنشار</h2>
+        <p class="text-slate-600 max-w-3xl mx-auto">
+          استبدل الصور التوضيحية بصور شغلك الحقيقي (قبل/بعد) — الصور الحقيقية ترفع الثقة بسرعة.
+        </p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {[
+          { t: "قص جدار لفتحة باب", alt: "قص جدار بالمنشار لعمل فتحة باب" },
+          { t: "قص جدار لفتحة شباك", alt: "قص جدار بالمنشار لعمل فتحة شباك" },
+          { t: "قص خرسانة السقف", alt: "قص خرسانة السقف لفتحة سلم أو مصعد" },
+          { t: "فواصل تمدد للأرضيات", alt: "قص أرضيات خرسانية وفواصل تمدد" },
+          { t: "قص خرسانة مسلحة", alt: "قص الخرسانة المسلحة بالمنشار الماسي" },
+          { t: "تعديل دقيق بالمعدات", alt: "تعديل وتهذيب دقيق لمسار قص خرسانة" }
+        ].map((x) => (
+          <figure class="bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
+            <img
+              src={`https://placehold.co/900x650/0f172a/f59e0b?text=${encodeURIComponent(x.t)}`}
+              alt={x.alt}
+              loading="lazy"
+              class="w-full h-56 object-cover"
+            />
+            <figcaption class="p-4 text-right">
+              <p class="font-bold text-slate-900">{x.t}</p>
+              <p class="text-sm text-slate-600 mt-1">قص مستقيم + حواف ناعمة + ترميم أقل.</p>
+            </figcaption>
+          </figure>
+        ))}
+      </div>
+
+      <div class="mt-10 text-center">
+        <a
+          href={`tel:${PHONE}`}
+          class="inline-flex items-center justify-center gap-3 bg-slate-900 text-yellow-500 px-8 py-4 rounded-2xl text-xl font-black hover:bg-slate-800 transition-colors shadow-lg"
+        >
+          اتصل الآن: <span dir="ltr">{PHONE}</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  {/* ========================================= */}
+  {/* 9) FAQ (ID: faq) - نفس الكور + مطابق للسكيما */}
+  {/* ========================================= */}
+  <section id="faq" class="py-20 bg-slate-900 text-white border-t-4 border-yellow-500">
+    <div class="container mx-auto px-4 lg:px-8 max-w-5xl">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold text-yellow-500 mb-6">أسئلة شائعة (FAQ) حول قص الخرسانة بالمنشار</h2>
+        <p class="text-slate-300">إجابات مباشرة تساعدك تقرر بسرعة.</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-8">
+        {faqItems.map((item) => (
+          <div class="bg-slate-800 p-6 rounded-xl border border-slate-700">
+            <h4 class="font-bold text-yellow-400 mb-3 text-lg">{item.q}</h4>
+            <p class="text-slate-300 text-sm leading-relaxed">{item.a}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {/* ========================================= */}
+  {/* 10) Final CTA (نفس الكور) */}
+  {/* ========================================= */}
+  <section class="py-20 bg-yellow-500 text-slate-900 text-center relative overflow-hidden">
+    <div class="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-slate-900 to-transparent"></div>
+
+    <div class="container mx-auto px-4 lg:px-8 max-w-4xl relative z-10">
+      <h2 class="text-4xl md:text-5xl font-black mb-8 leading-tight">محتاج قص خرسانة ليزر بدقة وبدون تكسير؟</h2>
+
+      <div class="bg-white/20 backdrop-blur-sm p-8 rounded-2xl mb-10 text-right md:text-center shadow-lg border border-yellow-400">
+        <div class="flex flex-wrap justify-center gap-6 text-lg font-bold">
+          <span class="bg-slate-900 text-yellow-500 px-4 py-2 rounded-lg">✓ قص مستقيم</span>
+          <span class="bg-slate-900 text-yellow-500 px-4 py-2 rounded-lg">✓ حواف ناعمة</span>
+          <span class="bg-slate-900 text-yellow-500 px-4 py-2 rounded-lg">✓ اهتزاز أقل</span>
+          <span class="bg-slate-900 text-yellow-500 px-4 py-2 rounded-lg">✓ تسليم نظيف</span>
+        </div>
+      </div>
+
+      <p class="text-2xl mb-10 font-bold drop-shadow-sm">
+        قول لنا: <strong class="text-slate-900 bg-white/50 px-2 rounded">نوع الشغل + السمك + طول المسار</strong>…
+        وهنرد عليك بتسعير واضح.
+      </p>
+
+      <div class="flex flex-col sm:flex-row gap-6 justify-center items-center">
+        <a
+          href={`tel:${PHONE}`}
+          class="flex items-center justify-center gap-4 bg-slate-900 text-yellow-500 px-10 py-5 rounded-2xl text-3xl font-black hover:bg-slate-800 hover:scale-105 transition-all shadow-2xl w-full sm:w-auto"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+            />
+          </svg>
+          <span dir="ltr">{PHONE}</span>
+        </a>
+
+        <a
+          href={`${WHATSAPP}?text=${encodeURIComponent(
+            `مرحباً ${BRAND}، محتاج قص خرسانة ليزر / قص بالمنشار الماسي. اتصلوا بي على ${PHONE}`
+          )}`}
+          target="_blank"
+          rel="noopener"
+          class="flex items-center justify-center gap-3 bg-[#25D366] text-white px-10 py-5 rounded-2xl text-2xl font-black hover:bg-green-600 transition-colors shadow-2xl w-full sm:w-auto"
+        >
+          واتساب مباشر
+        </a>
+      </div>
+
+      <p class="mt-6 text-sm font-bold text-slate-800">
+        كلمات بحث: قص خرسانة ليزر · منشار قص خرسانة · قص جدار بالمنشار · قص خرسانة السقف · اسعار قص الخرسانة
+      </p>
+    </div>
+  </section>
+</Layout>

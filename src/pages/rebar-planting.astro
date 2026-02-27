@@ -1,0 +1,856 @@
+---
+// src/pages/rebar-planting.astro
+import Layout from "../layouts/Layout.astro";
+
+/**
+ * ✅ نفس تصميم صفحة الكور ولكن لخدمة: تزريع الأشاير
+ * - Schema قوي: FAQ + LocalBusiness + Organization + Service + WebPage + Breadcrumb
+ * - FAQ موحّد (UI + Schema)
+ * - جدول تنقّل سريع + IDs للأقسام
+ * - قسم ثقة/سلامة (E-E-A-T)
+ * - معرض مشاريع Placeholders
+ * - نموذج تسعير سريع يفتح واتساب برسالة جاهزة
+ */
+
+// ====== بيانات أساسية ======
+const BRAND = "رواد الخرسانة";
+const PHONE = "01070046464";
+const PHONE_INT = "+20" + PHONE.replace(/^0/, ""); // +201070046464
+const WHATSAPP = `https://wa.me/${PHONE_INT.replace("+", "")}`; // 201070046464 ✅ صح
+const PAGE_URL = "https://rkhrsana.com/rebar-planting";
+const SITE_URL = "https://rkhrsana.com";
+const LOGO_URL = "https://rkhrsana.com/logo.png";
+
+// ====== FAQ موحّد: نفس الأسئلة ستظهر في الصفحة + Schema ======
+const faqItems = [
+  {
+    q: "ما هو تزريع الأشاير الكيميائي؟",
+    a: "تزريع الأشاير هو تثبيت سيخ تسليح داخل خرسانة قائمة باستخدام مادة كيميائية معتمدة (إيبوكسي/ريزن) لربط الخرسانة القديمة بالجديدة أو تثبيت عناصر إنشائية وأنكرات بأمان."
+  },
+  {
+    q: "هل تزريع الأشاير آمن على الخرسانة المسلحة؟",
+    a: "نعم إذا تم تحديد القطر والعمق الصحيحين، وتنظيف الثقب بالكامل، واستخدام مادة أصلية مناسبة للحمل، والالتزام بزمن التصلب قبل التحميل. الخطر الحقيقي يأتي من التنفيذ العشوائي."
+  },
+  {
+    q: "هل يمكن تزريع أشاير في السقف (تطبيق علوي)؟",
+    a: "نعم بشرط استخدام مادة مناسبة للتطبيقات العلوية، وتنفيذ تنظيف ممتاز للثقوب، وحقن صحيح يمنع الهبوط، ثم الانتظار لزمن التصلب الكامل قبل أي حمل."
+  },
+  {
+    q: "كم سعر تزريع الأشاير؟",
+    a: "سعر التزريع يعتمد على قطر السيخ، العمق، عدد الأشاير، نوع الخرسانة، صعوبة الوصول، ونوع المادة المستخدمة. اتصل على 01070046464 للحصول على تسعير دقيق وفوري."
+  },
+  {
+    q: "ما أهم سبب لفشل التزريع؟",
+    a: "أكثر سبب شائع هو وجود غبار داخل الثقب بسبب تنظيف غير كافٍ، أو التحميل قبل اكتمال التصلب، أو اختيار قطر/عمق غير مناسب."
+  },
+  {
+    q: "هل توفرون اختبار شد (Pull-out Test)؟",
+    a: "نعم يمكن تنفيذ اختبار شد على عينات عند طلب الاستشاري/المشروع للتأكد من كفاءة التثبيت وتحقيق متطلبات الأمان."
+  },
+  {
+    q: "هل تستخدمون مواد أصلية مثل Hilti أو Fischer؟",
+    a: "نعم نوفر مواد حقن معتمدة حسب المتاح والمتطلبات الفنية للمشروع، ويتم اختيارها بناءً على الحمل واتجاه التطبيق وظروف الموقع."
+  },
+  {
+    q: "هل يمكن تنفيذ التزريع داخل شقة متشطبة؟",
+    a: "نعم مع تغطية وحماية للمكان وتقليل الأتربة، والتنفيذ يكون منظم لتقليل الفوضى قدر الإمكان."
+  }
+];
+
+// ====== Schema: FAQPage ======
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqItems.map((x) => ({
+    "@type": "Question",
+    "name": x.q,
+    "acceptedAnswer": { "@type": "Answer", "text": x.a }
+  }))
+};
+
+// ====== Schema: LocalBusiness ======
+const localBusinessSchema = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "رواد الخرسانة لقص وتخريم الخرسانة",
+  "image": LOGO_URL,
+  "telephone": PHONE,
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "الحي العاشر",
+    "addressLocality": "مدينة نصر",
+    "addressRegion": "القاهرة",
+    "addressCountry": "EG"
+  },
+  "url": PAGE_URL,
+  "priceRange": "$$"
+};
+
+// ====== Schema: Organization ======
+const orgSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "رواد الخرسانة لقص وتخريم الخرسانة",
+  "url": SITE_URL,
+  "logo": LOGO_URL,
+  "telephone": PHONE,
+  "sameAs": [
+    "https://www.facebook.com/",
+    "https://www.instagram.com/"
+  ]
+};
+
+// ====== Schema: Service ======
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "تزريع الأشاير الكيميائي وتثبيت الأنكر",
+  "serviceType": "Rebar Planting / Chemical Anchoring",
+  "provider": {
+    "@type": "LocalBusiness",
+    "name": "رواد الخرسانة لقص وتخريم الخرسانة",
+    "telephone": PHONE,
+    "url": PAGE_URL
+  },
+  "areaServed": [
+    { "@type": "AdministrativeArea", "name": "القاهرة" },
+    { "@type": "AdministrativeArea", "name": "الجيزة" },
+    { "@type": "AdministrativeArea", "name": "القليوبية" }
+  ],
+  "url": PAGE_URL
+};
+
+// ====== Schema: WebPage ======
+const webPageSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "تزريع الأشاير الكيميائي وتثبيت الأنكر بأمان",
+  "url": PAGE_URL,
+  "isPartOf": { "@type": "WebSite", "name": "rkhrsana", "url": SITE_URL }
+};
+
+// ====== Schema: Breadcrumb ======
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "الرئيسية", "item": `${SITE_URL}/` },
+    { "@type": "ListItem", "position": 2, "name": "تزريع الأشاير", "item": PAGE_URL }
+  ]
+};
+
+// ====== رسالة واتساب جاهزة (تتكون من الفورم في الأسفل) ======
+const buildWhatsAppMessage = (barDia, depth, qty, placeType, city, notes) => {
+  const lines = [
+    `مرحباً ${BRAND}`,
+    `عايز تسعير سريع لـ تزريع الأشاير الكيميائي / تثبيت أنكر.`,
+    `- قطر السيخ: ${barDia}`,
+    `- عمق/طول التزريع: ${depth}`,
+    `- العدد: ${qty}`,
+    `- نوع المكان: ${placeType}`,
+    `- المنطقة/المدينة: ${city}`,
+    notes ? `- ملاحظات: ${notes}` : null,
+    `رقمي للتواصل: ${PHONE}`
+  ].filter(Boolean);
+
+  return encodeURIComponent(lines.join("\n"));
+};
+---
+
+<Layout
+  title={`تزريع الأشاير الكيميائي وتثبيت الأنكر بأمان | اتصل الآن ${PHONE}`}
+  description={`تزريع أشاير (Rebar) وتثبيت أنكر كيميائي بمواد معتمدة وخطوات تنفيذ صحيحة: حفر مضبوط، تنظيف احترافي، حقن صحيح، وزمن تصلب. تواصل الآن ${PHONE} لمعاينة وتسعير سريع.`}
+>
+  {/* ✅ حقن أكواد Schema في رأس الصفحة */}
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(localBusinessSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(orgSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(webPageSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+
+  {/* ========================================= */}
+  {/* 1) Hero Section */}
+  {/* ========================================= */}
+  <section class="relative bg-slate-900 text-white py-24 lg:py-32 overflow-hidden border-b-4 border-yellow-500">
+    <div class="absolute inset-0 bg-slate-800 opacity-90"></div>
+    <div class="absolute inset-0 bg-[url('https://placehold.co/1920x1080/0f172a/0f172a')] bg-cover bg-center mix-blend-overlay opacity-25"></div>
+
+    <div class="relative z-10 container mx-auto px-4 lg:px-8">
+      <div class="grid lg:grid-cols-12 gap-10 items-center">
+        <div class="lg:col-span-7 text-center md:text-right">
+          <span class="inline-block bg-yellow-500 text-slate-900 font-bold px-4 py-1 rounded-full text-sm md:text-base mb-6 shadow-lg">
+            ربط إنشائي قوي + تنفيذ نظيف + أمان عالي
+          </span>
+
+          <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6 leading-tight text-white drop-shadow-lg">
+            تزريع الأشاير الكيميائي وتثبيت الأنكر بأمان وبدون عشوائية
+          </h1>
+
+          <p class="text-lg md:text-2xl mb-8 text-slate-300 leading-relaxed font-light">
+            لو محتاج تربط خرسانة قديمة بجديدة، أو تثبت{" "}
+            <strong class="text-white font-bold">سيخ تسليح / أنكر بولت</strong>{" "}
+            في خرسانة قائمة—الحل الصح هو{" "}
+            <strong class="text-white font-bold">التزريع الكيميائي</strong>{" "}
+            بخطوات تنفيذ دقيقة: حفر مضبوط، تنظيف قوي، حقن صحيح، وزمن تصلب قبل التحميل.
+          </p>
+
+          <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+            <a
+              href={`tel:${PHONE}`}
+              class="inline-flex items-center justify-center gap-3 bg-yellow-500 text-slate-900 px-8 py-4 rounded-lg text-xl font-bold hover:bg-yellow-400 hover:scale-105 transition-all shadow-xl shadow-yellow-500/20"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+                />
+              </svg>
+              احجز معاينة: {PHONE}
+            </a>
+
+            <a
+              href="#comprehensive-guide"
+              class="inline-flex items-center justify-center gap-2 bg-transparent border-2 border-slate-600 text-white px-8 py-4 rounded-lg text-lg font-medium hover:border-yellow-500 hover:text-yellow-500 transition-colors"
+            >
+              اقرأ الدليل الشامل للخدمة ↓
+            </a>
+          </div>
+
+          <p class="mt-6 text-sm text-slate-400">
+            نغطي مدينة نصر، القاهرة، الجيزة، العاصمة الإدارية وكافة أنحاء الجمهورية.
+          </p>
+        </div>
+
+        {/* بطاقة سريعة (CRO) */}
+        <div class="lg:col-span-5">
+          <div class="bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-sm">
+            <div class="flex items-center justify-between mb-4">
+              <h2 class="text-xl font-bold text-white">تسعير فوري على واتساب</h2>
+              <span class="text-xs bg-yellow-500 text-slate-900 px-3 py-1 rounded-full font-bold">سريع</span>
+            </div>
+
+            <ul class="space-y-3 text-slate-200 text-sm">
+              <li class="flex gap-3 items-start">
+                <span class="text-yellow-400 mt-1">✓</span>
+                <span>ابعت قطر السيخ + العدد + العمق وخد تقدير واضح.</span>
+              </li>
+              <li class="flex gap-3 items-start">
+                <span class="text-yellow-400 mt-1">✓</span>
+                <span>تنظيف احترافي للثقوب (هواء + فرشاة + هواء) لنتيجة قوية.</span>
+              </li>
+              <li class="flex gap-3 items-start">
+                <span class="text-yellow-400 mt-1">✓</span>
+                <span>مواد حقن معتمدة (Hilti / Fischer) حسب متطلبات الحمل.</span>
+              </li>
+            </ul>
+
+            <a
+              href={`${WHATSAPP}?text=${encodeURIComponent(
+                `مرحباً ${BRAND}، محتاج تسعير لـ تزريع الأشاير الكيميائي / تثبيت أنكر. اتصلوا بي على ${PHONE}`
+              )}`}
+              target="_blank"
+              rel="noopener"
+              class="mt-6 inline-flex w-full items-center justify-center gap-2 bg-[#25D366] text-white px-6 py-3 rounded-xl font-bold hover:bg-green-600 transition-colors shadow-lg"
+            >
+              راسلنا على واتساب الآن
+            </a>
+
+            <div class="mt-4 text-xs text-slate-300">
+              أو اتصل مباشرة:{" "}
+              <a class="font-bold text-yellow-300 hover:underline" href={`tel:${PHONE}`}>
+                {PHONE}
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* ========================================= */}
+  {/* 2) مقدمة + جدول تنقل سريع */}
+  {/* ========================================= */}
+  <section id="comprehensive-guide" class="py-16 bg-white">
+    <div class="container mx-auto px-4 lg:px-8">
+      <div class="max-w-5xl mx-auto text-right">
+        {/* جدول تنقل */}
+        <div class="bg-slate-50 border border-slate-200 rounded-2xl p-4 mb-10">
+          <div class="flex flex-wrap gap-3 justify-end">
+            <a href="#uses" class="px-4 py-2 rounded-lg bg-white border border-slate-200 hover:border-yellow-500">
+              الاستخدامات
+            </a>
+            <a href="#materials" class="px-4 py-2 rounded-lg bg-white border border-slate-200 hover:border-yellow-500">
+              المواد
+            </a>
+            <a href="#steps" class="px-4 py-2 rounded-lg bg-white border border-slate-200 hover:border-yellow-500">
+              خطوات التنفيذ
+            </a>
+            <a href="#pricing" class="px-4 py-2 rounded-lg bg-white border border-slate-200 hover:border-yellow-500">
+              الأسعار
+            </a>
+            <a href="#gallery" class="px-4 py-2 rounded-lg bg-white border border-slate-200 hover:border-yellow-500">
+              مشاريعنا
+            </a>
+            <a href="#faq" class="px-4 py-2 rounded-lg bg-white border border-slate-200 hover:border-yellow-500">
+              الأسئلة الشائعة
+            </a>
+            <a href={`tel:${PHONE}`} class="px-4 py-2 rounded-lg bg-yellow-500 font-bold text-slate-900">
+              اتصال سريع
+            </a>
+          </div>
+        </div>
+
+        <div class="prose prose-lg prose-slate max-w-none">
+          <h2 class="text-3xl font-bold text-slate-900 mb-6">
+            الدليل الشامل: ما هو تزريع الأشاير ولماذا هو حل هندسي أساسي؟
+          </h2>
+
+          <p class="text-slate-700 leading-loose mb-6">
+            في التوسعات الإنشائية، استكمال الأعمدة، عمل سلالم جديدة، ربط كمرات، أو تثبيت قواعد معدنية—المشكلة الدائمة هي:
+            كيف ننقل الحمل من الخرسانة الجديدة إلى الخرسانة القديمة بأمان؟ هنا يأتي دور{" "}
+            <strong>تزريع الأشاير الكيميائي</strong> كحل احترافي يعتمد على تثبيت سيخ تسليح داخل الخرسانة القائمة
+            بمادة كيميائية عالية التماسك.
+          </p>
+
+          <p class="text-slate-700 leading-loose mb-6">
+            الخطأ الأكبر أن البعض يتعامل مع التزريع كأنه “ثقب وخلاص”. أي تنفيذ عشوائي بدون تنظيف ممتاز أو اختيار قطر/عمق صحيح
+            أو تحميل مبكر قد يؤدي لفشل التزريع. لذلك نحن في "{BRAND}" نلتزم بخطوات تنفيذ دقيقة ومعايير سلامة واضحة.
+          </p>
+
+          <p class="text-slate-700 leading-loose">
+            التزريع (Rebar Planting / Chemical Anchoring) يستخدم مواد معتمدة (إيبوكسي/ريزن) لضمان تماسك عالي وتحقيق
+            قدرة تحميل مناسبة حسب الحالة والأحمال واتجاه التطبيق.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* ========================================= */}
+  {/* 3) لماذا التزريع أفضل؟ */}
+  {/* ========================================= */}
+  <section class="py-20 bg-slate-50 border-t border-slate-200">
+    <div class="container mx-auto px-4 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-6">
+          لماذا تزريع الأشاير هو الاختيار الأفضل للتدعيم والربط؟
+        </h2>
+        <div class="w-24 h-1 bg-yellow-500 mx-auto rounded-full mb-6"></div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+        {[
+          {
+            n: "1",
+            t: "ربط إنشائي قوي بين القديم والجديد",
+            p: "يحقق نقل أحمال آمن في حالات التعلية والتوسعات وربط الكمرات والسلالم والقواعد."
+          },
+          {
+            n: "2",
+            t: "بدون تكسير عشوائي أو إضعاف للقطاع",
+            p: "التنفيذ الصحيح يعتمد على ثقوب محسوبة وحقن مضبوط، بدل التكسير الذي يسبب شروخ وضعف محيط."
+          },
+          {
+            n: "3",
+            t: "مناسب لتثبيت الأنكر وقواعد الحديد",
+            p: "يُستخدم لتثبيت Anchor Bolts وBase Plates والحوامل الثقيلة عند اختيار مادة مناسبة للحمل."
+          },
+          {
+            n: "4",
+            t: "إمكانية اختبار شد للتأكيد",
+            p: "عند طلب الاستشاري يمكن عمل Pull-out Test لزيادة الثقة وتوثيق الجودة بالموقع."
+          }
+        ].map((x) => (
+          <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 flex flex-col md:flex-row gap-6 hover:shadow-md transition-shadow">
+            <div class="w-16 h-16 shrink-0 bg-slate-900 text-yellow-500 rounded-2xl flex items-center justify-center text-3xl font-black">
+              {x.n}
+            </div>
+            <div>
+              <h3 class="text-2xl font-bold text-slate-800 mb-3">{x.t}</h3>
+              <p class="text-slate-600 leading-relaxed">{x.p}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {/* ========================================= */}
+  {/* 4) الاستخدامات (ID: uses) */}
+  {/* ========================================= */}
+  <section id="uses" class="py-20 bg-white">
+    <div class="container mx-auto px-4 lg:px-8 max-w-6xl">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-5xl font-bold text-slate-900 mb-6">أهم استخدامات تزريع الأشاير</h2>
+        <p class="text-lg text-slate-600 max-w-3xl mx-auto">
+          نقدم في "{BRAND}" كل أعمال التزريع الكيميائي للحديد والأنكر حسب متطلبات الموقع والأحمال.
+        </p>
+      </div>
+
+      <div class="space-y-12">
+        <div class="flex flex-col md:flex-row gap-8 items-center bg-slate-50 rounded-2xl overflow-hidden border border-slate-100">
+          <div class="w-full md:w-1/3 h-64 bg-slate-200 relative">
+            <img
+              src="https://placehold.co/900x600/0f172a/f59e0b?text=Rebar+Planting+Columns"
+              alt="تزريع أشاير لاستكمال الأعمدة والتعلية"
+              class="object-cover w-full h-full"
+              loading="lazy"
+            />
+          </div>
+          <div class="w-full md:w-2/3 p-6 md:p-8">
+            <h3 class="text-2xl font-bold text-slate-900 mb-4">استكمال الأعمدة والتعلية وربط الخرسانة القديمة بالجديدة</h3>
+            <ul class="space-y-2 text-slate-700 list-disc list-inside mb-4">
+              <li>تزريع أشاير لتعلية أعمدة وإضافة دور جديد.</li>
+              <li>ربط كمرات جديدة بكمرات قديمة بأمان.</li>
+              <li>توسعة بلاطات وبلكونات خرسانية.</li>
+            </ul>
+            <p class="text-slate-600 text-sm">
+              التنفيذ يكون بأقطار وعمق مدروسين حسب قطر السيخ ومتطلبات التحميل.
+            </p>
+          </div>
+        </div>
+
+        <div class="flex flex-col md:flex-row-reverse gap-8 items-center bg-slate-50 rounded-2xl overflow-hidden border border-slate-100">
+          <div class="w-full md:w-1/3 h-64 bg-slate-200 relative">
+            <img
+              src="https://placehold.co/900x600/0f172a/f59e0b?text=Stair+Rebar+Doweling"
+              alt="تزريع أشاير للسلالم وربطها بالخرسانة"
+              class="object-cover w-full h-full"
+              loading="lazy"
+            />
+          </div>
+          <div class="w-full md:w-2/3 p-6 md:p-8">
+            <h3 class="text-2xl font-bold text-slate-900 mb-4">تزريع أشاير السلالم وربط الحوائط الساندة</h3>
+            <p class="text-slate-700 leading-relaxed mb-4">
+              في إنشاء سلالم جديدة أو تعديل مسار سلم قديم، التزريع يضمن ربط قوي داخل العناصر القائمة بدون تكسير عشوائي،
+              مع مراعاة العمق والقطر والتنظيف وزمن التصلب.
+            </p>
+          </div>
+        </div>
+
+        <div class="flex flex-col md:flex-row gap-8 items-center bg-slate-50 rounded-2xl overflow-hidden border border-slate-100">
+          <div class="w-full md:w-1/3 h-64 bg-slate-200 relative">
+            <img
+              src="https://placehold.co/900x600/0f172a/f59e0b?text=Chemical+Anchors"
+              alt="تثبيت أنكر كيميائي"
+              class="object-cover w-full h-full"
+              loading="lazy"
+            />
+          </div>
+          <div class="w-full md:w-2/3 p-6 md:p-8">
+            <h3 class="text-2xl font-bold text-slate-900 mb-4">تثبيت الأنكر الكيميائي (Anchor Bolts) وقواعد الحديد</h3>
+            <ul class="space-y-2 text-slate-700 list-disc list-inside mb-4">
+              <li>تثبيت Base Plates وقواعد أعمدة معدنية.</li>
+              <li>تثبيت حوامل ومعدات وأحمال ثقيلة.</li>
+              <li>تثبيت درابزين وحواجز عند الحاجة.</li>
+            </ul>
+            <p class="text-slate-600 text-sm">
+              اختيار المادة يتحدد حسب الحمل واتجاه التطبيق وظروف الخرسانة.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* ========================================= */}
+  {/* 4.5) قسم ثقة/سلامة (E-E-A-T) */}
+  {/* ========================================= */}
+  <section class="py-16 bg-white border-t border-slate-100">
+    <div class="container mx-auto px-4 lg:px-8 max-w-6xl">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4">ما الذي يميز تنفيذ التزريع عندنا؟</h2>
+        <p class="text-slate-600 max-w-3xl mx-auto">
+          لأن التزريع مش مادة “حلوة” وخلاص… ده نظام تنفيذ يحدد قوة الربط ودرجة الأمان على المدى الطويل.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="p-6 rounded-2xl border border-slate-200">
+          <h3 class="text-xl font-bold text-slate-900 mb-2">تحديد القطر والعمق علمياً</h3>
+          <p class="text-slate-600 leading-relaxed">
+            بنحدد قطر الثقب والعمق المناسبين حسب قطر السيخ والحالة، لتقليل المخاطر وزيادة قدرة التحميل.
+          </p>
+        </div>
+
+        <div class="p-6 rounded-2xl border border-slate-200">
+          <h3 class="text-xl font-bold text-slate-900 mb-2">تنظيف احترافي للثقوب</h3>
+          <p class="text-slate-600 leading-relaxed">
+            هواء + فرشاة + هواء (أو شفط) لضمان عدم وجود غبار يضعف الالتصاق.
+          </p>
+        </div>
+
+        <div class="p-6 rounded-2xl border border-slate-200">
+          <h3 class="text-xl font-bold text-slate-900 mb-2">التزام بزمن التصلب</h3>
+          <p class="text-slate-600 leading-relaxed">
+            ممنوع التحميل قبل اكتمال زمن التصلب حسب نوع المادة ودرجة الحرارة—وده سبب رئيسي لنجاح التزريع.
+          </p>
+        </div>
+      </div>
+
+      <div class="mt-10 bg-slate-900 text-white rounded-2xl p-8 border-l-4 border-yellow-500">
+        <p class="text-lg leading-relaxed">
+          "أكبر فرق بين تزريع يعيش وتزريع يفشل هو{" "}
+          <strong class="text-yellow-400">التنظيف + الحقن + الوقت</strong>. إحنا بننفذهم بصرامة عشان تضمن نتيجة قوية وآمنة."
+        </p>
+      </div>
+    </div>
+  </section>
+
+  {/* ========================================= */}
+  {/* 5) المواد وخطوات العمل (ID: materials + steps) */}
+  {/* ========================================= */}
+  <section id="materials" class="py-20 bg-slate-900 text-slate-300">
+    <div class="container mx-auto px-4 lg:px-8 max-w-6xl">
+      <div class="mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold text-yellow-500 mb-6 border-b-2 border-slate-700 pb-4 inline-block">
+          المواد المستخدمة: حقن كيميائي معتمد حسب الحمل
+        </h2>
+        <p class="text-lg leading-relaxed mt-4">
+          نجاح التزريع يعتمد على اختيار مادة مناسبة للحمل واتجاه التطبيق، لذلك نعتمد على مواد حقن معتمدة (حسب المتاح ومتطلبات المشروع):
+        </p>
+
+        <ul class="mt-6 space-y-4 text-lg">
+          {[
+            ["مواد حقن إيبوكسي/ريزن معتمدة", "تمنح تماسك عالي وتناسب أحمال مختلفة حسب الكتالوج الفني."],
+            ["فرش تنظيف + هواء مضغوط/شفط", "إزالة الغبار بالكامل هي أهم خطوة لضمان التصاق قوي."],
+            ["بنط/مثاقب بأقطار دقيقة", "القطر الصحيح يمنع ضعف الربط أو زيادة الاستهلاك بشكل غير منطقي."],
+            ["معدات قياس عمق", "لتنفيذ عمق مطابق للمطلوب وعدم الاعتماد على تقدير عشوائي."]
+          ].map(([t, d]) => (
+            <li class="flex items-start gap-3">
+              <svg class="w-6 h-6 text-yellow-500 shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              <div>
+                <strong class="text-white">{t}:</strong> {d}
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div id="steps">
+        <h2 class="text-3xl md:text-4xl font-bold text-yellow-500 mb-8 border-b-2 border-slate-700 pb-4 inline-block">
+          خطوات تنفيذ تزريع الأشاير بشكل احترافي
+        </h2>
+        <p class="text-lg leading-relaxed mb-8">
+          علشان تطمن إن التزريع اتعمل صح—دي خطواتنا الأساسية في كل موقع:
+        </p>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-5 gap-6">
+          {[
+            ["1", "تحديد المكان", "تحديد نقاط التزريع طبقاً للمخططات والمسافات الآمنة."],
+            ["2", "اختيار القطر والعمق", "حسب قطر السيخ والحمل ونوع المادة واتجاه التطبيق."],
+            ["3", "حفر الثقب", "حفر منتظم وثابت لضمان قطاع صحيح بدون توسعة غير محسوبة."],
+            ["4", "تنظيف ثلاثي", "هواء + فرشاة + هواء (أو شفط) لإزالة الغبار تماماً."],
+            ["5", "حقن + إدخال السيخ", "حقن من القاع للخارج ثم إدخال السيخ بحركة لولبية والالتزام بزمن التصلب."]
+          ].map(([n, t, d]) => (
+            <div class="bg-slate-800 p-6 rounded-xl border border-slate-700 relative">
+              <div class="absolute -top-4 -right-4 w-10 h-10 bg-yellow-500 text-slate-900 font-bold rounded-full flex items-center justify-center text-xl">
+                {n}
+              </div>
+              <h4 class="text-xl font-bold text-white mb-3 mt-2">{t}</h4>
+              <p class="text-sm text-slate-400">{d}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* ========================================= */}
+  {/* 6) التسعير (ID: pricing) + نموذج واتساب */}
+  {/* ========================================= */}
+  <section id="pricing" class="py-20 bg-slate-50 border-b border-slate-200">
+    <div class="container mx-auto px-4 lg:px-8 max-w-5xl">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-6">
+          عوامل تحديد سعر تزريع الأشاير وسعر الأنكر الكيميائي
+        </h2>
+        <div class="w-24 h-1 bg-yellow-500 mx-auto rounded-full mb-6"></div>
+        <p class="text-lg text-slate-600">
+          التسعير ليس رقم ثابت—بيختلف حسب القطر والعمق والعدد ونوع الخرسانة وصعوبة الوصول ونوع المادة.
+        </p>
+      </div>
+
+      <div class="bg-white p-8 rounded-2xl shadow-lg border border-slate-100">
+        <div class="grid md:grid-cols-2 gap-8">
+          <ul class="space-y-4">
+            {[
+              ["قطر السيخ", "كل ما زاد القطر زادت متطلبات الحفر واستهلاك المادة."],
+              ["عمق التزريع", "العمق يؤثر مباشرة على الاستهلاك والوقت والتحميل."],
+              ["نوع الخرسانة", "خرسانة ضعيفة/متعششة قد تحتاج معالجة قبل التزريع."]
+            ].map(([t, d]) => (
+              <li class="flex gap-4 items-start">
+                <span class="w-6 h-6 rounded-full bg-yellow-100 text-yellow-600 flex items-center justify-center shrink-0 mt-1">✔</span>
+                <div>
+                  <strong class="block text-slate-900 text-lg mb-1">{t}:</strong>
+                  <span class="text-slate-600 text-sm">{d}</span>
+                </div>
+              </li>
+            ))}
+          </ul>
+
+          <ul class="space-y-4">
+            {[
+              ["عدد الأشاير", "الكمية الكبيرة داخل نفس الموقع غالباً تكون أوفر."],
+              ["مكان التنفيذ", "سقف/أماكن ضيقة/ارتفاعات تزيد صعوبة التنفيذ."],
+              ["نوع المادة", "تختلف حسب الحمل واتجاه التطبيق واشتراطات المشروع."]
+            ].map(([t, d]) => (
+              <li class="flex gap-4 items-start">
+                <span class="w-6 h-6 rounded-full bg-yellow-100 text-yellow-600 flex items-center justify-center shrink-0 mt-1">✔</span>
+                <div>
+                  <strong class="block text-slate-900 text-lg mb-1">{t}:</strong>
+                  <span class="text-slate-600 text-sm">{d}</span>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* نموذج تسعير سريع */}
+        <div class="mt-10 grid md:grid-cols-2 gap-8 items-start">
+          <div class="bg-slate-900 p-6 rounded-xl">
+            <p class="text-white text-lg font-medium mb-4">
+              ابعت تفاصيل التزريع وهتاخد تسعير واضح خلال دقائق:
+            </p>
+            <p class="text-slate-300 text-sm mb-6">
+              (قطر السيخ + العمق + العدد + نوع المكان + المنطقة) — ولو عندك صور ابعتها.
+            </p>
+
+            <a
+              href={`${WHATSAPP}?text=${encodeURIComponent(
+                `مرحباً ${BRAND}، محتاج تسعير لـ تزريع الأشاير الكيميائي / تثبيت أنكر.`
+              )}`}
+              target="_blank"
+              rel="noopener"
+              class="inline-flex w-full items-center justify-center gap-2 bg-[#25D366] text-white px-8 py-3 rounded-lg font-bold hover:bg-green-600 transition-colors shadow-lg"
+            >
+              راسلنا على الواتساب للتسعير
+            </a>
+          </div>
+
+          <div class="bg-white border border-slate-200 rounded-2xl p-6">
+            <h3 class="text-xl font-bold text-slate-900 mb-4">كوّن رسالة تسعير جاهزة في 20 ثانية</h3>
+
+            <form
+              class="space-y-4"
+              onsubmit={`(function(e){
+                e.preventDefault();
+                const f = e.target;
+                const barDia = f.barDia.value || 'غير محدد';
+                const depth = f.depth.value || 'غير محدد';
+                const qty = f.qty.value || 'غير محدد';
+                const placeType = f.placeType.value || 'غير محدد';
+                const city = f.city.value || 'غير محدد';
+                const notes = f.notes.value || '';
+                const msg = ${buildWhatsAppMessage.toString()}(barDia, depth, qty, placeType, city, notes);
+                window.open('${WHATSAPP}?text=' + msg, '_blank');
+              })(event);`}
+            >
+              <div>
+                <label class="block text-sm font-bold text-slate-700 mb-1">قطر السيخ</label>
+                <select name="barDia" class="w-full border border-slate-200 rounded-xl px-4 py-3">
+                  <option value="8 مم">8 مم</option>
+                  <option value="10 مم">10 مم</option>
+                  <option value="12 مم">12 مم</option>
+                  <option value="16 مم">16 مم</option>
+                  <option value="20 مم">20 مم</option>
+                  <option value="أخرى/غير متأكد">أخرى/غير متأكد</option>
+                </select>
+              </div>
+
+              <div>
+                <label class="block text-sm font-bold text-slate-700 mb-1">عمق/طول التزريع</label>
+                <select name="depth" class="w-full border border-slate-200 rounded-xl px-4 py-3">
+                  <option value="10 سم">10 سم</option>
+                  <option value="15 سم">15 سم</option>
+                  <option value="20 سم">20 سم</option>
+                  <option value="أكثر/غير متأكد">أكثر/غير متأكد</option>
+                </select>
+              </div>
+
+              <div>
+                <label class="block text-sm font-bold text-slate-700 mb-1">عدد الأشاير/الأنكر</label>
+                <select name="qty" class="w-full border border-slate-200 rounded-xl px-4 py-3">
+                  <option value="أقل من 10">أقل من 10</option>
+                  <option value="10 - 30">10 - 30</option>
+                  <option value="30 - 80">30 - 80</option>
+                  <option value="أكثر من 80">أكثر من 80</option>
+                </select>
+              </div>
+
+              <div>
+                <label class="block text-sm font-bold text-slate-700 mb-1">نوع المكان</label>
+                <select name="placeType" class="w-full border border-slate-200 rounded-xl px-4 py-3">
+                  <option value="حائط/عمود">حائط/عمود</option>
+                  <option value="سقف (تطبيق علوي)">سقف (تطبيق علوي)</option>
+                  <option value="كمرة/قاعدة">كمرة/قاعدة</option>
+                  <option value="غير متأكد">غير متأكد</option>
+                </select>
+              </div>
+
+              <div>
+                <label class="block text-sm font-bold text-slate-700 mb-1">المنطقة/المدينة</label>
+                <input
+                  name="city"
+                  type="text"
+                  placeholder="مثال: مدينة نصر / التجمع / الشيخ زايد"
+                  class="w-full border border-slate-200 rounded-xl px-4 py-3"
+                />
+              </div>
+
+              <div>
+                <label class="block text-sm font-bold text-slate-700 mb-1">ملاحظات (اختياري)</label>
+                <textarea
+                  name="notes"
+                  rows="3"
+                  placeholder="مثال: مطلوب تزريع لأعمدة تعلية، خرسانة قديمة، شقة متشطبة..."
+                  class="w-full border border-slate-200 rounded-xl px-4 py-3"
+                ></textarea>
+              </div>
+
+              <button
+                type="submit"
+                class="w-full bg-yellow-500 text-slate-900 font-black py-3 rounded-xl hover:bg-yellow-400 transition-colors"
+              >
+                إرسال رسالة تسعير على واتساب
+              </button>
+
+              <p class="text-xs text-slate-500 text-right">
+                أو اتصل مباشرة: <a class="font-bold text-slate-900 hover:underline" href={`tel:${PHONE}`}>{PHONE}</a>
+              </p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* ========================================= */}
+  {/* 8) معرض مشاريع (ID: gallery) */}
+  {/* ========================================= */}
+  <section id="gallery" class="py-20 bg-slate-50 border-t border-slate-200">
+    <div class="container mx-auto px-4 lg:px-8 max-w-6xl">
+      <div class="text-center mb-14">
+        <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-5">صور من مشاريعنا في تزريع الأشاير</h2>
+        <p class="text-slate-600 max-w-3xl mx-auto">
+          استبدل الصور التوضيحية بصور شغلك الحقيقي (قبل/بعد) — الصور الحقيقية ترفع الثقة بسرعة.
+        </p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {[
+          { t: "تزريع أشاير لاستكمال أعمدة", alt: "تزريع أشاير لاستكمال الأعمدة وربط القديم بالجديد" },
+          { t: "تثبيت أنكر كيميائي لقاعدة معدنية", alt: "تثبيت أنكر كيميائي لقاعدة معدنية بمواد معتمدة" },
+          { t: "تزريع للسلالم وربطها بالخرسانة", alt: "تزريع أشاير للسلالم وربطها بالخرسانة القديمة" },
+          { t: "تجهيز ثقوب + تنظيف احترافي", alt: "تنظيف ثقوب التزريع بالهواء والفرشاة لضمان الالتصاق" },
+          { t: "حقن كيميائي + إدخال السيخ", alt: "حقن كيميائي وإدخال السيخ بحركة لولبية" },
+          { t: "اختبار شد عند الطلب", alt: "اختبار شد Pull-out Test للتأكد من قوة التثبيت" }
+        ].map((x) => (
+          <figure class="bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
+            <img
+              src={`https://placehold.co/900x650/0f172a/f59e0b?text=${encodeURIComponent(x.t)}`}
+              alt={x.alt}
+              loading="lazy"
+              class="w-full h-56 object-cover"
+            />
+            <figcaption class="p-4 text-right">
+              <p class="font-bold text-slate-900">{x.t}</p>
+              <p class="text-sm text-slate-600 mt-1">تنفيذ منظم + مواد معتمدة + التزام بزمن التصلب.</p>
+            </figcaption>
+          </figure>
+        ))}
+      </div>
+
+      <div class="mt-10 text-center">
+        <a
+          href={`tel:${PHONE}`}
+          class="inline-flex items-center justify-center gap-3 bg-slate-900 text-yellow-500 px-8 py-4 rounded-2xl text-xl font-black hover:bg-slate-800 transition-colors shadow-lg"
+        >
+          اتصل الآن: <span dir="ltr">{PHONE}</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  {/* ========================================= */}
+  {/* 9) FAQ (ID: faq) - مطابق للسكيما */}
+  {/* ========================================= */}
+  <section id="faq" class="py-20 bg-slate-900 text-white border-t-4 border-yellow-500">
+    <div class="container mx-auto px-4 lg:px-8 max-w-5xl">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold text-yellow-500 mb-6">أسئلة شائعة (FAQ) حول تزريع الأشاير</h2>
+        <p class="text-slate-300">إجابات مباشرة لأهم الأسئلة التي يسألها العملاء والمهندسون.</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-8">
+        {faqItems.map((item) => (
+          <div class="bg-slate-800 p-6 rounded-xl border border-slate-700">
+            <h4 class="font-bold text-yellow-400 mb-3 text-lg">{item.q}</h4>
+            <p class="text-slate-300 text-sm leading-relaxed">{item.a}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {/* ========================================= */}
+  {/* 10) Final CTA */}
+  {/* ========================================= */}
+  <section class="py-20 bg-yellow-500 text-slate-900 text-center relative overflow-hidden">
+    <div class="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-slate-900 to-transparent"></div>
+
+    <div class="container mx-auto px-4 lg:px-8 max-w-4xl relative z-10">
+      <h2 class="text-4xl md:text-5xl font-black mb-8 leading-tight">تزريع أشاير مضبوط = أمان إنشائي أعلى</h2>
+
+      <div class="bg-white/20 backdrop-blur-sm p-8 rounded-2xl mb-10 text-right md:text-center shadow-lg border border-yellow-400">
+        <div class="flex flex-wrap justify-center gap-6 text-lg font-bold">
+          <span class="bg-slate-900 text-yellow-500 px-4 py-2 rounded-lg">✓ تنظيف احترافي للثقوب</span>
+          <span class="bg-slate-900 text-yellow-500 px-4 py-2 rounded-lg">✓ مواد حقن معتمدة</span>
+          <span class="bg-slate-900 text-yellow-500 px-4 py-2 rounded-lg">✓ التزام بزمن التصلب</span>
+          <span class="bg-slate-900 text-yellow-500 px-4 py-2 rounded-lg">✓ اختبار شد عند الطلب</span>
+        </div>
+      </div>
+
+      <p class="text-2xl mb-10 font-bold drop-shadow-sm">
+        لو محتاج <strong class="text-slate-900 bg-white/50 px-2 rounded">تزريع أشاير</strong> أو تثبيت أنكر… كلمنا فوراً:
+      </p>
+
+      <div class="flex flex-col sm:flex-row gap-6 justify-center items-center">
+        <a
+          href={`tel:${PHONE}`}
+          class="flex items-center justify-center gap-4 bg-slate-900 text-yellow-500 px-10 py-5 rounded-2xl text-3xl font-black hover:bg-slate-800 hover:scale-105 transition-all shadow-2xl w-full sm:w-auto"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+            />
+          </svg>
+          <span dir="ltr">010 7004 6464</span>
+        </a>
+
+        <a
+          href={`${WHATSAPP}?text=${encodeURIComponent(
+            `مرحباً ${BRAND}، محتاج تزريع أشاير كيميائي / تثبيت أنكر. اتصلوا بي على ${PHONE}`
+          )}`}
+          target="_blank"
+          rel="noopener"
+          class="flex items-center justify-center gap-3 bg-[#25D366] text-white px-10 py-5 rounded-2xl text-2xl font-black hover:bg-green-600 transition-colors shadow-2xl w-full sm:w-auto"
+        >
+          واتساب مباشر
+        </a>
+      </div>
+
+      <p class="mt-6 text-sm font-bold text-slate-800">
+        نغطي مدينة نصر، القاهرة، الجيزة، العاصمة الإدارية وكافة أنحاء الجمهورية.
+      </p>
+    </div>
+  </section>
+</Layout>
