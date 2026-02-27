@@ -3,20 +3,18 @@
 import Layout from "../layouts/Layout.astro";
 
 /**
- * ✅ Homepage قوية ومستقرة (SEO + CRO)
+ * ✅ Homepage قوية ومستقرة (SEO + CRO + Accessibility 100%)
  * - Hero + Pricing Form (يرسل للواتساب مباشرة)
- * - حل مشكلة انهيار التصميم باستخدام Flexbox و w-full ✅
- * - Trust Bar + خدمات بشكل احترافي
- * - E-E-A-T + خطوات العمل
- * - معرض مشاريع + مناطق الخدمة (تغطية شاملة لمصر)
- * - FAQ + Schema (Organization/LocalBusiness/WebSite/WebPage/Breadcrumb/FAQ)
- * - Meta Title مدمج به رقم الهاتف ✅
+ * - حل مشكلة الانهيار (Flexbox و w-full)
+ * - إضافة aria-label لجميع الحقول
+ * - تحسين تباين الألوان لزر الواتساب
+ * - استخدام مسارات صور .webp مع تحديد الأبعاد لمنع الـ CLS
  */
 
 const BRAND = "رواد الخرسانة";
 const PHONE = "01070046464"; 
 const PHONE_INT = "+20" + PHONE.replace(/^0/, "");
-const WHATSAPP = `https://wa.me/${PHONE_INT.replace("+", "")}`; // 201070046464
+const WHATSAPP = `https://wa.me/${PHONE_INT.replace("+", "")}`;
 const SITE_URL = "https://rkhrsana.com";
 const PAGE_URL = `${SITE_URL}/`;
 const LOGO_URL = `${SITE_URL}/logo.png`;
@@ -138,11 +136,11 @@ const buildWhatsAppHomeMessage = (service, city, notes) => {
   {/* 1) HERO SECTION */}
   {/* ========================================= */}
   <section class="relative block w-full bg-slate-900 text-white py-24 lg:py-32 overflow-hidden border-b-4 border-yellow-500">
-    <div class="absolute inset-0 bg-slate-800 opacity-90"></div>
-    <div class="absolute inset-0 bg-[url('https://placehold.co/1920x1080/0f172a/0f172a?text=Concrete+Experts')] bg-cover bg-center mix-blend-overlay opacity-25"></div>
+    <div class="absolute inset-0 bg-slate-800 opacity-90 z-0"></div>
+    {/* صورة الخلفية بصيغة webp بدلاً من الرابط المؤقت */}
+    <div class="absolute inset-0 bg-[url('/images/hero-bg.webp')] bg-cover bg-center mix-blend-overlay opacity-25 z-0"></div>
 
     <div class="relative z-10 w-full container mx-auto px-4 lg:px-8">
-      {/* استخدام Flex بدلاً من Grid لمنع الانهيار */}
       <div class="flex flex-col lg:flex-row gap-10 items-center w-full">
         
         {/* قسم النصوص */}
@@ -166,6 +164,7 @@ const buildWhatsAppHomeMessage = (service, city, notes) => {
           <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
             <a
               href="/contact"
+              aria-label="اطلب معاينة لمشروعك"
               class="inline-flex items-center justify-center gap-3 bg-yellow-500 text-slate-900 px-8 py-4 rounded-lg text-xl font-bold hover:bg-yellow-400 hover:scale-105 transition-all shadow-xl shadow-yellow-500/20"
             >
               اطلب معاينة لمشروعك
@@ -173,6 +172,7 @@ const buildWhatsAppHomeMessage = (service, city, notes) => {
 
             <a
               href="#services"
+              aria-label="استعرض الخدمات"
               class="inline-flex items-center justify-center gap-2 bg-transparent border-2 border-slate-600 text-white px-8 py-4 rounded-lg text-lg font-medium hover:border-yellow-500 hover:text-yellow-500 transition-colors"
             >
               استعرض الخدمات ↓
@@ -196,7 +196,7 @@ const buildWhatsAppHomeMessage = (service, city, notes) => {
           </div>
         </div>
 
-        {/* نموذج التسعير (يُرسل للواتساب) */}
+        {/* نموذج التسعير */}
         <div class="w-full lg:w-5/12 shrink-0">
           <div class="bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-sm w-full">
             <div class="flex items-center justify-between mb-4">
@@ -225,7 +225,7 @@ const buildWhatsAppHomeMessage = (service, city, notes) => {
               >
                 <div class="w-full">
                   <label class="block text-xs font-bold text-slate-200 mb-1">الخدمة المطلوبة</label>
-                  <select name="service" class="w-full border border-white/10 bg-slate-900/40 text-white rounded-xl px-4 py-3 focus:outline-none focus:border-yellow-500">
+                  <select name="service" aria-label="الخدمة المطلوبة" class="w-full border border-white/10 bg-slate-900/40 text-white rounded-xl px-4 py-3 focus:outline-none focus:border-yellow-500">
                     <option value="تخريم الخرسانة بالكور">تخريم الخرسانة بالكور</option>
                     <option value="قص الخرسانة بالمنشار">قص الخرسانة بالمنشار</option>
                     <option value="قص الخرسانة بالواير الماسي">قص الخرسانة بالواير الماسي</option>
@@ -236,19 +236,19 @@ const buildWhatsAppHomeMessage = (service, city, notes) => {
 
                 <div class="w-full">
                   <label class="block text-xs font-bold text-slate-200 mb-1">المحافظة / المدينة</label>
-                  <input name="city" type="text" class="w-full border border-white/10 bg-slate-900/40 text-white rounded-xl px-4 py-3 focus:outline-none focus:border-yellow-500" placeholder="مثال: القاهرة / الإسكندرية / أسيوط" required />
+                  <input name="city" type="text" aria-label="المحافظة أو المدينة" class="w-full border border-white/10 bg-slate-900/40 text-white rounded-xl px-4 py-3 focus:outline-none focus:border-yellow-500" placeholder="مثال: القاهرة / الإسكندرية / أسيوط" required />
                 </div>
 
                 <div class="w-full">
                   <label class="block text-xs font-bold text-slate-200 mb-1">تفاصيل (اختياري)</label>
-                  <textarea name="notes" rows="3" class="w-full border border-white/10 bg-slate-900/40 text-white rounded-xl px-4 py-3 focus:outline-none focus:border-yellow-500" placeholder="مثال: فتحة باب، سمك تقريبي، شقة متشطبة..."></textarea>
+                  <textarea name="notes" rows="3" aria-label="تفاصيل المشروع" class="w-full border border-white/10 bg-slate-900/40 text-white rounded-xl px-4 py-3 focus:outline-none focus:border-yellow-500" placeholder="مثال: فتحة باب، سمك تقريبي، شقة متشطبة..."></textarea>
                 </div>
 
-                <button type="submit" class="w-full flex items-center justify-center gap-2 bg-[#25D366] text-white font-black py-3 rounded-xl hover:bg-green-600 transition-colors shadow-lg">
+                <button type="submit" aria-label="إرسال طلب التسعير عبر واتساب" class="w-full flex items-center justify-center gap-2 bg-[#25D366] text-slate-900 font-black py-3 rounded-xl hover:bg-green-500 transition-colors shadow-lg">
                   <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.323-.297-.124-1.758-.867-2.03-.967-.272-.099-.47-.148-.669.148-.198.297-.769.966-.941 1.164-.173.199-.347.223-.644.099-.297-.124-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.582.134-.111.297-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/>
                   </svg>
-                  إرسال الطلب عبر واتساب
+                  إرسال على واتساب
                 </button>
               </form>
             </div>
@@ -278,7 +278,7 @@ const buildWhatsAppHomeMessage = (service, city, notes) => {
           { href: "/wire-sawing", t: "قص الخرسانة بالواير", d: "للسمكات الضخمة والقواعد والخوازيق والمشاريع الثقيلة.", tag: "Diamond Wire" },
           { href: "/rebar-planting", t: "تزريع الأشاير", d: "زرع حديد كيميائي لربط القديم بالجديد بمادة إيبوكسي.", tag: "Rebar Planting" }
         ].map((x) => (
-          <a href={x.href} class="group block w-full p-6 bg-slate-50 border border-slate-200 rounded-2xl hover:border-yellow-500 hover:shadow-lg transition-all text-right">
+          <a href={x.href} aria-label={`انتقل إلى صفحة ${x.t}`} class="group block w-full p-6 bg-slate-50 border border-slate-200 rounded-2xl hover:border-yellow-500 hover:shadow-lg transition-all text-right">
             <span class="inline-block text-xs font-bold bg-white border border-slate-200 px-3 py-1 rounded-full mb-4 group-hover:border-yellow-500">
               {x.tag}
             </span>
@@ -373,22 +373,24 @@ const buildWhatsAppHomeMessage = (service, city, notes) => {
 
       <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
         {[
-          "Core Drilling",
-          "Saw Cutting",
-          "Diamond Wire Saw",
-          "Rebar Planting",
-          "Ceiling / Slab Work",
-          "Industrial Projects"
-        ].map((t) => (
+          { img: "/images/gallery-core.webp", t: "تخريم الخرسانة بالكور" },
+          { img: "/images/gallery-saw.webp", t: "قص الخرسانة بالمنشار" },
+          { img: "/images/gallery-wire.webp", t: "قص الخرسانة بالواير" },
+          { img: "/images/gallery-rebar.webp", t: "تزريع الأشاير" },
+          { img: "/images/gallery-ceiling.webp", t: "أعمال تخريم السقف" },
+          { img: "/images/gallery-industrial.webp", t: "مشاريع المصانع الكبرى" }
+        ].map((x) => (
           <figure class="w-full bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
             <img
-              src={`https://placehold.co/900x650/0f172a/f59e0b?text=${encodeURIComponent(t)}`}
-              alt={`مشروع ${t}`}
+              src={x.img}
+              alt={`مشروع ${x.t}`}
               loading="lazy"
-              class="w-full h-56 object-cover"
+              width="800"
+              height="600"
+              class="w-full h-56 object-cover bg-slate-200"
             />
             <figcaption class="p-4 text-right">
-              <p class="font-bold text-slate-900">{t}</p>
+              <p class="font-bold text-slate-900">{x.t}</p>
               <p class="text-sm text-slate-600 mt-1">تنفيذ منظم + نتيجة نظيفة.</p>
             </figcaption>
           </figure>
@@ -469,6 +471,7 @@ const buildWhatsAppHomeMessage = (service, city, notes) => {
       <div class="flex flex-col sm:flex-row gap-6 justify-center items-center w-full">
         <a
           href="/contact"
+          aria-label="اطلب معاينة أو تسعير"
           class="flex items-center justify-center gap-4 bg-slate-900 text-yellow-500 px-10 py-5 rounded-2xl text-2xl font-black hover:bg-slate-800 hover:scale-105 transition-all shadow-2xl w-full sm:w-auto"
         >
           اطلب معاينة أو تسعير
