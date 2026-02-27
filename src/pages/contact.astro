@@ -1,0 +1,329 @@
+---
+// src/pages/contact.astro
+import Layout from "../layouts/Layout.astro";
+
+/**
+ * ✅ صفحة "تواصل معنا" (Contact Us)
+ * - Schema مخصص: ContactPage + BreadcrumbList + LocalBusiness
+ * - نموذج تواصل احترافي يرسل البيانات مباشرة إلى الواتساب (WhatsApp Redirect) ✅
+ * - إبراز معلومات الاتصال ومناطق التغطية بوضوح
+ * - تصميم متناسق مع باقي صفحات الموقع (Flex بدلاً من Grid لمنع الانهيار) ✅
+ * - Meta Title احترافي مدمج به رقم الهاتف
+ */
+
+// ====== بيانات أساسية ======
+const BRAND = "رواد الخرسانة";
+const PHONE = "01070046464";
+const PHONE_INT = "+20" + PHONE.replace(/^0/, ""); // +201070046464
+const WHATSAPP = `https://wa.me/${PHONE_INT.replace("+", "")}`; // 201070046464
+const SITE_URL = "https://rkhrsana.com";
+const PAGE_URL = `${SITE_URL}/contact`;
+const LOGO_URL = `${SITE_URL}/logo.png`;
+
+// ====== SEO ======
+const PAGE_TITLE = `تواصل معنا لطلب تسعير أو معاينة | رواد الخرسانة | اتصل ${PHONE}`;
+const PAGE_DESCRIPTION = `تواصل مع شركة رواد الخرسانة لقص وتخريم الخرسانة بالكور والمنشار والواير. اطلب تسعير فوري أو حدد موعد معاينة لمشروعك في أي مكان في جميع أنحاء مصر.`;
+
+// ====== Schema ======
+const contactPageSchema = {
+  "@context": "https://schema.org",
+  "@type": "ContactPage",
+  "name": PAGE_TITLE,
+  "description": PAGE_DESCRIPTION,
+  "url": PAGE_URL,
+  "mainEntity": {
+    "@type": "LocalBusiness",
+    "name": "رواد الخرسانة لقص وتخريم الخرسانة",
+    "image": LOGO_URL,
+    "telephone": PHONE,
+    "address": {
+      "@type": "PostalAddress",
+      "addressCountry": "EG"
+    },
+    "areaServed": [
+      { "@type": "Country", "name": "Egypt" }
+    ]
+  }
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "الرئيسية", "item": `${SITE_URL}/` },
+    { "@type": "ListItem", "position": 2, "name": "تواصل معنا", "item": PAGE_URL }
+  ]
+};
+
+// ====== دالة بناء رسالة الواتساب ======
+const buildWhatsAppContactMessage = (name, phone, service, city, details) => {
+  const lines = [
+    `مرحباً ${BRAND}،`,
+    `لدي طلب تسعير / معاينة جديد من الموقع:`,
+    `-------------------------`,
+    `👤 الاسم: ${name}`,
+    `📞 الهاتف: ${phone}`,
+    `🛠️ الخدمة: ${service}`,
+    `📍 المحافظة: ${city}`,
+    `📝 التفاصيل: ${details || 'لا يوجد'}`,
+    `-------------------------`
+  ].filter(Boolean);
+
+  return encodeURIComponent(lines.join("\n"));
+};
+---
+
+<Layout title={PAGE_TITLE} description={PAGE_DESCRIPTION}>
+  <link rel="canonical" href={PAGE_URL} />
+  <script type="application/ld+json" set:html={JSON.stringify(contactPageSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+
+  {/* ========================================= */}
+  {/* 1) Hero Section */}
+  {/* ========================================= */}
+  <section class="relative block w-full bg-slate-900 text-white py-20 overflow-hidden border-b-4 border-yellow-500">
+    <div class="absolute inset-0 bg-slate-800 opacity-90"></div>
+    <div class="absolute inset-0 bg-[url('https://placehold.co/1920x1080/0f172a/0f172a')] bg-cover bg-center mix-blend-overlay opacity-25"></div>
+
+    <div class="relative z-10 w-full container mx-auto px-4 lg:px-8">
+      <div class="max-w-4xl mx-auto text-center w-full">
+        <span class="inline-block bg-yellow-500 text-slate-900 font-bold px-4 py-1 rounded-full text-sm md:text-base mb-6 shadow-lg">
+          نحن هنا لخدمتك في جميع أنحاء مصر
+        </span>
+
+        <h1 class="text-4xl md:text-5xl font-extrabold mb-6 leading-tight text-white drop-shadow-lg">
+          تواصل معنا لطلب تسعير أو معاينة
+        </h1>
+
+        <p class="text-lg md:text-xl text-slate-300 leading-relaxed font-light">
+          فريق <strong class="text-white font-bold">{BRAND}</strong> جاهز للرد على كافة استفساراتكم المتعلقة بأعمال قص وتخريم الخرسانة. املأ النموذج أدناه ليتم إرسال طلبك فوراً عبر الواتساب.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  {/* ========================================= */}
+  {/* 2) Main Contact Section (Flex Layout) */}
+  {/* ========================================= */}
+  <section class="block w-full py-20 bg-slate-50">
+    <div class="w-full container mx-auto px-4 lg:px-8 max-w-6xl">
+      <div class="flex flex-col lg:flex-row gap-12 w-full">
+        
+        {/* معلومات الاتصال */}
+        <div class="w-full lg:w-1/3 shrink-0 flex flex-col gap-6">
+          <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-200 w-full">
+            <h2 class="text-2xl font-bold text-slate-900 mb-6 border-b-2 border-yellow-500 pb-3 inline-block">
+              معلومات الاتصال
+            </h2>
+            
+            <ul class="space-y-6">
+              <li class="flex items-start gap-4">
+                <div class="w-12 h-12 bg-slate-100 rounded-full flex items-center justify-center text-slate-900 shrink-0">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                  </svg>
+                </div>
+                <div>
+                  <strong class="block text-slate-900 font-bold mb-1">الهاتف المباشر</strong>
+                  <a href={`tel:${PHONE}`} class="text-slate-600 hover:text-yellow-600 transition-colors font-medium dir-ltr inline-block">
+                    {PHONE}
+                  </a>
+                </div>
+              </li>
+
+              <li class="flex items-start gap-4">
+                <div class="w-12 h-12 bg-slate-100 rounded-full flex items-center justify-center text-slate-900 shrink-0">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </div>
+                <div>
+                  <strong class="block text-slate-900 font-bold mb-1">ساعات العمل</strong>
+                  <span class="text-slate-600">طوال أيام الأسبوع<br/>من 8 صباحاً حتي 10 مساءً</span>
+                </div>
+              </li>
+
+              <li class="flex items-start gap-4">
+                <div class="w-12 h-12 bg-slate-100 rounded-full flex items-center justify-center text-slate-900 shrink-0">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                  </svg>
+                </div>
+                <div>
+                  <strong class="block text-slate-900 font-bold mb-1">مناطق التغطية</strong>
+                  <span class="text-slate-600">القاهرة، الإسكندرية، الدلتا، الصعيد، وكافة محافظات مصر.</span>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div class="bg-slate-900 p-8 rounded-2xl shadow-sm text-center border-t-4 border-yellow-500 w-full">
+            <h3 class="text-xl font-bold text-white mb-3">هل لديك حالة طارئة؟</h3>
+            <p class="text-slate-300 text-sm mb-6 leading-relaxed">
+              إذا كان مشروعك متوقفاً ويحتاج إلى تدخل سريع، يرجى الاتصال بنا هاتفياً لضمان الاستجابة الفورية.
+            </p>
+            <a href={`tel:${PHONE}`} class="block w-full bg-yellow-500 text-slate-900 font-black py-3 rounded-xl hover:bg-yellow-400 transition-colors">
+              اتصل الآن: {PHONE}
+            </a>
+          </div>
+        </div>
+
+        {/* نموذج التواصل (يُرسل للواتساب) */}
+        <div class="w-full lg:w-2/3">
+          <div class="bg-white p-8 md:p-10 rounded-2xl shadow-lg border border-slate-100 w-full">
+            <h2 class="text-2xl md:text-3xl font-bold text-slate-900 mb-2">أرسل تفاصيل مشروعك</h2>
+            <p class="text-slate-600 mb-8">
+              قم بتعبئة النموذج التالي وسيقوم بتحويلك مباشرة إلى الواتساب لإرسال رسالة جاهزة بكل التفاصيل.
+            </p>
+
+            <form 
+              class="space-y-6 w-full"
+              onsubmit={`(function(e){
+                e.preventDefault();
+                const f = e.target;
+                const name = f.name.value || 'غير محدد';
+                const phone = f.phone.value || 'غير محدد';
+                const service = f.service.value || 'غير محدد';
+                const city = f.city.value || 'غير محدد';
+                const details = f.details.value || '';
+                
+                const msg = ${buildWhatsAppContactMessage.toString()}(name, phone, service, city, details);
+                window.open('${WHATSAPP}?text=' + msg, '_blank');
+              })(event);`}
+            >
+              <div class="flex flex-col md:flex-row gap-6 w-full">
+                <div class="w-full md:w-1/2">
+                  <label for="name" class="block text-sm font-bold text-slate-700 mb-2">الاسم / اسم الشركة <span class="text-red-500">*</span></label>
+                  <input 
+                    type="text" 
+                    id="name" 
+                    name="name" 
+                    required 
+                    class="w-full block border border-slate-300 rounded-xl px-4 py-3 focus:outline-none focus:border-yellow-500 focus:ring-1 focus:ring-yellow-500 transition-colors bg-slate-50"
+                    placeholder="أدخل اسمك"
+                  />
+                </div>
+
+                <div class="w-full md:w-1/2">
+                  <label for="phone" class="block text-sm font-bold text-slate-700 mb-2">رقم الهاتف <span class="text-red-500">*</span></label>
+                  <input 
+                    type="tel" 
+                    id="phone" 
+                    name="phone" 
+                    required 
+                    class="w-full block border border-slate-300 rounded-xl px-4 py-3 focus:outline-none focus:border-yellow-500 focus:ring-1 focus:ring-yellow-500 transition-colors bg-slate-50 text-right dir-ltr"
+                    placeholder="مثال: 01012345678"
+                  />
+                </div>
+              </div>
+
+              <div class="flex flex-col md:flex-row gap-6 w-full">
+                <div class="w-full md:w-1/2">
+                  <label for="service" class="block text-sm font-bold text-slate-700 mb-2">الخدمة المطلوبة <span class="text-red-500">*</span></label>
+                  <select 
+                    id="service" 
+                    name="service" 
+                    required
+                    class="w-full block border border-slate-300 rounded-xl px-4 py-3 focus:outline-none focus:border-yellow-500 focus:ring-1 focus:ring-yellow-500 transition-colors bg-slate-50"
+                  >
+                    <option value="" disabled selected>-- اختر الخدمة --</option>
+                    <option value="تخريم الخرسانة بالكور">تخريم الخرسانة بالكور</option>
+                    <option value="قص الخرسانة بالمنشار">قص الخرسانة بالمنشار</option>
+                    <option value="قص الخرسانة بالواير">قص الخرسانة بالواير الماسي</option>
+                    <option value="تزريع الأشاير">تزريع الأشاير الكيميائي</option>
+                    <option value="أخرى / استشارة">أخرى / استشارة هندسية</option>
+                  </select>
+                </div>
+
+                <div class="w-full md:w-1/2">
+                  <label for="city" class="block text-sm font-bold text-slate-700 mb-2">المحافظة / المدينة <span class="text-red-500">*</span></label>
+                  <input 
+                    type="text" 
+                    id="city" 
+                    name="city" 
+                    required 
+                    class="w-full block border border-slate-300 rounded-xl px-4 py-3 focus:outline-none focus:border-yellow-500 focus:ring-1 focus:ring-yellow-500 transition-colors bg-slate-50"
+                    placeholder="أين يقع المشروع؟"
+                  />
+                </div>
+              </div>
+
+              <div class="w-full">
+                <label for="details" class="block text-sm font-bold text-slate-700 mb-2">تفاصيل المشروع (اختياري)</label>
+                <textarea 
+                  id="details" 
+                  name="details" 
+                  rows="4" 
+                  class="w-full block border border-slate-300 rounded-xl px-4 py-3 focus:outline-none focus:border-yellow-500 focus:ring-1 focus:ring-yellow-500 transition-colors bg-slate-50"
+                  placeholder="اكتب تفاصيل العمل المطلوب (مقاسات، سمك الخرسانة، إلخ...)"
+                ></textarea>
+              </div>
+
+              <div class="text-left w-full">
+                <button 
+                  type="submit" 
+                  class="inline-flex items-center justify-center gap-3 bg-[#25D366] text-white px-10 py-4 rounded-xl text-lg font-black hover:bg-green-600 transition-all shadow-lg w-full md:w-auto"
+                >
+                  {/* أيقونة واتساب */}
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.323-.297-.124-1.758-.867-2.03-.967-.272-.099-.47-.148-.669.148-.198.297-.769.966-.941 1.164-.173.199-.347.223-.644.099-.297-.124-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.582.134-.111.297-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/>
+                  </svg>
+                  إرسال الطلب عبر واتساب
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  {/* ========================================= */}
+  {/* 3) ماذا يحدث بعد إرسال الطلب؟ (E-E-A-T) */}
+  {/* ========================================= */}
+  <section class="py-16 bg-white border-t border-slate-200">
+    <div class="container mx-auto px-4 lg:px-8 max-w-5xl">
+      <div class="text-center mb-12">
+        <h2 class="text-2xl md:text-3xl font-bold text-slate-900 mb-4">كيف تسير الأمور بعد التواصل؟</h2>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6 text-center">
+        <div class="p-6">
+          <div class="w-16 h-16 bg-yellow-100 text-yellow-600 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-black">
+            1
+          </div>
+          <h3 class="text-xl font-bold text-slate-900 mb-2">استلام رسالتك</h3>
+          <p class="text-slate-600 text-sm leading-relaxed">
+            بمجرد إرسالك للرسالة عبر الواتساب، سيقوم المهندس المختص بالاطلاع على التفاصيل والمقاسات.
+          </p>
+        </div>
+
+        <div class="p-6 relative">
+          <div class="hidden md:block absolute top-14 right-[60%] w-[80%] h-0.5 bg-slate-200 -z-10"></div>
+          
+          <div class="w-16 h-16 bg-yellow-100 text-yellow-600 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-black">
+            2
+          </div>
+          <h3 class="text-xl font-bold text-slate-900 mb-2">تقديم السعر والمشورة</h3>
+          <p class="text-slate-600 text-sm leading-relaxed">
+            سنرد عليك بتسعير دقيق أو نقوم بالاتصال بك هاتفياً لمناقشة أفضل الحلول الهندسية لمشروعك.
+          </p>
+        </div>
+
+        <div class="p-6 relative">
+          <div class="hidden md:block absolute top-14 right-[60%] w-[80%] h-0.5 bg-slate-200 -z-10"></div>
+          
+          <div class="w-16 h-16 bg-yellow-500 text-slate-900 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-black shadow-lg">
+            3
+          </div>
+          <h3 class="text-xl font-bold text-slate-900 mb-2">المعاينة أو التنفيذ</h3>
+          <p class="text-slate-600 text-sm leading-relaxed">
+            نقوم بتحديد موعد للمعاينة المجانية (إذا تطلب الأمر) أو نتفق على موعد التنفيذ مباشرة وبدء العمل.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
