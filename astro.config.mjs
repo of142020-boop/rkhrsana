@@ -9,4 +9,8 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
   },
+  // 👇 الكود الجديد الذي تم إضافته لتضمين الـ CSS مباشرة
+  build: {
+    inlineStylesheets: "always",
+  },
 });

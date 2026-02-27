@@ -3,6 +3,10 @@
 import '../styles/global.css';
 
 const { title, description } = Astro.props;
+
+// الحصول على مسار الصفحة الحالية ومعالجته لضمان الدقة
+const currentPath = Astro.url.pathname;
+const normalizedPath = currentPath.endsWith('/') && currentPath.length > 1 ? currentPath.slice(0, -1) : currentPath;
 ---
 <!DOCTYPE html>
 <html lang="ar" dir="rtl" class="scroll-smooth">
@@ -29,13 +33,18 @@ const { title, description } = Astro.props;
             <span class="text-2xl font-extrabold text-white tracking-tight">رواد <span class="text-yellow-500">الخرسانة</span></span>
           </a>
 
-          <nav class="hidden md:flex gap-6 font-medium text-slate-300">
-            <a href="/" aria-label="الرئيسية" class="hover:text-yellow-500 transition-colors">الرئيسية</a>
-            <a href="/core-drilling" aria-label="تخريم الخرسانة بالكور" class="hover:text-yellow-500 transition-colors">تخريم الكور</a>
-            <a href="/saw-cutting" aria-label="قص الخرسانة بالمنشار" class="hover:text-yellow-500 transition-colors">القص بالمنشار</a>
-            <a href="/wire-sawing" aria-label="قص الخرسانة بالواير" class="hover:text-yellow-500 transition-colors">القص بالواير</a>
-            <a href="/rebar-planting" aria-label="تزريع الأشاير" class="hover:text-yellow-500 transition-colors">تزريع الأشاير</a>
-            <a href="/contact" aria-label="تواصل معنا" class="hover:text-yellow-500 transition-colors text-yellow-500 font-bold">تواصل معنا</a>
+          <nav class="hidden md:flex gap-6 font-medium">
+            <a href="/" aria-label="الرئيسية" class={`transition-colors hover:text-yellow-500 ${normalizedPath === '/' ? 'text-yellow-500 font-bold' : 'text-slate-300'}`}>الرئيسية</a>
+            
+            <a href="/core-drilling" aria-label="تخريم الخرسانة بالكور" class={`transition-colors hover:text-yellow-500 ${normalizedPath === '/core-drilling' ? 'text-yellow-500 font-bold' : 'text-slate-300'}`}>تخريم الكور</a>
+            
+            <a href="/saw-cutting" aria-label="قص الخرسانة بالمنشار" class={`transition-colors hover:text-yellow-500 ${normalizedPath === '/saw-cutting' ? 'text-yellow-500 font-bold' : 'text-slate-300'}`}>القص بالمنشار</a>
+            
+            <a href="/wire-sawing" aria-label="قص الخرسانة بالواير" class={`transition-colors hover:text-yellow-500 ${normalizedPath === '/wire-sawing' ? 'text-yellow-500 font-bold' : 'text-slate-300'}`}>القص بالواير</a>
+            
+            <a href="/rebar-planting" aria-label="تزريع الأشاير" class={`transition-colors hover:text-yellow-500 ${normalizedPath === '/rebar-planting' ? 'text-yellow-500 font-bold' : 'text-slate-300'}`}>تزريع الأشاير</a>
+            
+            <a href="/contact" aria-label="تواصل معنا" class={`transition-colors hover:text-yellow-500 ${normalizedPath === '/contact' ? 'text-yellow-500 font-bold' : 'text-slate-300'}`}>تواصل معنا</a>
           </nav>
 
           <a href="tel:01070046464" aria-label="اتصل بنا هاتفيا" class="hidden md:flex items-center gap-2 bg-yellow-500 text-slate-900 px-5 py-2 rounded-md font-bold hover:bg-yellow-400 transition-colors">
@@ -54,14 +63,19 @@ const { title, description } = Astro.props;
         </div>
       </div>
 
-      <div id="mobileMenu" class="md:hidden hidden absolute top-20 left-0 w-full bg-slate-900 border-b-2 border-slate-800 shadow-2xl transition-all duration-300 origin-top">
-        <nav class="flex flex-col px-6 py-4 space-y-4 font-medium text-slate-300">
-          <a href="/" class="block pb-2 border-b border-slate-800 hover:text-yellow-500">الرئيسية</a>
-          <a href="/core-drilling" class="block pb-2 border-b border-slate-800 hover:text-yellow-500">تخريم الكور</a>
-          <a href="/saw-cutting" class="block pb-2 border-b border-slate-800 hover:text-yellow-500">القص بالمنشار</a>
-          <a href="/wire-sawing" class="block pb-2 border-b border-slate-800 hover:text-yellow-500">القص بالواير</a>
-          <a href="/rebar-planting" class="block pb-2 border-b border-slate-800 hover:text-yellow-500">تزريع الأشاير</a>
-          <a href="/contact" class="block pb-2 border-slate-800 text-yellow-500 font-bold">تواصل معنا</a>
+      <div id="mobileMenu" class="md:hidden hidden absolute top-20 left-0 w-full bg-slate-900 border-b-2 border-slate-800 shadow-2xl transition-all duration-300 origin-top z-40">
+        <nav class="flex flex-col px-6 py-4 space-y-4 font-medium">
+          <a href="/" class={`block pb-2 border-b border-slate-800 hover:text-yellow-500 ${normalizedPath === '/' ? 'text-yellow-500 font-bold' : 'text-slate-300'}`}>الرئيسية</a>
+          
+          <a href="/core-drilling" class={`block pb-2 border-b border-slate-800 hover:text-yellow-500 ${normalizedPath === '/core-drilling' ? 'text-yellow-500 font-bold' : 'text-slate-300'}`}>تخريم الكور</a>
+          
+          <a href="/saw-cutting" class={`block pb-2 border-b border-slate-800 hover:text-yellow-500 ${normalizedPath === '/saw-cutting' ? 'text-yellow-500 font-bold' : 'text-slate-300'}`}>القص بالمنشار</a>
+          
+          <a href="/wire-sawing" class={`block pb-2 border-b border-slate-800 hover:text-yellow-500 ${normalizedPath === '/wire-sawing' ? 'text-yellow-500 font-bold' : 'text-slate-300'}`}>القص بالواير</a>
+          
+          <a href="/rebar-planting" class={`block pb-2 border-b border-slate-800 hover:text-yellow-500 ${normalizedPath === '/rebar-planting' ? 'text-yellow-500 font-bold' : 'text-slate-300'}`}>تزريع الأشاير</a>
+          
+          <a href="/contact" class={`block pb-2 border-slate-800 hover:text-yellow-500 ${normalizedPath === '/contact' ? 'text-yellow-500 font-bold' : 'text-slate-300'}`}>تواصل معنا</a>
         </nav>
       </div>
     </header>
