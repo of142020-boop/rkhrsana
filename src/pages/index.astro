@@ -12,7 +12,7 @@ import Layout from "../layouts/Layout.astro";
  */
 
 const BRAND = "رواد الخرسانة";
-const PHONE = "01070046464"; 
+const PHONE = "01070046464";
 const PHONE_INT = "+20" + PHONE.replace(/^0/, "");
 const WHATSAPP = `https://wa.me/${PHONE_INT.replace("+", "")}`;
 const SITE_URL = "https://rkhrsana.com";
@@ -20,91 +20,89 @@ const PAGE_URL = `${SITE_URL}/`;
 const LOGO_URL = `${SITE_URL}/logo.png`;
 
 const TITLE = `رواد الخرسانة | قص وتخريم الخرسانة بالكور والمنشار والواير | اتصل ${PHONE}`;
-const DESCRIPTION =
-  `رواد الخرسانة: شركة متخصصة في قص وتخريم الخرسانة بالكور، القص بالمنشار، الواير الماسي، وتزريع الأشاير. تنفيذ نظيف ودقيق بدون تكسير عشوائي في أي مكان في مصر.`;
+const DESCRIPTION = `رواد الخرسانة: شركة متخصصة في قص وتخريم الخرسانة بالكور، القص بالمنشار، الواير الماسي، وتزريع الأشاير. تنفيذ نظيف ودقيق بدون تكسير عشوائي في أي مكان في مصر.`;
 
 // ====== FAQ (UI + Schema) ======
 const faqItems = [
   {
     q: "ما الخدمات الأساسية التي تقدمها رواد الخرسانة؟",
-    a: "نقدم: تخريم الخرسانة بالكور لعمل فتحات دقيقة، قص الخرسانة بالمنشار لعمل أبواب وشبابيك وفتحات سقف، قص الخرسانة بالواير للمشاريع الثقيلة والسمكات الضخمة، وتزريع الأشاير الكيميائي لربط الخرسانة القديمة بالجديدة."
+    a: "نقدم: تخريم الخرسانة بالكور لعمل فتحات دقيقة، قص الخرسانة بالمنشار لعمل أبواب وشبابيك وفتحات سقف، قص الخرسانة بالواير للمشاريع الثقيلة والسمكات الضخمة، وتزريع الأشاير الكيميائي لربط الخرسانة القديمة بالجديدة.",
   },
   {
     q: "هل الشغل آمن على الخرسانة المسلحة؟",
-    a: "نعم عند التنفيذ الصحيح بالمعدات المناسبة وبفريق محترف. نحن نعتمد على تقنيات قص/تخريم تقلل الاهتزازات الصدمية مقارنة بالتكسير العشوائي، مع مراعاة تعليمات المهندس عند الحالات الحساسة."
+    a: "نعم عند التنفيذ الصحيح بالمعدات المناسبة وبفريق محترف. نحن نعتمد على تقنيات قص/تخريم تقلل الاهتزازات الصدمية مقارنة بالتكسير العشوائي، مع مراعاة تعليمات المهندس عند الحالات الحساسة.",
   },
   {
     q: "كيف يتم تحديد السعر بسرعة؟",
-    a: "السعر يتحدد حسب نوع الخدمة (كور/منشار/واير/تزريع)، المقاس أو عدد الفتحات/المتر الطولي، السمك وكثافة الحديد، وصعوبة الموقع. يمكنك إرسال تفاصيل مشروعك عبر نموذج التسعير السريع للحصول على التكلفة."
+    a: "السعر يتحدد حسب نوع الخدمة (كور/منشار/واير/تزريع)، المقاس أو عدد الفتحات/المتر الطولي، السمك وكثافة الحديد، وصعوبة الموقع. يمكنك إرسال تفاصيل مشروعك عبر نموذج التسعير السريع للحصول على التكلفة.",
   },
   {
     q: "هل يمكن التنفيذ داخل شقة متشطبة؟",
-    a: "نعم. يتم تجهيز حماية وتغطية وتقليل غبار/مياه حسب ظروف المكان، والهدف تسليم نظيف بأقل فوضى ممكنة."
+    a: "نعم. يتم تجهيز حماية وتغطية وتقليل غبار/مياه حسب ظروف المكان، والهدف تسليم نظيف بأقل فوضى ممكنة.",
   },
   {
     q: "تخدموا أي مناطق؟",
-    a: "نقدم خدماتنا في جميع محافظات جمهورية مصر العربية، نصل إليك أينما كان مشروعك لتنفيذ الأعمال المطلوبة."
+    a: "نقدم خدماتنا في جميع محافظات جمهورية مصر العربية، نصل إليك أينما كان مشروعك لتنفيذ الأعمال المطلوبة.",
   },
   {
     q: "هل توفرون معاينة قبل التنفيذ؟",
-    a: "متاح معاينة حسب نوع العمل وحجمه. تواصل معنا لتحديد المطلوب بسرعة وتنسيق موعد للمعاينة."
-  }
+    a: "متاح معاينة حسب نوع العمل وحجمه. تواصل معنا لتحديد المطلوب بسرعة وتنسيق موعد للمعاينة.",
+  },
 ];
 
 const faqSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
-  "mainEntity": faqItems.map((x) => ({
+  mainEntity: faqItems.map((x) => ({
     "@type": "Question",
-    "name": x.q,
-    "acceptedAnswer": { "@type": "Answer", "text": x.a }
-  }))
+    name: x.q,
+    acceptedAnswer: { "@type": "Answer", text: x.a },
+  })),
 };
 
 const localBusinessSchema = {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
-  "name": "رواد الخرسانة لقص وتخريم الخرسانة",
-  "image": LOGO_URL,
-  "url": SITE_URL,
-  "priceRange": "$$",
-  "address": {
+  name: "رواد الخرسانة لقص وتخريم الخرسانة",
+  image: LOGO_URL,
+  url: SITE_URL,
+  priceRange: "$$",
+  address: {
     "@type": "PostalAddress",
-    "addressCountry": "EG"
-  }
+    addressCountry: "EG",
+  },
 };
 
 const orgSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
-  "name": "رواد الخرسانة لقص وتخريم الخرسانة",
-  "url": SITE_URL,
-  "logo": LOGO_URL,
-  "sameAs": [
-    "https://www.facebook.com/",
-    "https://www.instagram.com/"
-  ]
+  name: "رواد الخرسانة لقص وتخريم الخرسانة",
+  url: SITE_URL,
+  logo: LOGO_URL,
+  sameAs: ["https://www.facebook.com/", "https://www.instagram.com/"],
 };
 
 const webSiteSchema = {
   "@context": "https://schema.org",
   "@type": "WebSite",
-  "name": "rkhrsana",
-  "url": SITE_URL
+  name: "rkhrsana",
+  url: SITE_URL,
 };
 
 const webPageSchema = {
   "@context": "https://schema.org",
   "@type": "WebPage",
-  "name": "الصفحة الرئيسية - رواد الخرسانة",
-  "url": PAGE_URL,
-  "isPartOf": { "@type": "WebSite", "name": "rkhrsana", "url": SITE_URL }
+  name: "الصفحة الرئيسية - رواد الخرسانة",
+  url: PAGE_URL,
+  isPartOf: { "@type": "WebSite", name: "rkhrsana", url: SITE_URL },
 };
 
 const breadcrumbSchema = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
-  "itemListElement": [{ "@type": "ListItem", "position": 1, "name": "الرئيسية", "item": PAGE_URL }]
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "الرئيسية", item: PAGE_URL },
+  ],
 };
 
 // ====== رسالة واتساب للرئيسية ======
@@ -114,7 +112,7 @@ const buildWhatsAppHomeMessage = (service, city, notes) => {
     `طلب تسعير سريع من الصفحة الرئيسية:`,
     `- الخدمة: ${service}`,
     `- المحافظة/المدينة: ${city}`,
-    notes ? `- تفاصيل: ${notes}` : null
+    notes ? `- تفاصيل: ${notes}` : null,
   ].filter(Boolean);
 
   return encodeURIComponent(lines.join("\n"));
@@ -125,43 +123,67 @@ const buildWhatsAppHomeMessage = (service, city, notes) => {
   <link rel="canonical" href={PAGE_URL} />
 
   {/* ✅ Schema */}
-  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
-  <script type="application/ld+json" set:html={JSON.stringify(localBusinessSchema)} />
-  <script type="application/ld+json" set:html={JSON.stringify(orgSchema)} />
-  <script type="application/ld+json" set:html={JSON.stringify(webSiteSchema)} />
-  <script type="application/ld+json" set:html={JSON.stringify(webPageSchema)} />
-  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)}
+  ></script>
+  <script
+    type="application/ld+json"
+    set:html={JSON.stringify(localBusinessSchema)}
+  ></script>
+  <script type="application/ld+json" set:html={JSON.stringify(orgSchema)}
+  ></script>
+  <script type="application/ld+json" set:html={JSON.stringify(webSiteSchema)}
+  ></script>
+  <script type="application/ld+json" set:html={JSON.stringify(webPageSchema)}
+  ></script>
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)}
+  ></script>
 
   {/* ========================================= */}
   {/* 1) HERO SECTION */}
   {/* ========================================= */}
-  <section class="relative block w-full bg-slate-900 text-white py-24 lg:py-32 overflow-hidden border-b-4 border-yellow-500">
+  <section
+    class="relative block w-full bg-slate-900 text-white py-24 lg:py-32 overflow-hidden border-b-4 border-yellow-500"
+  >
     <div class="absolute inset-0 bg-slate-800 opacity-90 z-0"></div>
     {/* صورة الخلفية بصيغة webp بدلاً من الرابط المؤقت */}
-    <div class="absolute inset-0 bg-[url('/images/hero-bg.webp')] bg-cover bg-center mix-blend-overlay opacity-25 z-0"></div>
+    <div
+      class="absolute inset-0 bg-[url('/images/hero-bg.webp')] bg-cover bg-center mix-blend-overlay opacity-25 z-0"
+    >
+    </div>
 
     <div class="relative z-10 w-full container mx-auto px-4 lg:px-8">
       <div class="flex flex-col lg:flex-row gap-10 items-center w-full">
-        
         {/* قسم النصوص */}
         <div class="w-full lg:w-7/12 text-center lg:text-right">
-          <span class="inline-block bg-yellow-500 text-slate-900 font-bold px-4 py-1 rounded-full text-sm md:text-base mb-6 shadow-lg">
+          <span
+            class="inline-block bg-yellow-500 text-slate-900 font-bold px-4 py-1 rounded-full text-sm md:text-base mb-6 shadow-lg"
+          >
             الحل الهندسي النظيف والدقيق — في أي مكان في مصر
           </span>
 
-          <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6 leading-tight text-white drop-shadow-lg">
+          <h1
+            class="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6 leading-tight text-white drop-shadow-lg"
+          >
             الشركة المتخصصة في قص وتخريم الخرسانة بالكور والمنشار والواير
           </h1>
 
-          <p class="text-lg md:text-2xl mb-8 text-slate-300 leading-relaxed font-light">
+          <p
+            class="text-lg md:text-2xl mb-8 text-slate-300 leading-relaxed font-light"
+          >
             في <strong class="text-white font-bold">{BRAND}</strong> بننفذ:
             <strong class="text-white"> تخريم كور</strong> لفتحات دقيقة،
-            <strong class="text-white"> قص بالمنشار</strong> لفتحات الأبواب والشبابيك والسقف،
-            <strong class="text-white"> قص بالواير</strong> للمشاريع الثقيلة،
-            و<strong class="text-white"> تزريع أشاير</strong> لربط الخرسانة القديمة بالجديدة — بخطة أمان وتنفيذ منظم.
+            <strong class="text-white"> قص بالمنشار</strong> لفتحات الأبواب والشبابيك
+            والسقف،
+            <strong class="text-white"> قص بالواير</strong> للمشاريع الثقيلة، و<strong
+              class="text-white"
+            >
+              تزريع أشاير</strong
+            > لربط الخرسانة القديمة بالجديدة — بخطة أمان وتنفيذ منظم.
           </p>
 
-          <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+          <div
+            class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
+          >
             <a
               href="/contact"
               aria-label="اطلب معاينة لمشروعك"
@@ -181,37 +203,65 @@ const buildWhatsAppHomeMessage = (service, city, notes) => {
 
           {/* Trust bar */}
           <div class="mt-10 grid grid-cols-1 md:grid-cols-3 gap-4 text-right">
-            <div class="bg-white/5 border border-white/10 rounded-2xl p-5 w-full">
+            <div
+              class="bg-white/5 border border-white/10 rounded-2xl p-5 w-full"
+            >
               <p class="text-yellow-400 font-black text-lg">دقة في المقاس</p>
-              <p class="text-slate-200 text-sm leading-relaxed">تنفيذ مضبوط يقلل الترقيع والترميم بعد الشغل.</p>
+              <p class="text-slate-200 text-sm leading-relaxed">
+                تنفيذ مضبوط يقلل الترقيع والترميم بعد الشغل.
+              </p>
             </div>
-            <div class="bg-white/5 border border-white/10 rounded-2xl p-5 w-full">
+            <div
+              class="bg-white/5 border border-white/10 rounded-2xl p-5 w-full"
+            >
               <p class="text-yellow-400 font-black text-lg">أمان إنشائي</p>
-              <p class="text-slate-200 text-sm leading-relaxed">تقنيات قص/تخريم تقلل الاهتزازات الصدمية.</p>
+              <p class="text-slate-200 text-sm leading-relaxed">
+                تقنيات قص/تخريم تقلل الاهتزازات الصدمية.
+              </p>
             </div>
-            <div class="bg-white/5 border border-white/10 rounded-2xl p-5 w-full">
+            <div
+              class="bg-white/5 border border-white/10 rounded-2xl p-5 w-full"
+            >
               <p class="text-yellow-400 font-black text-lg">تغطية شاملة</p>
-              <p class="text-slate-200 text-sm leading-relaxed">نصل إليك في أي محافظة لتنفيذ أعمالك.</p>
+              <p class="text-slate-200 text-sm leading-relaxed">
+                نصل إليك في أي محافظة لتنفيذ أعمالك.
+              </p>
             </div>
           </div>
         </div>
 
         {/* نموذج التسعير */}
         <div class="w-full lg:w-5/12 shrink-0">
-          <div class="bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-sm w-full">
+          <div
+            class="bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-sm w-full"
+          >
             <div class="flex items-center justify-between mb-4">
               <h2 class="text-xl font-bold text-white">طلب تسعير سريع</h2>
-              <span class="text-xs bg-yellow-500 text-slate-900 px-3 py-1 rounded-full font-bold">مجاني</span>
+              <span
+                class="text-xs bg-yellow-500 text-slate-900 px-3 py-1 rounded-full font-bold"
+                >مجاني</span
+              >
             </div>
 
             <ul class="space-y-3 text-slate-200 text-sm">
-              <li class="flex gap-3 items-start"><span class="text-yellow-400 mt-1">✓</span><span>اختر الخدمة وحدد المحافظة.</span></li>
-              <li class="flex gap-3 items-start"><span class="text-yellow-400 mt-1">✓</span><span>سنقوم بالرد بتقدير سريع أو نحدد معاينة.</span></li>
-              <li class="flex gap-3 items-start"><span class="text-yellow-400 mt-1">✓</span><span>متاح دمج خدمات (كور + منشار + واير) حسب الحالة.</span></li>
+              <li class="flex gap-3 items-start">
+                <span class="text-yellow-400 mt-1">✓</span><span
+                  >اختر الخدمة وحدد المحافظة.</span>
+              </li>
+              <li class="flex gap-3 items-start">
+                <span class="text-yellow-400 mt-1">✓</span><span
+                  >سنقوم بالرد بتقدير سريع أو نحدد معاينة.</span>
+              </li>
+              <li class="flex gap-3 items-start">
+                <span class="text-yellow-400 mt-1">✓</span><span
+                  >متاح دمج خدمات (كور + منشار + واير) حسب الحالة.</span>
+              </li>
             </ul>
 
-            <div class="mt-6 bg-white/5 border border-white/10 rounded-2xl p-4 w-full">
-              <form 
+            <div
+              class="mt-6 bg-white/5 border border-white/10 rounded-2xl p-4 w-full"
+            >
+              <form
                 class="space-y-3 w-full"
                 onsubmit={`(function(e){
                   e.preventDefault();
@@ -219,34 +269,84 @@ const buildWhatsAppHomeMessage = (service, city, notes) => {
                   const service = f.service.value || 'غير محدد';
                   const city = f.city.value || 'غير محدد';
                   const notes = f.notes.value || '';
-                  const msg = ${buildWhatsAppHomeMessage.toString()}(service, city, notes);
+                  const lines = [
+                    'مرحباً ${BRAND}،',
+                    'طلب تسعير سريع من الصفحة الرئيسية:',
+                    '- الخدمة: ' + service,
+                    '- المحافظة/المدينة: ' + city
+                  ];
+                  if (notes) lines.push('- تفاصيل: ' + notes);
+                  const msg = encodeURIComponent(lines.join('\\n'));
                   window.open('${WHATSAPP}?text=' + msg, '_blank');
                 })(event);`}
               >
                 <div class="w-full">
-                  <label class="block text-xs font-bold text-slate-200 mb-1">الخدمة المطلوبة</label>
-                  <select name="service" aria-label="الخدمة المطلوبة" class="w-full border border-white/10 bg-slate-900/40 text-white rounded-xl px-4 py-3 focus:outline-none focus:border-yellow-500">
-                    <option value="تخريم الخرسانة بالكور">تخريم الخرسانة بالكور</option>
-                    <option value="قص الخرسانة بالمنشار">قص الخرسانة بالمنشار</option>
-                    <option value="قص الخرسانة بالواير الماسي">قص الخرسانة بالواير الماسي</option>
-                    <option value="تزريع الأشاير الكيميائي">تزريع الأشاير الكيميائي</option>
+                  <label class="block text-xs font-bold text-slate-200 mb-1"
+                    >الخدمة المطلوبة</label
+                  >
+                  <select
+                    name="service"
+                    aria-label="الخدمة المطلوبة"
+                    class="w-full border border-white/10 bg-slate-900/40 text-white rounded-xl px-4 py-3 focus:outline-none focus:border-yellow-500"
+                  >
+                    <option value="تخريم الخرسانة بالكور"
+                      >تخريم الخرسانة بالكور</option
+                    >
+                    <option value="قص الخرسانة بالمنشار"
+                      >قص الخرسانة بالمنشار</option
+                    >
+                    <option value="قص الخرسانة بالواير الماسي"
+                      >قص الخرسانة بالواير الماسي</option
+                    >
+                    <option value="تزريع الأشاير الكيميائي"
+                      >تزريع الأشاير الكيميائي</option
+                    >
                     <option value="غير متأكد">غير متأكد</option>
                   </select>
                 </div>
 
                 <div class="w-full">
-                  <label class="block text-xs font-bold text-slate-200 mb-1">المحافظة / المدينة</label>
-                  <input name="city" type="text" aria-label="المحافظة أو المدينة" class="w-full border border-white/10 bg-slate-900/40 text-white rounded-xl px-4 py-3 focus:outline-none focus:border-yellow-500" placeholder="مثال: القاهرة / الإسكندرية / أسيوط" required />
+                  <label class="block text-xs font-bold text-slate-200 mb-1"
+                    >المحافظة / المدينة</label
+                  >
+                  <input
+                    name="city"
+                    type="text"
+                    aria-label="المحافظة أو المدينة"
+                    class="w-full border border-white/10 bg-slate-900/40 text-white rounded-xl px-4 py-3 focus:outline-none focus:border-yellow-500"
+                    placeholder="مثال: القاهرة / الإسكندرية / أسيوط"
+                    required
+                  />
                 </div>
 
                 <div class="w-full">
-                  <label class="block text-xs font-bold text-slate-200 mb-1">تفاصيل (اختياري)</label>
-                  <textarea name="notes" rows="3" aria-label="تفاصيل المشروع" class="w-full border border-white/10 bg-slate-900/40 text-white rounded-xl px-4 py-3 focus:outline-none focus:border-yellow-500" placeholder="مثال: فتحة باب، سمك تقريبي، شقة متشطبة..."></textarea>
+                  <label class="block text-xs font-bold text-slate-200 mb-1"
+                    >تفاصيل (اختياري)</label
+                  >
+                  <textarea
+                    name="notes"
+                    rows="3"
+                    aria-label="تفاصيل المشروع"
+                    class="w-full border border-white/10 bg-slate-900/40 text-white rounded-xl px-4 py-3 focus:outline-none focus:border-yellow-500"
+                    placeholder="مثال: فتحة باب، سمك تقريبي، شقة متشطبة..."
+                  ></textarea>
                 </div>
 
-                <button type="submit" aria-label="إرسال طلب التسعير عبر واتساب" class="w-full flex items-center justify-center gap-2 bg-[#25D366] text-slate-900 font-black py-3 rounded-xl hover:bg-green-500 transition-colors shadow-lg">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.323-.297-.124-1.758-.867-2.03-.967-.272-.099-.47-.148-.669.148-.198.297-.769.966-.941 1.164-.173.199-.347.223-.644.099-.297-.124-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.582.134-.111.297-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/>
+                <button
+                  type="submit"
+                  aria-label="إرسال طلب التسعير عبر واتساب"
+                  class="w-full flex items-center justify-center gap-2 bg-[#25D366] text-slate-900 font-black py-3 rounded-xl hover:bg-green-500 transition-colors shadow-lg"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                  >
+                    <path
+                      d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.323-.297-.124-1.758-.867-2.03-.967-.272-.099-.47-.148-.669.148-.198.297-.769.966-.941 1.164-.173.199-.347.223-.644.099-.297-.124-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.582.134-.111.297-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"
+                    ></path>
                   </svg>
                   إرسال على واتساب
                 </button>
@@ -254,7 +354,6 @@ const buildWhatsAppHomeMessage = (service, city, notes) => {
             </div>
           </div>
         </div>
-
       </div>
     </div>
   </section>
@@ -265,30 +364,61 @@ const buildWhatsAppHomeMessage = (service, city, notes) => {
   <section id="services" class="block w-full py-20 bg-white">
     <div class="w-full container mx-auto px-4 lg:px-8">
       <div class="text-center mb-14 w-full">
-        <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4">خدماتنا الإنشائية المتخصصة</h2>
+        <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
+          خدماتنا الإنشائية المتخصصة
+        </h2>
         <p class="text-slate-600 max-w-3xl mx-auto">
-          اختر الخدمة المناسبة لمشكلتك، نقوم بتنفيذ جميع الأعمال الإنشائية المتعلقة بالخرسانة باحترافية.
+          اختر الخدمة المناسبة لمشكلتك، نقوم بتنفيذ جميع الأعمال الإنشائية
+          المتعلقة بالخرسانة باحترافية.
         </p>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 w-full">
-        {[
-          { href: "/core-drilling", t: "تخريم الخرسانة بالكور", d: "فتحات دائرية دقيقة للسباكة والكهرباء والتكييف.", tag: "Core Drilling" },
-          { href: "/saw-cutting", t: "قص الخرسانة بالمنشار", d: "فتح أبواب وشبابيك وقص سقف بحواف ناعمة.", tag: "Saw Cutting" },
-          { href: "/wire-sawing", t: "قص الخرسانة بالواير", d: "للسمكات الضخمة والقواعد والخوازيق والمشاريع الثقيلة.", tag: "Diamond Wire" },
-          { href: "/rebar-planting", t: "تزريع الأشاير", d: "زرع حديد كيميائي لربط القديم بالجديد بمادة إيبوكسي.", tag: "Rebar Planting" }
-        ].map((x) => (
-          <a href={x.href} aria-label={`انتقل إلى صفحة ${x.t}`} class="group block w-full p-6 bg-slate-50 border border-slate-200 rounded-2xl hover:border-yellow-500 hover:shadow-lg transition-all text-right">
-            <span class="inline-block text-xs font-bold bg-white border border-slate-200 px-3 py-1 rounded-full mb-4 group-hover:border-yellow-500">
-              {x.tag}
-            </span>
-            <h3 class="text-xl font-black text-slate-900 mb-2 group-hover:text-yellow-700">{x.t}</h3>
-            <p class="text-slate-600 text-sm leading-relaxed">{x.d}</p>
-            <div class="mt-4 text-sm font-bold text-slate-900 group-hover:text-yellow-700">
-              افتح صفحة الخدمة →
-            </div>
-          </a>
-        ))}
+        {
+          [
+            {
+              href: "/core-drilling",
+              t: "تخريم الخرسانة بالكور",
+              d: "فتحات دائرية دقيقة للسباكة والكهرباء والتكييف.",
+              tag: "Core Drilling",
+            },
+            {
+              href: "/saw-cutting",
+              t: "قص الخرسانة بالمنشار",
+              d: "فتح أبواب وشبابيك وقص سقف بحواف ناعمة.",
+              tag: "Saw Cutting",
+            },
+            {
+              href: "/wire-sawing",
+              t: "قص الخرسانة بالواير",
+              d: "للسمكات الضخمة والقواعد والخوازيق والمشاريع الثقيلة.",
+              tag: "Diamond Wire",
+            },
+            {
+              href: "/rebar-planting",
+              t: "تزريع الأشاير",
+              d: "زرع حديد كيميائي لربط القديم بالجديد بمادة إيبوكسي.",
+              tag: "Rebar Planting",
+            },
+          ].map((x) => (
+            <a
+              href={x.href}
+              aria-label={`انتقل إلى صفحة ${x.t}`}
+              class="group block w-full p-6 bg-slate-50 border border-slate-200 rounded-2xl hover:border-yellow-500 hover:shadow-lg transition-all text-right"
+            >
+              <span class="inline-block text-xs font-bold bg-white border border-slate-200 px-3 py-1 rounded-full mb-4 group-hover:border-yellow-500">
+                {x.tag}
+              </span>
+              <h3 class="text-xl font-black text-slate-900 mb-2 group-hover:text-yellow-700">
+                {x.t}
+              </h3>
+              <p class="text-slate-600 text-sm leading-relaxed">{x.d}</p>
+              <div class="mt-4 text-sm font-bold text-slate-900 group-hover:text-yellow-700">
+                افتح صفحة الخدمة →
+              </div>
+            </a>
+          ))
+        }
       </div>
     </div>
   </section>
@@ -299,30 +429,46 @@ const buildWhatsAppHomeMessage = (service, city, notes) => {
   <section class="block w-full py-16 bg-slate-50 border-t border-slate-200">
     <div class="w-full container mx-auto px-4 lg:px-8 max-w-6xl">
       <div class="text-center mb-12 w-full">
-        <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4">ليه تختار رواد الخرسانة؟</h2>
+        <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
+          ليه تختار رواد الخرسانة؟
+        </h2>
         <p class="text-slate-600 max-w-3xl mx-auto">
-          لأننا بنقدم “نتيجة” مش مجرد شغل — دقة + أمان + تسليم نظيف يقلل الترميم.
+          لأننا بنقدم “نتيجة” مش مجرد شغل — دقة + أمان + تسليم نظيف يقلل
+          الترميم.
         </p>
       </div>
 
       <div class="grid md:grid-cols-3 gap-6 w-full">
         <div class="w-full p-6 rounded-2xl border border-slate-200 bg-white">
           <h3 class="text-xl font-bold text-slate-900 mb-2">منهجية تنفيذ</h3>
-          <p class="text-slate-600 leading-relaxed">تحديد المسار/المقاس + حماية الموقع + تنفيذ منظم + تسليم واضح.</p>
+          <p class="text-slate-600 leading-relaxed">
+            تحديد المسار/المقاس + حماية الموقع + تنفيذ منظم + تسليم واضح.
+          </p>
         </div>
         <div class="w-full p-6 rounded-2xl border border-slate-200 bg-white">
-          <h3 class="text-xl font-bold text-slate-900 mb-2">معدات مناسبة للحالة</h3>
-          <p class="text-slate-600 leading-relaxed">كور للفتحات الدقيقة، منشار للقص المستقيم، واير للسمكات الضخمة.</p>
+          <h3 class="text-xl font-bold text-slate-900 mb-2">
+            معدات مناسبة للحالة
+          </h3>
+          <p class="text-slate-600 leading-relaxed">
+            كور للفتحات الدقيقة، منشار للقص المستقيم، واير للسمكات الضخمة.
+          </p>
         </div>
         <div class="w-full p-6 rounded-2xl border border-slate-200 bg-white">
-          <h3 class="text-xl font-bold text-slate-900 mb-2">تواصل وتسعير واضح</h3>
-          <p class="text-slate-600 leading-relaxed">نشرح العوامل قبل التنفيذ ونساعدك تختار الأفضل بدون هدر.</p>
+          <h3 class="text-xl font-bold text-slate-900 mb-2">
+            تواصل وتسعير واضح
+          </h3>
+          <p class="text-slate-600 leading-relaxed">
+            نشرح العوامل قبل التنفيذ ونساعدك تختار الأفضل بدون هدر.
+          </p>
         </div>
       </div>
 
-      <div class="mt-10 w-full bg-slate-900 text-white rounded-2xl p-8 border-l-4 border-yellow-500">
+      <div
+        class="mt-10 w-full bg-slate-900 text-white rounded-2xl p-8 border-l-4 border-yellow-500"
+      >
         <p class="text-lg leading-relaxed">
-          "لو محتاج شغل نظيف بدون تكسير عشوائي — تواصل معنا وهنقولك الحل المناسب لحالتك."
+          "لو محتاج شغل نظيف بدون تكسير عشوائي — تواصل معنا وهنقولك الحل المناسب
+          لحالتك."
         </p>
       </div>
     </div>
@@ -334,27 +480,50 @@ const buildWhatsAppHomeMessage = (service, city, notes) => {
   <section class="block w-full py-20 bg-white">
     <div class="w-full container mx-auto px-4 lg:px-8 max-w-6xl">
       <div class="text-center mb-14 w-full">
-        <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4">إزاي بنشتغل؟ (من أول تواصل لحد التسليم)</h2>
+        <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
+          إزاي بنشتغل؟ (من أول تواصل لحد التسليم)
+        </h2>
         <p class="text-slate-600 max-w-3xl mx-auto">
-          خطوات ثابتة بتضمن جودة النتيجة وسلامة التنفيذ — سواء خدمة واحدة أو مشروع كبير.
+          خطوات ثابتة بتضمن جودة النتيجة وسلامة التنفيذ — سواء خدمة واحدة أو
+          مشروع كبير.
         </p>
       </div>
 
       <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 text-right w-full">
-        {[
-          ["1", "تحديد المطلوب", "تواصل معنا + صور + مقاسات تقريبية لتحديد الحل المناسب."],
-          ["2", "تسعير واضح", "توضيح عوامل السعر وإعطاء تقدير سريع أو تحديد معاينة."],
-          ["3", "تجهيز وحماية", "تغطية، تحديد مسار، تقليل غبار/مياه حسب المكان."],
-          ["4", "تنفيذ وتسليم", "تنفيذ مضبوط + تنظيف + تسليم جاهز للمقاول التالي."]
-        ].map((x) => (
-          <div class="w-full bg-slate-50 p-6 rounded-2xl border border-slate-200 relative">
-            <div class="absolute -top-4 -right-4 w-10 h-10 bg-yellow-500 text-slate-900 font-black rounded-full flex items-center justify-center">
-              {x[0]}
+        {
+          [
+            [
+              "1",
+              "تحديد المطلوب",
+              "تواصل معنا + صور + مقاسات تقريبية لتحديد الحل المناسب.",
+            ],
+            [
+              "2",
+              "تسعير واضح",
+              "توضيح عوامل السعر وإعطاء تقدير سريع أو تحديد معاينة.",
+            ],
+            [
+              "3",
+              "تجهيز وحماية",
+              "تغطية، تحديد مسار، تقليل غبار/مياه حسب المكان.",
+            ],
+            [
+              "4",
+              "تنفيذ وتسليم",
+              "تنفيذ مضبوط + تنظيف + تسليم جاهز للمقاول التالي.",
+            ],
+          ].map((x) => (
+            <div class="w-full bg-slate-50 p-6 rounded-2xl border border-slate-200 relative">
+              <div class="absolute -top-4 -right-4 w-10 h-10 bg-yellow-500 text-slate-900 font-black rounded-full flex items-center justify-center">
+                {x[0]}
+              </div>
+              <h3 class="text-xl font-black text-slate-900 mb-2 mt-2">
+                {x[1]}
+              </h3>
+              <p class="text-slate-600 text-sm leading-relaxed">{x[2]}</p>
             </div>
-            <h3 class="text-xl font-black text-slate-900 mb-2 mt-2">{x[1]}</h3>
-            <p class="text-slate-600 text-sm leading-relaxed">{x[2]}</p>
-          </div>
-        ))}
+          ))
+        }
       </div>
     </div>
   </section>
@@ -365,36 +534,45 @@ const buildWhatsAppHomeMessage = (service, city, notes) => {
   <section class="block w-full py-20 bg-slate-50 border-t border-slate-200">
     <div class="w-full container mx-auto px-4 lg:px-8 max-w-6xl">
       <div class="text-center mb-14 w-full">
-        <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-5">صور من أعمالنا</h2>
+        <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-5">
+          صور من أعمالنا
+        </h2>
         <p class="text-slate-600 max-w-3xl mx-auto">
           تنفيذ دقيق لكافة أعمال القص والتخريم في مختلف المشاريع.
         </p>
       </div>
 
       <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
-        {[
-          { img: "/images/gallery-core.webp", t: "تخريم الخرسانة بالكور" },
-          { img: "/images/gallery-saw.webp", t: "قص الخرسانة بالمنشار" },
-          { img: "/images/gallery-wire.webp", t: "قص الخرسانة بالواير" },
-          { img: "/images/gallery-rebar.webp", t: "تزريع الأشاير" },
-          { img: "/images/gallery-ceiling.webp", t: "أعمال تخريم السقف" },
-          { img: "/images/gallery-industrial.webp", t: "مشاريع المصانع الكبرى" }
-        ].map((x) => (
-          <figure class="w-full bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
-            <img
-              src={x.img}
-              alt={`مشروع ${x.t}`}
-              loading="lazy"
-              width="800"
-              height="600"
-              class="w-full h-56 object-cover bg-slate-200"
-            />
-            <figcaption class="p-4 text-right">
-              <p class="font-bold text-slate-900">{x.t}</p>
-              <p class="text-sm text-slate-600 mt-1">تنفيذ منظم + نتيجة نظيفة.</p>
-            </figcaption>
-          </figure>
-        ))}
+        {
+          [
+            { img: "/images/gallery-core.webp", t: "تخريم الخرسانة بالكور" },
+            { img: "/images/gallery-saw.webp", t: "قص الخرسانة بالمنشار" },
+            { img: "/images/gallery-wire.webp", t: "قص الخرسانة بالواير" },
+            { img: "/images/gallery-rebar.webp", t: "تزريع الأشاير" },
+            { img: "/images/gallery-ceiling.webp", t: "أعمال تخريم السقف" },
+            {
+              img: "/images/gallery-industrial.webp",
+              t: "مشاريع المصانع الكبرى",
+            },
+          ].map((x) => (
+            <figure class="w-full bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
+              <img
+                src={x.img}
+                alt={`مشروع ${x.t}`}
+                loading="lazy"
+                width="800"
+                height="600"
+                class="w-full h-56 object-cover bg-slate-200"
+              />
+              <figcaption class="p-4 text-right">
+                <p class="font-bold text-slate-900">{x.t}</p>
+                <p class="text-sm text-slate-600 mt-1">
+                  تنفيذ منظم + نتيجة نظيفة.
+                </p>
+              </figcaption>
+            </figure>
+          ))
+        }
       </div>
     </div>
   </section>
@@ -405,17 +583,23 @@ const buildWhatsAppHomeMessage = (service, city, notes) => {
   <section class="block w-full py-20 bg-white border-t border-slate-200">
     <div class="w-full container mx-auto px-4 lg:px-8 max-w-6xl">
       <div class="text-center mb-14 w-full">
-        <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-5">بنخدم فين؟</h2>
+        <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-5">
+          بنخدم فين؟
+        </h2>
         <p class="text-slate-600 max-w-3xl mx-auto">
-          نقدم خدماتنا في جميع أنحاء جمهورية مصر العربية — نصل إليك أينما كان مشروعك.
+          نقدم خدماتنا في جميع أنحاء جمهورية مصر العربية — نصل إليك أينما كان
+          مشروعك.
         </p>
       </div>
 
       <div class="grid md:grid-cols-3 gap-6 text-right w-full">
         <div class="w-full bg-slate-50 border border-slate-200 rounded-2xl p-6">
-          <p class="font-black text-slate-900 mb-3">القاهرة الكبرى والإسكندرية</p>
+          <p class="font-black text-slate-900 mb-3">
+            القاهرة الكبرى والإسكندرية
+          </p>
           <p class="text-slate-700 text-sm leading-relaxed">
-            تغطية شاملة للمشاريع الكبرى والتجارية والسكنية في العاصمة والمدن الساحلية.
+            تغطية شاملة للمشاريع الكبرى والتجارية والسكنية في العاصمة والمدن
+            الساحلية.
           </p>
         </div>
         <div class="w-full bg-slate-50 border border-slate-200 rounded-2xl p-6">
@@ -427,7 +611,8 @@ const buildWhatsAppHomeMessage = (service, city, notes) => {
         <div class="w-full bg-slate-50 border border-slate-200 rounded-2xl p-6">
           <p class="font-black text-slate-900 mb-3">الصعيد والبحر الأحمر</p>
           <p class="text-slate-700 text-sm leading-relaxed">
-            نغطي كافة محافظات الصعيد والمناطق الساحلية والمدن الجديدة بأحدث المعدات.
+            نغطي كافة محافظات الصعيد والمناطق الساحلية والمدن الجديدة بأحدث
+            المعدات.
           </p>
         </div>
       </div>
@@ -437,20 +622,26 @@ const buildWhatsAppHomeMessage = (service, city, notes) => {
   {/* ========================================= */}
   {/* 7) FAQ UI */}
   {/* ========================================= */}
-  <section class="block w-full py-20 bg-slate-900 text-white border-t-4 border-yellow-500">
+  <section
+    class="block w-full py-20 bg-slate-900 text-white border-t-4 border-yellow-500"
+  >
     <div class="w-full container mx-auto px-4 lg:px-8 max-w-5xl">
       <div class="text-center mb-16 w-full">
-        <h2 class="text-3xl md:text-4xl font-bold text-yellow-500 mb-6">أسئلة شائعة (FAQ)</h2>
+        <h2 class="text-3xl md:text-4xl font-bold text-yellow-500 mb-6">
+          أسئلة شائعة (FAQ)
+        </h2>
         <p class="text-slate-300">إجابات سريعة تساعدك تفهم وتقرر.</p>
       </div>
 
       <div class="grid md:grid-cols-2 gap-8 text-right w-full">
-        {faqItems.map((item) => (
-          <div class="w-full bg-slate-800 p-6 rounded-xl border border-slate-700">
-            <h3 class="font-bold text-yellow-400 mb-3 text-lg">{item.q}</h3>
-            <p class="text-slate-300 text-sm leading-relaxed">{item.a}</p>
-          </div>
-        ))}
+        {
+          faqItems.map((item) => (
+            <div class="w-full bg-slate-800 p-6 rounded-xl border border-slate-700">
+              <h3 class="font-bold text-yellow-400 mb-3 text-lg">{item.q}</h3>
+              <p class="text-slate-300 text-sm leading-relaxed">{item.a}</p>
+            </div>
+          ))
+        }
       </div>
     </div>
   </section>
@@ -458,17 +649,27 @@ const buildWhatsAppHomeMessage = (service, city, notes) => {
   {/* ========================================= */}
   {/* 8) Final CTA */}
   {/* ========================================= */}
-  <section class="relative block w-full py-20 bg-yellow-500 text-slate-900 text-center overflow-hidden">
-    <div class="absolute inset-0 opacity-10 pointer-events-none bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-slate-900 to-transparent"></div>
+  <section
+    class="relative block w-full py-20 bg-yellow-500 text-slate-900 text-center overflow-hidden"
+  >
+    <div
+      class="absolute inset-0 opacity-10 pointer-events-none bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-slate-900 to-transparent"
+    >
+    </div>
 
     <div class="relative z-10 w-full container mx-auto px-4 lg:px-8 max-w-4xl">
-      <h2 class="text-4xl md:text-5xl font-black mb-8 leading-tight">جاهز تبدأ شغلك بأمان وبدون تكسير عشوائي؟</h2>
+      <h2 class="text-4xl md:text-5xl font-black mb-8 leading-tight">
+        جاهز تبدأ شغلك بأمان وبدون تكسير عشوائي؟
+      </h2>
 
       <p class="text-xl md:text-2xl mb-10 font-bold">
-        تواصل الآن مع <span class="bg-white/50 px-2 rounded">{BRAND}</span> واطلب معاينة لمشروعك في أي مكان في مصر.
+        تواصل الآن مع <span class="bg-white/50 px-2 rounded">{BRAND}</span> واطلب
+        معاينة لمشروعك في أي مكان في مصر.
       </p>
 
-      <div class="flex flex-col sm:flex-row gap-6 justify-center items-center w-full">
+      <div
+        class="flex flex-col sm:flex-row gap-6 justify-center items-center w-full"
+      >
         <a
           href="/contact"
           aria-label="اطلب معاينة أو تسعير"

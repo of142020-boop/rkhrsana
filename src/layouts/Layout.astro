@@ -2,9 +2,14 @@
 // src/layouts/Layout.astro
 import '../styles/global.css';
 
-const { title, description } = Astro.props;
+// 1. إضافة متغير image مع صورة افتراضية
+const { 
+  title, 
+  description, 
+  image = "https://rkhrsana.com/images/og-default.webp" 
+} = Astro.props;
 
-// الحصول على مسار الصفحة الحالية ومعالجته لضمان الدقة
+// 2. الحصول على مسار الصفحة الحالية ومعالجته لضمان الدقة
 const currentPath = Astro.url.pathname;
 const normalizedPath = currentPath.endsWith('/') && currentPath.length > 1 ? currentPath.slice(0, -1) : currentPath;
 ---
@@ -20,6 +25,17 @@ const normalizedPath = currentPath.endsWith('/') && currentPath.length > 1 ? cur
     <meta name="description" content={description} />
     <meta name="robots" content="index, follow" />
     <meta name="keywords" content="قص خرسانة, تخريم كور, قص بالمنشار, قص بالواير, تزريع أشاير, مدينة نصر, القاهرة, رواد الخرسانة" />
+
+    <meta property="og:title" content={`${title} | رواد الخرسانة`} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={image} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={Astro.url.href} />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={`${title} | رواد الخرسانة`} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={image} />
   </head>
   
   <body class="bg-slate-50 font-sans antialiased text-slate-800 flex flex-col min-h-screen w-full overflow-x-hidden">
