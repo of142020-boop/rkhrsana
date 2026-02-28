@@ -116,6 +116,16 @@ const normalizedPath =
             >
 
             <a
+              href="/about"
+              aria-label="من نحن"
+              class={`transition-colors hover:text-yellow-500 ${
+                normalizedPath === "/about"
+                  ? "text-yellow-500 font-bold"
+                  : "text-slate-300"
+              }`}>من نحن</a
+            >
+
+            <a
               href="/contact"
               aria-label="تواصل معنا"
               class={`transition-colors hover:text-yellow-500 ${
@@ -220,6 +230,15 @@ const normalizedPath =
           >
 
           <a
+            href="/about"
+            class={`block pb-2 border-b border-slate-800 hover:text-yellow-500 ${
+              normalizedPath === "/about"
+                ? "text-yellow-500 font-bold"
+                : "text-slate-300"
+            }`}>من نحن</a
+          >
+
+          <a
             href="/contact"
             class={`block pb-2 border-slate-800 hover:text-yellow-500 ${
               normalizedPath === "/contact"
@@ -309,25 +328,29 @@ const normalizedPath =
                 <a
                   href="/core-drilling"
                   class="hover:text-yellow-500 transition-colors"
-                  >تخريم الخرسانة بالكور</a>
+                  >تخريم الخرسانة بالكور</a
+                >
               </li>
               <li>
                 <a
                   href="/saw-cutting"
                   class="hover:text-yellow-500 transition-colors"
-                  >قص الجدران بالمنشار</a>
+                  >قص الجدران بالمنشار</a
+                >
               </li>
               <li>
                 <a
                   href="/wire-sawing"
                   class="hover:text-yellow-500 transition-colors"
-                  >قص الكتل بالواير الماسي</a>
+                  >قص الكتل بالواير الماسي</a
+                >
               </li>
               <li>
                 <a
                   href="/rebar-planting"
                   class="hover:text-yellow-500 transition-colors"
-                  >تزريع الأشاير الكيميائي</a>
+                  >تزريع الأشاير الكيميائي</a
+                >
               </li>
             </ul>
           </div>
@@ -342,12 +365,26 @@ const normalizedPath =
             <ul class="space-y-3 text-sm">
               <li>
                 <a href="/" class="hover:text-yellow-500 transition-colors"
-                  >الصفحة الرئيسية</a>
+                  >الصفحة الرئيسية</a
+                >
+              </li>
+              <li>
+                <a href="/about" class="hover:text-yellow-500 transition-colors"
+                  >من نحن</a
+                >
               </li>
               <li>
                 <a
                   href="/contact"
-                  class="hover:text-yellow-500 transition-colors">تواصل معنا</a>
+                  class="hover:text-yellow-500 transition-colors">تواصل معنا</a
+                >
+              </li>
+              <li>
+                <a
+                  href="/privacy"
+                  class="hover:text-yellow-500 transition-colors"
+                  >سياسة الخصوصية</a
+                >
               </li>
             </ul>
           </div>
@@ -459,7 +496,7 @@ const normalizedPath =
       const menuIcon = document.getElementById("menuIcon");
       const closeIcon = document.getElementById("closeIcon");
 
-      if (mobileMenuBtn && mobileMenu) {
+      if (mobileMenuBtn && mobileMenu && menuIcon && closeIcon) {
         mobileMenuBtn.addEventListener("click", () => {
           mobileMenu.classList.toggle("hidden");
           menuIcon.classList.toggle("hidden");

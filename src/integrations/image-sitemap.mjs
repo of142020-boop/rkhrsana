@@ -38,6 +38,10 @@ export default function imageSitemap() {
                     '/contact/': [
                         { loc: `${siteUrl}/images/contact-hero.webp`, title: "تواصل معنا - رواد الخرسانة" }
                     ],
+                    '/about/': [
+                        { loc: `${siteUrl}/images/contact-hero.webp`, title: "من نحن - رواد الخرسانة" },
+                        { loc: `${siteUrl}/images/wire-sawing-hero.webp`, title: "رؤية ورسالة شركة رواد الخرسانة" }
+                    ],
                     '/core-drilling/': [
                         { loc: `${siteUrl}/images/core-drilling-hero.webp`, title: "تخريم الخرسانة بالكور" },
                         { loc: `${siteUrl}/images/core-drilling-1.webp`, title: "عمل فتحات في الخرسانة للسباكة والتكييف" },
