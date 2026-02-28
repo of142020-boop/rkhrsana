@@ -11,7 +11,7 @@ import { dirname, join } from 'node:path';
  */
 export default function imageSitemap() {
     return {
-        name: 'rkhrsana-image-sitemap',
+        name: 'rkhrsana-sitemap',
         hooks: {
             'astro:build:done': async ({ dir, routes, pages }) => {
                 const outDir = fileURLToPath(dir);
@@ -70,7 +70,10 @@ export default function imageSitemap() {
 
                     const images = pageImageMap[routePath] || [];
 
-                    let urlEntry = `  <url>\n    <loc>${siteUrl}${routePath === '/' ? '' : routePath}</loc>\n    <lastmod>${today}</lastmod>\n`;
+                    let priority = routePath === '/' ? '1.0' : '0.8';
+                    let changefreq = 'weekly';
+
+                    let urlEntry = `  <url>\n    <loc>${siteUrl}${routePath === '/' ? '' : routePath}</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>${changefreq}</changefreq>\n    <priority>${priority}</priority>\n`;
 
                     images.forEach(img => {
                         urlEntry += `    <image:image>\n      <image:loc>${img.loc}</image:loc>\n      <image:title>${img.title}</image:title>\n    </image:image>\n`;
@@ -81,24 +84,25 @@ export default function imageSitemap() {
                 }
 
                 const sitemapContent = `<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="/sitemap.xsl"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
 ${sitemapEntries.join('\n')}
 </urlset>
 `;
 
-                const sitemapPath = join(outDir, 'sitemap-images.xml');
+                const sitemapPath = join(outDir, 'sitemap.xml');
                 await writeFile(sitemapPath, sitemapContent, 'utf-8');
-                console.log(`✅ Generated Image Sitemap: ${sitemapPath}`);
+                console.log(`✅ Generated Unified Sitemap: ${sitemapPath}`);
 
                 // Update robots.txt to point to new image sitemap
                 try {
                     const robotsPath = join(outDir, 'robots.txt');
                     const robotsContent = await readFile(robotsPath, 'utf-8');
-                    if (!robotsContent.includes('sitemap-images.xml')) {
-                        await writeFile(robotsPath, robotsContent + `\nSitemap: ${siteUrl}/sitemap-images.xml\n`, 'utf-8');
-                        console.log(`✅ Updated robots.txt with Image Sitemap link.`);
-                    }
+                    let updatedRobots = robotsContent.replace(/Sitemap: .*/g, '').trim();
+                    updatedRobots += `\n\nSitemap: ${siteUrl}/sitemap.xml\n`;
+                    await writeFile(robotsPath, updatedRobots, 'utf-8');
+                    console.log(`✅ Updated robots.txt with Unified Sitemap link.`);
                 } catch (e) {
                     console.warn("Could not handle robots.txt automatic update:", e.message);
                 }
