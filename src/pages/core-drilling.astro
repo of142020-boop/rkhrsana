@@ -169,7 +169,7 @@ const breadcrumbSchema = {
   >
     <div class="absolute inset-0 bg-slate-800 opacity-90"></div>
     <div
-      class="absolute inset-0 bg-[url('https://placehold.co/1920x1080/0f172a/0f172a')] bg-cover bg-center mix-blend-overlay opacity-25"
+      class="absolute inset-0 bg-[url('/images/core-drilling-hero.webp')] bg-cover bg-center mix-blend-overlay opacity-25"
     >
     </div>
 
@@ -1149,15 +1149,15 @@ const breadcrumbSchema = {
               t: "فتح كور في الكمر (حالات خاصة)",
               alt: "فتح كور في الكمر بحذر وتحت الدراسة",
             },
-          ].map((x) => (
+          ].map((x, index) => (
             <figure class="bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
               <img
-                src={`https://placehold.co/900x650/0f172a/f59e0b?text=${encodeURIComponent(
-                  x.t
-                )}`}
+                src={`/images/core-drilling-${index + 1}.webp`}
                 alt={x.alt}
                 loading="lazy"
-                class="w-full h-56 object-cover"
+                width="900"
+                height="650"
+                class="w-full h-56 object-cover bg-slate-200"
               />
               <figcaption class="p-4 text-right">
                 <p class="font-bold text-slate-900">{x.t}</p>
