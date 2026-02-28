@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet version="2.0" 
+<xsl:stylesheet version="1.0" 
                 xmlns:html="http://www.w3.org/TR/REC-html40"
                 xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
                 xmlns:sitemap="http://www.sitemaps.org/schemas/sitemap/0.9"
@@ -102,9 +102,9 @@
             font-weight: 700;
             min-width: 20px;
           }
-          .has-images .badge {
-            background-color: #dcfce7;
-            color: #166534;
+          .has-images {
+            background-color: #dcfce7 !important;
+            color: #166534 !important;
           }
           .footer {
             margin-top: 40px;
@@ -121,7 +121,7 @@
       <body>
         <div class="header">
           <h1>خريطة الموقع (XML Sitemap)</h1>
-          <p class="desc">تم إنشاء هذه الخريطة بواسطة رواد الخرسانة لتحسين الفهرسة في محركات البحث مثل جوجل والياندكس.</p>
+          <p class="desc">تم إنشاء هذه الخريطة بواسطة رواد الخرسانة لتحسين الفهرسة في محركات البحث.</p>
         </div>
         
         <div style="text-align: center;">
@@ -152,17 +152,20 @@
                   </a>
                 </td>
                 <td style="text-align: center;">
-                  <xsl:variable name="imageCount">
+                  <div>
+                    <xsl:attribute name="class">
+                      <xsl:choose>
+                        <xsl:when test="count(image:image) &gt; 0">badge has-images</xsl:when>
+                        <xsl:otherwise>badge</xsl:otherwise>
+                      </xsl:choose>
+                    </xsl:attribute>
                     <xsl:value-of select="count(image:image)"/>
-                  </xsl:variable>
-                  <div class="badge {if ($imageCount &gt; 0) then 'has-images' else ''}">
-                    <xsl:value-of select="$imageCount"/>
                   </div>
                 </td>
                 <td><xsl:value-of select="sitemap:changefreq"/></td>
                 <td><xsl:value-of select="sitemap:priority"/></td>
                 <td>
-                  <xsl:value-of select="concat(substring(sitemap:lastmod,0,11),concat(' ', substring(sitemap:lastmod,12,5)))"/>
+                  <xsl:value-of select="sitemap:lastmod"/>
                 </td>
               </tr>
             </xsl:for-each>
