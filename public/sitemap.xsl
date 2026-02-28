@@ -79,14 +79,17 @@
             padding: 16px;
             font-size: 14px;
             color: #475569;
-            vertical-align: middle;
+            vertical-align: top;
           }
-          a {
+          .url-link {
             color: #2563eb;
             text-decoration: none;
-            font-weight: 500;
+            font-weight: 700;
+            font-size: 15px;
+            display: inline-block;
+            direction: ltr; /* Fix trailing slash rendering issue */
           }
-          a:hover {
+          .url-link:hover {
             text-decoration: underline;
             color: #1d4ed8;
           }
@@ -106,6 +109,50 @@
             background-color: #dcfce7 !important;
             color: #166534 !important;
           }
+          .image-list {
+            margin-top: 12px;
+            padding: 14px;
+            background-color: #f1f5f9;
+            border-radius: 6px;
+            border-right: 4px solid #f59e0b;
+          }
+          .image-list-title {
+            margin: 0 0 8px 0;
+            color: #334155;
+            font-weight: bold;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+          }
+          .image-list-title svg {
+            width: 16px;
+            height: 16px;
+            color: #f59e0b;
+          }
+          .image-list ul {
+            margin: 0;
+            padding-right: 20px;
+            list-style-type: square;
+          }
+          .image-list li {
+            margin-bottom: 8px;
+          }
+          .image-list a {
+            color: #0ea5e9;
+            text-decoration: none;
+            direction: ltr;
+            display: inline-block;
+            word-break: break-all;
+          }
+          .image-list a:hover {
+            text-decoration: underline;
+            color: #0284c7;
+          }
+          .image-title {
+            color: #64748b;
+            font-size: 13px;
+          }
           .footer {
             margin-top: 40px;
             text-align: center;
@@ -120,8 +167,8 @@
       </head>
       <body>
         <div class="header">
-          <h1>خريطة الموقع (XML Sitemap)</h1>
-          <p class="desc">تم إنشاء هذه الخريطة بواسطة رواد الخرسانة لتحسين الفهرسة في محركات البحث.</p>
+          <h1>خريطة الموقع (XML Sitemap) مع الصور</h1>
+          <p class="desc">تم إنشاء هذه الخريطة بواسطة رواد الخرسانة لتحسين فهرسة الصفحات والصور في محركات البحث.</p>
         </div>
         
         <div style="text-align: center;">
@@ -133,11 +180,11 @@
         <table>
           <thead>
             <tr>
-              <th>الرابط (URL)</th>
-              <th style="width: 150px; text-align: center;">الصور المرتبطة</th>
-              <th style="width: 150px;">التكرار</th>
-              <th style="width: 100px;">الأولوية</th>
-              <th style="width: 180px;">آخر تعديل</th>
+              <th>الرابط (URL) وتفاصيل الصور</th>
+              <th style="width: 120px; text-align: center;">عدد الصور</th>
+              <th style="width: 120px;">التكرار</th>
+              <th style="width: 80px;">الأولوية</th>
+              <th style="width: 160px;">آخر تعديل</th>
             </tr>
           </thead>
           <tbody>
@@ -147,9 +194,32 @@
                   <xsl:variable name="itemURL">
                     <xsl:value-of select="sitemap:loc"/>
                   </xsl:variable>
-                  <a href="{$itemURL}">
+                  <a href="{$itemURL}" class="url-link">
                     <xsl:value-of select="sitemap:loc"/>
                   </a>
+                  
+                  <xsl:if test="count(image:image) &gt; 0">
+                    <div class="image-list">
+                      <p class="image-list-title">
+                        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                        </svg>
+                        الصور المرفقة بالصفحة:
+                      </p>
+                      <ul>
+                        <xsl:for-each select="image:image">
+                          <li>
+                            <a href="{image:loc}" target="_blank">
+                              <xsl:value-of select="image:loc"/>
+                            </a>
+                            <xsl:if test="image:title">
+                              <span class="image-title"> (<xsl:value-of select="image:title"/>)</span>
+                            </xsl:if>
+                          </li>
+                        </xsl:for-each>
+                      </ul>
+                    </div>
+                  </xsl:if>
                 </td>
                 <td style="text-align: center;">
                   <div>
@@ -174,7 +244,7 @@
         
         <div class="footer">
           <p>
-            توليد الخريطة ديناميكياً باستخدام <a href="https://rkhrsana.com">رواد الخرسانة</a>
+            تجميع ديناميكي للروابط والصور بواسطة <a href="https://rkhrsana.com">رواد الخرسانة</a>
           </p>
         </div>
       </body>
