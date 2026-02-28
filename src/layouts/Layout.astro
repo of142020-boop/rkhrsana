@@ -27,12 +27,20 @@ const normalizedPath =
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="generator" content={Astro.generator} />
 
+    <!-- Canonical URL -->
+    <link rel="canonical" href={Astro.url.href.replace(/\/$/, "")} />
+
+    <!-- Preconnect & Preload -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preload" as="image" href="/images/og-default.webp" />
+
     <title>{title} | رواد الخرسانة</title>
     <meta name="description" content={description} />
     <meta name="robots" content="index, follow" />
     <meta
       name="keywords"
-      content="قص خرسانة, تخريم كور, قص بالمنشار, قص بالواير, تزريع أشاير, مدينة نصر, القاهرة, رواد الخرسانة"
+      content="قص خرسانة, تخريم كور, قص بالمنشار, قص بالواير, تزريع أشاير, مدينة نصر, القاهرة, مصر, رواد الخرسانة"
     />
 
     <meta property="og:title" content={`${title} | رواد الخرسانة`} />
@@ -45,6 +53,28 @@ const normalizedPath =
     <meta name="twitter:title" content={`${title} | رواد الخرسانة`} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImage} />
+
+    <!-- LocalBusiness Schema -->
+    <script type="application/ld+json" is:inline>
+      {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "رواد الخرسانة",
+        "image": "https://rkhrsana.com/images/og-default.webp",
+        "url": "https://rkhrsana.com/",
+        "telephone": "+201070046464",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "القاهرة",
+          "addressCountry": "EG"
+        },
+        "description": "شركة رائدة في مجال قص وتخريم الخرسانة بالكور والمنشار والواير، وتزريع الأشاير الكيميائية بأحدث المعدات الألمانية بدون تكسير عشوائي في مصر.",
+        "areaServed": {
+          "@type": "Country",
+          "name": "مصر"
+        }
+      }
+    </script>
   </head>
 
   <body
