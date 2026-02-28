@@ -166,82 +166,154 @@
         </style>
       </head>
       <body>
-        <div class="header">
-          <h1>خريطة الموقع (XML Sitemap) مع الصور</h1>
-          <p class="desc">تم إنشاء هذه الخريطة بواسطة رواد الخرسانة لتحسين فهرسة الصفحات والصور في محركات البحث.</p>
-        </div>
-        
-        <div style="text-align: center;">
-          <div class="stats">
-            إجمالي الروابط: <xsl:value-of select="count(sitemap:urlset/sitemap:url)"/>
-          </div>
-        </div>
+        <!-- Check if this is a sitemapindex (Index mapping file) -->
+        <xsl:choose>
+          <!-- SITEMAP INDEX VIEW -->
+          <xsl:when test="sitemap:sitemapindex">
+            <div class="header">
+              <h1>الفهرس الرئيسي لخرائط الموقع</h1>
+              <p class="desc">هذا الفهرس يحتوي على روابط للخرائط الفرعية: خريطة الصفحات وخريطة الصور.</p>
+            </div>
+            
+            <div style="text-align: center;">
+              <div class="stats">
+                إجمالي الخرائط الفرعية: <xsl:value-of select="count(sitemap:sitemapindex/sitemap:sitemap)"/>
+              </div>
+            </div>
 
-        <table>
-          <thead>
-            <tr>
-              <th>الرابط (URL) وتفاصيل الصور</th>
-              <th style="width: 120px; text-align: center;">عدد الصور</th>
-              <th style="width: 120px;">التكرار</th>
-              <th style="width: 80px;">الأولوية</th>
-              <th style="width: 160px;">آخر تعديل</th>
-            </tr>
-          </thead>
-          <tbody>
-            <xsl:for-each select="sitemap:urlset/sitemap:url">
-              <tr>
-                <td>
-                  <xsl:variable name="itemURL">
-                    <xsl:value-of select="sitemap:loc"/>
-                  </xsl:variable>
-                  <a href="{$itemURL}" class="url-link">
-                    <xsl:value-of select="sitemap:loc"/>
-                  </a>
-                  
-                  <xsl:if test="count(image:image) &gt; 0">
-                    <div class="image-list">
-                      <p class="image-list-title">
-                        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                        </svg>
-                        الصور المرفقة بالصفحة:
-                      </p>
-                      <ul>
-                        <xsl:for-each select="image:image">
-                          <li>
-                            <a href="{image:loc}" target="_blank">
-                              <xsl:value-of select="image:loc"/>
-                            </a>
-                            <xsl:if test="image:title">
-                              <span class="image-title"> (<xsl:value-of select="image:title"/>)</span>
-                            </xsl:if>
-                          </li>
-                        </xsl:for-each>
-                      </ul>
-                    </div>
+            <table>
+              <thead>
+                <tr>
+                  <th>رابط الخريطة الفرعية (Sitemap URL)</th>
+                  <th style="width: 250px;">آخر تعديل</th>
+                </tr>
+              </thead>
+              <tbody>
+                <xsl:for-each select="sitemap:sitemapindex/sitemap:sitemap">
+                  <tr>
+                    <td>
+                      <xsl:variable name="sitemapURL">
+                        <xsl:value-of select="sitemap:loc"/>
+                      </xsl:variable>
+                      <a href="{$sitemapURL}" class="url-link">
+                        <xsl:value-of select="sitemap:loc"/>
+                      </a>
+                    </td>
+                    <td><xsl:value-of select="sitemap:lastmod"/></td>
+                  </tr>
+                </xsl:for-each>
+              </tbody>
+            </table>
+          </xsl:when>
+
+          <!-- URL SET VIEW (Pages or Images) -->
+          <xsl:otherwise>
+            <div class="header">
+              <h1>
+                <xsl:choose>
+                  <xsl:when test="count(sitemap:urlset/sitemap:url/image:image) &gt; 0">
+                    خريطة الموقع (صور)
+                  </xsl:when>
+                  <xsl:otherwise>
+                    خريطة الموقع (صفحات)
+                  </xsl:otherwise>
+                </xsl:choose>
+              </h1>
+              <p class="desc">تم إنشاء هذه الخريطة بواسطة رواد الخرسانة لتحسين الفهرسة في محركات البحث.</p>
+            </div>
+            
+            <div style="text-align: center;">
+              <div class="stats">
+                إجمالي الروابط: <xsl:value-of select="count(sitemap:urlset/sitemap:url)"/>
+              </div>
+            </div>
+
+            <table>
+              <thead>
+                <tr>
+                  <th>الرابط (URL)</th>
+                  <!-- Only show image column in image sitemap -->
+                  <xsl:if test="count(sitemap:urlset/sitemap:url/image:image) &gt; 0">
+                    <th style="width: 120px; text-align: center;">عدد الصور</th>
                   </xsl:if>
-                </td>
-                <td style="text-align: center;">
-                  <div>
-                    <xsl:attribute name="class">
-                      <xsl:choose>
-                        <xsl:when test="count(image:image) &gt; 0">badge has-images</xsl:when>
-                        <xsl:otherwise>badge</xsl:otherwise>
-                      </xsl:choose>
-                    </xsl:attribute>
-                    <xsl:value-of select="count(image:image)"/>
-                  </div>
-                </td>
-                <td><xsl:value-of select="sitemap:changefreq"/></td>
-                <td><xsl:value-of select="sitemap:priority"/></td>
-                <td>
-                  <xsl:value-of select="sitemap:lastmod"/>
-                </td>
-              </tr>
-            </xsl:for-each>
-          </tbody>
-        </table>
-        
+                  <xsl:if test="sitemap:urlset/sitemap:url/sitemap:changefreq">
+                    <th style="width: 120px;">التكرار</th>
+                  </xsl:if>
+                  <xsl:if test="sitemap:urlset/sitemap:url/sitemap:priority">
+                    <th style="width: 80px;">الأولوية</th>
+                  </xsl:if>
+                  <th style="width: 160px;">آخر تعديل</th>
+                </tr>
+              </thead>
+              <tbody>
+                <xsl:for-each select="sitemap:urlset/sitemap:url">
+                  <tr>
+                    <td>
+                      <xsl:variable name="itemURL">
+                        <xsl:value-of select="sitemap:loc"/>
+                      </xsl:variable>
+                      <a href="{$itemURL}" class="url-link">
+                        <xsl:value-of select="sitemap:loc"/>
+                      </a>
+                      
+                      <!-- Render images if they exist -->
+                      <xsl:if test="count(image:image) &gt; 0">
+                        <div class="image-list">
+                          <p class="image-list-title">
+                            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                            </svg>
+                            الصور المرفقة بالصفحة:
+                          </p>
+                          <ul>
+                            <xsl:for-each select="image:image">
+                              <li>
+                                <a href="{image:loc}" target="_blank">
+                                  <xsl:value-of select="image:loc"/>
+                                </a>
+                                <xsl:if test="image:title">
+                                  <span class="image-title"> (<xsl:value-of select="image:title"/>)</span>
+                                </xsl:if>
+                              </li>
+                            </xsl:for-each>
+                          </ul>
+                        </div>
+                      </xsl:if>
+                    </td>
+
+                    <!-- Image Count Column (Only if we are in Image Sitemap) -->
+                    <xsl:if test="count(//sitemap:urlset/sitemap:url/image:image) &gt; 0">
+                      <td style="text-align: center;">
+                        <div>
+                          <xsl:attribute name="class">
+                            <xsl:choose>
+                              <xsl:when test="count(image:image) &gt; 0">badge has-images</xsl:when>
+                              <xsl:otherwise>badge</xsl:otherwise>
+                            </xsl:choose>
+                          </xsl:attribute>
+                          <xsl:value-of select="count(image:image)"/>
+                        </div>
+                      </td>
+                    </xsl:if>
+
+                    <xsl:if test="sitemap:changefreq">
+                      <td><xsl:value-of select="sitemap:changefreq"/></td>
+                    </xsl:if>
+                    
+                    <xsl:if test="sitemap:priority">
+                      <td><xsl:value-of select="sitemap:priority"/></td>
+                    </xsl:if>
+
+                    <td>
+                      <xsl:value-of select="sitemap:lastmod"/>
+                    </td>
+                  </tr>
+                </xsl:for-each>
+              </tbody>
+            </table>
+          </xsl:otherwise>
+        </xsl:choose>
+
         <div class="footer">
           <p>
             تجميع ديناميكي للروابط والصور بواسطة <a href="https://rkhrsana.com">رواد الخرسانة</a>

@@ -20,7 +20,8 @@ export default function imageSitemap() {
                 const siteUrl = 'https://rkhrsana.com';
 
                 // Map pages
-                const sitemapEntries = [];
+                const pageEntries = [];
+                const imageEntries = [];
                 const today = new Date().toISOString().split('T')[0];
 
                 // Specific image mappings based on project structure
@@ -62,47 +63,80 @@ export default function imageSitemap() {
                 };
 
                 // Go through routes to generate sitemap
+                let hasImages = false;
+
                 for (const route of routes) {
                     // ignore 404 page
                     if (route.route === '/404') continue;
 
                     let routePath = route.route === '/' ? '/' : `${route.route}/`;
+                    const fullUrl = `${siteUrl}${routePath === '/' ? '' : routePath}`;
+                    const priority = routePath === '/' ? '1.0' : '0.8';
+                    const changefreq = 'weekly';
 
+                    // 1) Page Entry (No images)
+                    const pageEntry = `  <url>\n    <loc>${fullUrl}</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>${changefreq}</changefreq>\n    <priority>${priority}</priority>\n  </url>`;
+                    pageEntries.push(pageEntry);
+
+                    // 2) Image Entry
                     const images = pageImageMap[routePath] || [];
-
-                    let priority = routePath === '/' ? '1.0' : '0.8';
-                    let changefreq = 'weekly';
-
-                    let urlEntry = `  <url>\n    <loc>${siteUrl}${routePath === '/' ? '' : routePath}</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>${changefreq}</changefreq>\n    <priority>${priority}</priority>\n`;
-
-                    images.forEach(img => {
-                        urlEntry += `    <image:image>\n      <image:loc>${img.loc}</image:loc>\n      <image:title>${img.title}</image:title>\n    </image:image>\n`;
-                    });
-
-                    urlEntry += `  </url>`;
-                    sitemapEntries.push(urlEntry);
+                    if (images.length > 0) {
+                        hasImages = true;
+                        let imgEntry = `  <url>\n    <loc>${fullUrl}</loc>\n`;
+                        images.forEach(img => {
+                            imgEntry += `    <image:image>\n      <image:loc>${img.loc}</image:loc>\n      <image:title>${img.title}</image:title>\n    </image:image>\n`;
+                        });
+                        imgEntry += `  </url>`;
+                        imageEntries.push(imgEntry);
+                    }
                 }
 
-                const sitemapContent = `<?xml version="1.0" encoding="UTF-8"?>
+                // --- 1. Generate Pages Sitemap ---
+                const pagesContent = `<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="/sitemap.xsl"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${pageEntries.join('\n')}
+</urlset>
+`;
+                await writeFile(join(outDir, 'sitemap-pages.xml'), pagesContent, 'utf-8');
+                console.log(`✅ Generated Pages Sitemap: sitemap-pages.xml`);
+
+                // --- 2. Generate Images Sitemap ---
+                const imagesContent = `<?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet type="text/xsl" href="/sitemap.xsl"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
-${sitemapEntries.join('\n')}
+${imageEntries.join('\n')}
 </urlset>
 `;
+                await writeFile(join(outDir, 'sitemap-images.xml'), imagesContent, 'utf-8');
+                console.log(`✅ Generated Images Sitemap: sitemap-images.xml`);
 
-                const sitemapPath = join(outDir, 'sitemap.xml');
-                await writeFile(sitemapPath, sitemapContent, 'utf-8');
-                console.log(`✅ Generated Unified Sitemap: ${sitemapPath}`);
+                // --- 3. Generate Index Sitemap ---
+                const indexContent = `<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="/sitemap.xsl"?>
+<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <sitemap>
+    <loc>${siteUrl}/sitemap-pages.xml</loc>
+    <lastmod>${today}</lastmod>
+  </sitemap>
+  <sitemap>
+    <loc>${siteUrl}/sitemap-images.xml</loc>
+    <lastmod>${today}</lastmod>
+  </sitemap>
+</sitemapindex>
+`;
+                await writeFile(join(outDir, 'sitemap-index.xml'), indexContent, 'utf-8');
+                console.log(`✅ Generated Sitemap Index: sitemap-index.xml`);
 
-                // Update robots.txt to point to new image sitemap
+                // --- 4. Update Robots.txt ---
                 try {
                     const robotsPath = join(outDir, 'robots.txt');
                     const robotsContent = await readFile(robotsPath, 'utf-8');
                     let updatedRobots = robotsContent.replace(/Sitemap: .*/g, '').trim();
-                    updatedRobots += `\n\nSitemap: ${siteUrl}/sitemap.xml\n`;
+                    updatedRobots += `\n\nSitemap: ${siteUrl}/sitemap-index.xml\n`;
                     await writeFile(robotsPath, updatedRobots, 'utf-8');
-                    console.log(`✅ Updated robots.txt with Unified Sitemap link.`);
+                    console.log(`✅ Updated robots.txt with sitemap-index.xml link.`);
                 } catch (e) {
                     console.warn("Could not handle robots.txt automatic update:", e.message);
                 }
