@@ -27,7 +27,13 @@ export default function imageSitemap() {
                 // Specific image mappings based on project structure
                 const pageImageMap = {
                     '/': [
-                        { loc: `${siteUrl}/images/hero-bg.webp`, title: "رواد الخرسانة للصفحة الرئيسية" }
+                        { loc: `${siteUrl}/images/hero-bg.webp`, title: "رواد الخرسانة للصفحة الرئيسية" },
+                        { loc: `${siteUrl}/images/gallery-core.webp`, title: "تخريم الخرسانة بالكور" },
+                        { loc: `${siteUrl}/images/gallery-saw.webp`, title: "قص الخرسانة بالمنشار" },
+                        { loc: `${siteUrl}/images/gallery-wire.webp`, title: "قص الخرسانة بالواير" },
+                        { loc: `${siteUrl}/images/gallery-rebar.webp`, title: "تزريع الأشاير" },
+                        { loc: `${siteUrl}/images/gallery-ceiling.webp`, title: "أعمال تخريم السقف" },
+                        { loc: `${siteUrl}/images/gallery-industrial.webp`, title: "أعمال خرسانة صناعية متكاملة" }
                     ],
                     '/contact/': [
                         { loc: `${siteUrl}/images/contact-hero.webp`, title: "تواصل معنا - رواد الخرسانة" }
