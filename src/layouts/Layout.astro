@@ -5,8 +5,8 @@ import "../styles/global.css";
 // 1. إضافة متغير image مع صورة افتراضية
 const { title, description, image = "/images/og-default.webp" } = Astro.props;
 
-// تأكد من أن رابط الصورة هو رابط مطلق (Absolute URL)
-const siteUrl = "https://rkhrsana.com";
+// تأكد من أن رابط الصورة هو رابط مطلق (Absolute URL) يدعم تغيير الدومين
+const siteUrl = Astro.site ? new URL(Astro.site).origin : Astro.url.origin;
 const ogImage = image.startsWith("http")
   ? image
   : `${siteUrl}${image.startsWith("/") ? "" : "/"}${image}`;
