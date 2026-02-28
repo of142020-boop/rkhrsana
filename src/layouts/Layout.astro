@@ -5,6 +5,12 @@ import "../styles/global.css";
 // 1. إضافة متغير image مع صورة افتراضية
 const { title, description, image = "/images/og-default.webp" } = Astro.props;
 
+// تأكد من أن رابط الصورة هو رابط مطلق (Absolute URL)
+const siteUrl = "https://rkhrsana.com";
+const ogImage = image.startsWith("http")
+  ? image
+  : `${siteUrl}${image.startsWith("/") ? "" : "/"}${image}`;
+
 // 2. الحصول على مسار الصفحة الحالية ومعالجته لضمان الدقة
 const currentPath = Astro.url.pathname;
 const normalizedPath =
@@ -31,14 +37,14 @@ const normalizedPath =
 
     <meta property="og:title" content={`${title} | رواد الخرسانة`} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content={image} />
+    <meta property="og:image" content={ogImage} />
     <meta property="og:type" content="website" />
     <meta property="og:url" content={Astro.url.href} />
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={`${title} | رواد الخرسانة`} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={image} />
+    <meta name="twitter:image" content={ogImage} />
   </head>
 
   <body
