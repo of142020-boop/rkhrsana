@@ -18,7 +18,7 @@ const PHONE_INT = "+20" + PHONE.replace(/^0/, ""); // +201070046464
 const WHATSAPP = `https://wa.me/${PHONE_INT.replace("+", "")}`; // 201070046464
 const SITE_URL = "https://rkhrsana.com";
 const PAGE_URL = `${SITE_URL}/contact`;
-const LOGO_URL = `${SITE_URL}/logo.png`;
+const LOGO_URL = `${SITE_URL}/images/og-default.webp`;
 
 // ====== SEO ======
 const PAGE_TITLE = `تواصل معنا لطلب تسعير أو معاينة | رواد الخرسانة | اتصل ${PHONE}`;
@@ -93,7 +93,7 @@ const buildWhatsAppContactMessage = (name, phone, service, city, details) => {
   >
     <div class="absolute inset-0 bg-slate-800 opacity-90"></div>
     <div
-      class="absolute inset-0 bg-[url('https://placehold.co/1920x1080/0f172a/0f172a')] bg-cover bg-center mix-blend-overlay opacity-25"
+      class="absolute inset-0 bg-[url('/images/contact-hero.webp')] bg-cover bg-center mix-blend-overlay opacity-25"
     >
     </div>
 

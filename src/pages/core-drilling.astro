@@ -19,7 +19,7 @@ const BRAND = "رواد الخرسانة";
 const PHONE = "01070046464"; // تمت إضافته لاستخدامه في الـ Meta Title
 const PAGE_URL = "https://rkhrsana.com/core-drilling";
 const SITE_URL = "https://rkhrsana.com";
-const LOGO_URL = "https://rkhrsana.com/logo.png";
+const LOGO_URL = "https://rkhrsana.com/images/og-core.webp";
 
 const PAGE_TITLE = `فتحات كور وتخريم الخرسانة المسلحة بدقة | اتصل ${PHONE}`;
 const PAGE_DESCRIPTION = `دليل شامل لخدمات فتحات كور وتخريم الخرسانة المسلحة بأحدث ماكينة الكور. دقة عالية بدون تكسير لعمل فتحات الغاز، مدخنة السخان، التكييف. نصلك في أي مكان في مصر.`;
@@ -28,146 +28,172 @@ const PAGE_DESCRIPTION = `دليل شامل لخدمات فتحات كور وت�
 const faqItems = [
   {
     q: "هل فتحات الكور آمنة على الخرسانة المسلحة؟",
-    a: "نعم، إذا تم التنفيذ باستخدام ماكينة الكور الماسية الصحيحة بواسطة فنيين محترفين، فإن تخريم الخرسانة المسلحة بالكور يعد الطريقة الأكثر أماناً لأنه يمنع الاهتزازات التي تسبب الشروخ الدقيقة في الهيكل الإنشائي."
+    a: "نعم، إذا تم التنفيذ باستخدام ماكينة الكور الماسية الصحيحة بواسطة فنيين محترفين، فإن تخريم الخرسانة المسلحة بالكور يعد الطريقة الأكثر أماناً لأنه يمنع الاهتزازات التي تسبب الشروخ الدقيقة في الهيكل الإنشائي.",
   },
   {
     q: "كم يبلغ سعر فتحة الكور؟",
-    a: "تتفاوت اسعار فتحات الكور بناءً على قطر الفتحة، عمق الخرسانة، نوعها (مسلحة أم عادية)، وموقع العمل. يرجى التواصل معنا من خلال صفحة الاتصال للحصول على تسعير دقيق وفوري."
+    a: "تتفاوت اسعار فتحات الكور بناءً على قطر الفتحة، عمق الخرسانة، نوعها (مسلحة أم عادية)، وموقع العمل. يرجى التواصل معنا من خلال صفحة الاتصال للحصول على تسعير دقيق وفوري.",
   },
   {
     q: "هل يمكن عمل فتحة مدخنة السخان دون تشويه الحائط؟",
-    a: "بالتأكيد. تقنية الكور دريل تضمن عمل فتحة دائرية مثالية الحواف لمدخنة السخان أو مواسير الغاز دون أي تكسير عشوائي أو تشويه للدهانات المحيطة."
+    a: "بالتأكيد. تقنية الكور دريل تضمن عمل فتحة دائرية مثالية الحواف لمدخنة السخان أو مواسير الغاز دون أي تكسير عشوائي أو تشويه للدهانات المحيطة.",
   },
   {
     q: "هل تقومون بفتح كور في الكمر الإنشائي؟",
-    a: 'فتح كور في الكمر يعتبر عملية حساسة هندسياً. نقوم بتنفيذها فقط بعد التأكد من عدم المساس بحديد التسليح الرئيسي وبعد استشارة المهندس الإنشائي المسؤول عن الموقع لضمان سلامة المبنى.'
+    a: "فتح كور في الكمر يعتبر عملية حساسة هندسياً. نقوم بتنفيذها فقط بعد التأكد من عدم المساس بحديد التسليح الرئيسي وبعد استشارة المهندس الإنشائي المسؤول عن الموقع لضمان سلامة المبنى.",
   },
   {
     q: "هل ينفع تخريم السقف داخل شقة متشطبة ومفروشة؟",
-    a: "ينفع بالطبع، لكن هذا يتطلب تجهيزاً خاصاً. نقوم بعمل حماية وتغطية شاملة للأرضيات والأثاث بالبلاستيك. التنفيذ الاحترافي لدينا يركز على تقليل الفوضى واستخدام أنظمة تجميع مياه متطورة للحفاظ على نظافة المكان قدر المستطاع."
+    a: "ينفع بالطبع، لكن هذا يتطلب تجهيزاً خاصاً. نقوم بعمل حماية وتغطية شاملة للأرضيات والأثاث بالبلاستيك. التنفيذ الاحترافي لدينا يركز على تقليل الفوضى واستخدام أنظمة تجميع مياه متطورة للحفاظ على نظافة المكان قدر المستطاع.",
   },
   {
-    q: 'هل كل عملية فتح كور لازم يكون فيها مياه وتغرق الدنيا؟',
-    a: 'مش شرط بالشكل السيء اللي الناس بتتخيله. الهدف الأساسي للمياه هو تبريد الأداة الألماسية وتحسين القطع وتقليل الغبار والحرارة. نستخدم أنظمة تجميع مياه متطورة وشفط مناسب لتقليل الفوضى داخل الشقق المتشطبة.'
+    q: "هل كل عملية فتح كور لازم يكون فيها مياه وتغرق الدنيا؟",
+    a: "مش شرط بالشكل السيء اللي الناس بتتخيله. الهدف الأساسي للمياه هو تبريد الأداة الألماسية وتحسين القطع وتقليل الغبار والحرارة. نستخدم أنظمة تجميع مياه متطورة وشفط مناسب لتقليل الفوضى داخل الشقق المتشطبة.",
   },
   {
     q: "هل يمكن عمل فتحات الغاز وفتحة مدخنة السخان في نفس الزيارة؟",
-    a: "أكيد، وده غالباً بيكون أوفر وأسرع للعميل. تحديد كل الفتحات المطلوبة مسبقًا عند التواصل معنا يساعدنا على تحضير المقاسات (البنط) والأدوات المناسبة لإنهاء العمل بالكامل في زيارة واحدة."
+    a: "أكيد، وده غالباً بيكون أوفر وأسرع للعميل. تحديد كل الفتحات المطلوبة مسبقًا عند التواصل معنا يساعدنا على تحضير المقاسات (البنط) والأدوات المناسبة لإنهاء العمل بالكامل في زيارة واحدة.",
   },
   {
     q: 'ما المقصود بـ "ماكينة تخريم خرسانة" و"كور دريل"؟',
-    a: "في سوق المقاولات الناس بتستخدم مصطلحات مختلفة زي: ماكينة تخريم خرسانة، ماكينة الكور، ماكينة كور تخريم الخرسانة، كور دريل، أو دريل كور... جميعها تشير لنفس الفكرة والماكينة: جهاز متخصص قوي لعمل فتحات دائرية دقيقة في الخرسانة."
-  }
+    a: "في سوق المقاولات الناس بتستخدم مصطلحات مختلفة زي: ماكينة تخريم خرسانة، ماكينة الكور، ماكينة كور تخريم الخرسانة، كور دريل، أو دريل كور... جميعها تشير لنفس الفكرة والماكينة: جهاز متخصص قوي لعمل فتحات دائرية دقيقة في الخرسانة.",
+  },
 ];
 
 // ====== Schema: FAQPage ======
 const faqSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
-  "mainEntity": faqItems.map((x) => ({
+  mainEntity: faqItems.map((x) => ({
     "@type": "Question",
-    "name": x.q,
-    "acceptedAnswer": { "@type": "Answer", "text": x.a }
-  }))
+    name: x.q,
+    acceptedAnswer: { "@type": "Answer", text: x.a },
+  })),
 };
 
 // ====== Schema: LocalBusiness ======
 const localBusinessSchema = {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
-  "name": "رواد الخرسانة لقص وتخريم الخرسانة",
-  "image": LOGO_URL,
-  "address": {
+  name: "رواد الخرسانة لقص وتخريم الخرسانة",
+  image: LOGO_URL,
+  address: {
     "@type": "PostalAddress",
-    "addressCountry": "EG"
+    addressCountry: "EG",
   },
-  "url": PAGE_URL,
-  "priceRange": "$$"
+  url: PAGE_URL,
+  priceRange: "$$",
 };
 
 // ====== Schema: Organization ======
 const orgSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
-  "name": "رواد الخرسانة لقص وتخريم الخرسانة",
-  "url": SITE_URL,
-  "logo": LOGO_URL,
-  "sameAs": [
-    "https://www.facebook.com/",
-    "https://www.instagram.com/"
-  ]
+  name: "رواد الخرسانة لقص وتخريم الخرسانة",
+  url: SITE_URL,
+  logo: LOGO_URL,
+  sameAs: ["https://www.facebook.com/", "https://www.instagram.com/"],
 };
 
 // ====== Schema: Service ======
 const serviceSchema = {
   "@context": "https://schema.org",
   "@type": "Service",
-  "name": "فتحات كور وتخريم الخرسانة المسلحة",
-  "serviceType": "Core Drilling",
-  "provider": {
+  name: "فتحات كور وتخريم الخرسانة المسلحة",
+  serviceType: "Core Drilling",
+  provider: {
     "@type": "LocalBusiness",
-    "name": "رواد الخرسانة لقص وتخريم الخرسانة",
-    "url": PAGE_URL
+    name: "رواد الخرسانة لقص وتخريم الخرسانة",
+    url: PAGE_URL,
   },
-  "areaServed": [
-    { "@type": "Country", "name": "Egypt" }
-  ],
-  "url": PAGE_URL
+  areaServed: [{ "@type": "Country", name: "Egypt" }],
+  url: PAGE_URL,
 };
 
 // ====== Schema: WebPage ======
 const webPageSchema = {
   "@context": "https://schema.org",
   "@type": "WebPage",
-  "name": PAGE_TITLE,
-  "url": PAGE_URL,
-  "isPartOf": { "@type": "WebSite", "name": "rkhrsana", "url": SITE_URL }
+  name: PAGE_TITLE,
+  url: PAGE_URL,
+  isPartOf: { "@type": "WebSite", name: "rkhrsana", url: SITE_URL },
 };
 
 // ====== Schema: Breadcrumb ======
 const breadcrumbSchema = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
-  "itemListElement": [
-    { "@type": "ListItem", "position": 1, "name": "الرئيسية", "item": `${SITE_URL}/` },
-    { "@type": "ListItem", "position": 2, "name": "فتحات كور وتخريم الخرسانة", "item": PAGE_URL }
-  ]
+  itemListElement: [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: "الرئيسية",
+      item: `${SITE_URL}/`,
+    },
+    {
+      "@type": "ListItem",
+      position: 2,
+      name: "فتحات كور وتخريم الخرسانة",
+      item: PAGE_URL,
+    },
+  ],
 };
 ---
 
 <Layout
   title={PAGE_TITLE}
   description={PAGE_DESCRIPTION}
+  image="/images/og-core.webp"
 >
   {/* ✅ حقن أكواد Schema في رأس الصفحة */}
-  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
-  <script type="application/ld+json" set:html={JSON.stringify(localBusinessSchema)} />
-  <script type="application/ld+json" set:html={JSON.stringify(orgSchema)} />
-  <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
-  <script type="application/ld+json" set:html={JSON.stringify(webPageSchema)} />
-  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)}
+  ></script>
+  <script
+    type="application/ld+json"
+    set:html={JSON.stringify(localBusinessSchema)}
+  ></script>
+  <script type="application/ld+json" set:html={JSON.stringify(orgSchema)}
+  ></script>
+  <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)}
+  ></script>
+  <script type="application/ld+json" set:html={JSON.stringify(webPageSchema)}
+  ></script>
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)}
+  ></script>
 
   {/* ========================================= */}
   {/* 1) Hero Section */}
   {/* ========================================= */}
-  <section class="relative bg-slate-900 text-white py-24 lg:py-32 overflow-hidden border-b-4 border-yellow-500">
+  <section
+    class="relative bg-slate-900 text-white py-24 lg:py-32 overflow-hidden border-b-4 border-yellow-500"
+  >
     <div class="absolute inset-0 bg-slate-800 opacity-90"></div>
-    <div class="absolute inset-0 bg-[url('https://placehold.co/1920x1080/0f172a/0f172a')] bg-cover bg-center mix-blend-overlay opacity-25"></div>
+    <div
+      class="absolute inset-0 bg-[url('https://placehold.co/1920x1080/0f172a/0f172a')] bg-cover bg-center mix-blend-overlay opacity-25"
+    >
+    </div>
 
     <div class="relative z-10 container mx-auto px-4 lg:px-8">
       <div class="max-w-4xl mx-auto text-center">
-        <span class="inline-block bg-yellow-500 text-slate-900 font-bold px-4 py-1 rounded-full text-sm md:text-base mb-6 shadow-lg">
+        <span
+          class="inline-block bg-yellow-500 text-slate-900 font-bold px-4 py-1 rounded-full text-sm md:text-base mb-6 shadow-lg"
+        >
           الحل الهندسي النظيف والآمن الأول في مصر
         </span>
 
-        <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6 leading-tight text-white drop-shadow-lg">
+        <h1
+          class="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6 leading-tight text-white drop-shadow-lg"
+        >
           فتحات كور وتخريم الخرسانة المسلحة بدقة وبدون تكسير
         </h1>
 
-        <p class="text-lg md:text-2xl mb-10 text-slate-300 leading-relaxed font-light">
-          إذا كنت تبحث عن حل "نظيف" وآمن لعمل فتحات في الخرسانة بدون تكسير عشوائي أو إضعاف للمنشأ، فخدمة{" "}
-          <strong class="text-white font-bold">فتحات كور</strong> هي الاختيار الصحيح. مقاول فتحات كور محترف لخدمتك
-          في كافة محافظات جمهورية مصر العربية.
+        <p
+          class="text-lg md:text-2xl mb-10 text-slate-300 leading-relaxed font-light"
+        >
+          إذا كنت تبحث عن حل "نظيف" وآمن لعمل فتحات في الخرسانة بدون تكسير
+          عشوائي أو إضعاف للمنشأ، فخدمة{" "}
+          <strong class="text-white font-bold">فتحات كور</strong> هي الاختيار الصحيح.
+          مقاول فتحات كور محترف لخدمتك في كافة محافظات جمهورية مصر العربية.
         </p>
 
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
@@ -202,22 +228,40 @@ const breadcrumbSchema = {
         {/* جدول تنقل */}
         <div class="bg-slate-50 border border-slate-200 rounded-2xl p-4 mb-10">
           <div class="flex flex-wrap gap-3 justify-end">
-            <a href="#services" class="px-4 py-2 rounded-lg bg-white border border-slate-200 hover:border-yellow-500">
+            <a
+              href="#services"
+              class="px-4 py-2 rounded-lg bg-white border border-slate-200 hover:border-yellow-500"
+            >
               الخدمات
             </a>
-            <a href="#equipment" class="px-4 py-2 rounded-lg bg-white border border-slate-200 hover:border-yellow-500">
+            <a
+              href="#equipment"
+              class="px-4 py-2 rounded-lg bg-white border border-slate-200 hover:border-yellow-500"
+            >
               المعدات
             </a>
-            <a href="#pricing" class="px-4 py-2 rounded-lg bg-white border border-slate-200 hover:border-yellow-500">
+            <a
+              href="#pricing"
+              class="px-4 py-2 rounded-lg bg-white border border-slate-200 hover:border-yellow-500"
+            >
               الأسعار
             </a>
-            <a href="#gallery" class="px-4 py-2 rounded-lg bg-white border border-slate-200 hover:border-yellow-500">
+            <a
+              href="#gallery"
+              class="px-4 py-2 rounded-lg bg-white border border-slate-200 hover:border-yellow-500"
+            >
               مشاريعنا
             </a>
-            <a href="#faq" class="px-4 py-2 rounded-lg bg-white border border-slate-200 hover:border-yellow-500">
+            <a
+              href="#faq"
+              class="px-4 py-2 rounded-lg bg-white border border-slate-200 hover:border-yellow-500"
+            >
               الأسئلة الشائعة
             </a>
-            <a href="/contact" class="px-4 py-2 rounded-lg bg-yellow-500 font-bold text-slate-900">
+            <a
+              href="/contact"
+              class="px-4 py-2 rounded-lg bg-yellow-500 font-bold text-slate-900"
+            >
               تواصل معنا
             </a>
           </div>
@@ -229,24 +273,32 @@ const breadcrumbSchema = {
           </h2>
 
           <p class="text-slate-700 leading-loose mb-6">
-            الناس بطبيعة الحال تحتاج إلى عمل فتحات في الخرسانة لأسباب لا حصر لها: تمديدات سباكة معقدة، تمرير مواسير
-            تكييف، تركيب شفاطات دقيقة، تمرير كابلات كهربائية ضخمة، تثبيت قواعد أعمدة، أو حتى عمل فتحات تهوية في
-            البدرومات. لكن <strong>الأخطر دائماً هو تنفيذ هذه الفتحات بطريقة خاطئة أو عشوائية</strong>.
+            الناس بطبيعة الحال تحتاج إلى عمل فتحات في الخرسانة لأسباب لا حصر
+            لها: تمديدات سباكة معقدة، تمرير مواسير تكييف، تركيب شفاطات دقيقة،
+            تمرير كابلات كهربائية ضخمة، تثبيت قواعد أعمدة، أو حتى عمل فتحات
+            تهوية في البدرومات. لكن <strong
+              >الأخطر دائماً هو تنفيذ هذه الفتحات بطريقة خاطئة أو عشوائية</strong
+            >.
           </p>
 
           <p class="text-slate-700 leading-loose mb-6">
-            أي تخريم غير محسوب باستخدام "الجاك هامر" (الهمر) أو الأجنة والمطرقة قد يسبب شروخاً ميكروية (Micro-cracks) في
-            الهيكل الإنشائي، أو يؤدي إلى قطع حديد التسليح بشكل عشوائي يدمر قوة التحمل، ناهيك عن الاهتزازات العنيفة التي
-            تؤثر على الأجزاء القريبة والمباني المجاورة. علشان كده، نحن في "{BRAND}" نقدم خدمة{" "}
-            <strong class="text-yellow-600">كور تخريم الخرسانة</strong> بحسابات هندسية واضحة، ومعدات ألمانية مخصصة، وتنفيذ
-            منظم يراعي السلامة المطلقة وجودة التشطيب الفائقة.
+            أي تخريم غير محسوب باستخدام "الجاك هامر" (الهمر) أو الأجنة والمطرقة
+            قد يسبب شروخاً ميكروية (Micro-cracks) في الهيكل الإنشائي، أو يؤدي
+            إلى قطع حديد التسليح بشكل عشوائي يدمر قوة التحمل، ناهيك عن
+            الاهتزازات العنيفة التي تؤثر على الأجزاء القريبة والمباني المجاورة.
+            علشان كده، نحن في "{BRAND}" نقدم خدمة{" "}
+            <strong class="text-yellow-600">كور تخريم الخرسانة</strong> بحسابات هندسية
+            واضحة، ومعدات ألمانية مخصصة، وتنفيذ منظم يراعي السلامة المطلقة وجودة
+            التشطيب الفائقة.
           </p>
 
           <p class="text-slate-700 leading-loose">
-            فتحات الكور (Core Drilling) هي باختصار الطريقة الاحترافية الحديثة لعمل فتحات دائرية دقيقة جداً داخل الخرسانة
-            العادية أو المسلحة، وذلك باستخدام معدات متخصصة مثل{" "}
-            <strong class="text-yellow-600">ماكينة كور تخريم الخرسانة</strong> المجهزة ببنط من الألماس الصناعي (Diamond
-            Core Bits)، مع تثبيت قوي يضمن تحكماً كاملاً في المقاس (القطر)، والعمق، والاتجاه الدقيق دون أي ميل غير محسوب.
+            فتحات الكور (Core Drilling) هي باختصار الطريقة الاحترافية الحديثة
+            لعمل فتحات دائرية دقيقة جداً داخل الخرسانة العادية أو المسلحة، وذلك
+            باستخدام معدات متخصصة مثل{" "}
+            <strong class="text-yellow-600">ماكينة كور تخريم الخرسانة</strong> المجهزة
+            ببنط من الألماس الصناعي (Diamond Core Bits)، مع تثبيت قوي يضمن تحكماً
+            كاملاً في المقاس (القطر)، والعمق، والاتجاه الدقيق دون أي ميل غير محسوب.
           </p>
         </div>
       </div>
@@ -266,58 +318,90 @@ const breadcrumbSchema = {
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-        <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 flex flex-col md:flex-row gap-6 hover:shadow-md transition-shadow">
-          <div class="w-16 h-16 shrink-0 bg-slate-900 text-yellow-500 rounded-2xl flex items-center justify-center text-3xl font-black">
+        <div
+          class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 flex flex-col md:flex-row gap-6 hover:shadow-md transition-shadow"
+        >
+          <div
+            class="w-16 h-16 shrink-0 bg-slate-900 text-yellow-500 rounded-2xl flex items-center justify-center text-3xl font-black"
+          >
             1
           </div>
           <div>
-            <h3 class="text-2xl font-bold text-slate-800 mb-3">دقة متناهية في المقاس والمكان</h3>
+            <h3 class="text-2xl font-bold text-slate-800 mb-3">
+              دقة متناهية في المقاس والمكان
+            </h3>
             <p class="text-slate-600 leading-relaxed">
-              الفتحة بتطلع بالمقاس المطلوب بالملّي—بدءاً من أصغر قطر لمرور كابل إنترنت، وحتى أقطار كبيرة جداً لتهوية
-              المصانع حسب الحاجة. سواء كنت محتاج فتحة كور لماسورة تكييف سبليت أو فتحة أكبر لتهوية أو شفاط، الدقة هنا
-              تمنع إعادة الشغل، توفر هدر المواد، وتقلل المخاطر الإنشائية تماماً.
+              الفتحة بتطلع بالمقاس المطلوب بالملّي—بدءاً من أصغر قطر لمرور كابل
+              إنترنت، وحتى أقطار كبيرة جداً لتهوية المصانع حسب الحاجة. سواء كنت
+              محتاج فتحة كور لماسورة تكييف سبليت أو فتحة أكبر لتهوية أو شفاط،
+              الدقة هنا تمنع إعادة الشغل، توفر هدر المواد، وتقلل المخاطر
+              الإنشائية تماماً.
             </p>
           </div>
         </div>
 
-        <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 flex flex-col md:flex-row gap-6 hover:shadow-md transition-shadow">
-          <div class="w-16 h-16 shrink-0 bg-slate-900 text-yellow-500 rounded-2xl flex items-center justify-center text-3xl font-black">
+        <div
+          class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 flex flex-col md:flex-row gap-6 hover:shadow-md transition-shadow"
+        >
+          <div
+            class="w-16 h-16 shrink-0 bg-slate-900 text-yellow-500 rounded-2xl flex items-center justify-center text-3xl font-black"
+          >
             2
           </div>
           <div>
-            <h3 class="text-2xl font-bold text-slate-800 mb-3">أقل اهتزاز وأقل ضرر للخرسانة</h3>
+            <h3 class="text-2xl font-bold text-slate-800 mb-3">
+              أقل اهتزاز وأقل ضرر للخرسانة
+            </h3>
             <p class="text-slate-600 leading-relaxed">
-              في عمليات <strong class="text-slate-800">تخريم الخرسانة المسلحة</strong> بالكور، الماكينة مصممة لتقطع
-              الخرسانة والحديد تدريجيًا بالاحتكاك الألماسي وليس بالطرق. هذا الأسلوب يقلل الاهتزاز مقارنة بطرق التكسير أو
-              الشنيور الدقاق العادي. ده يحافظ بشكل مباشر على المناطق المحيطة من الشروخ ويحمي عمر المبنى.
+              في عمليات <strong class="text-slate-800"
+                >تخريم الخرسانة المسلحة</strong
+              > بالكور، الماكينة مصممة لتقطع الخرسانة والحديد تدريجيًا بالاحتكاك
+              الألماسي وليس بالطرق. هذا الأسلوب يقلل الاهتزاز مقارنة بطرق التكسير
+              أو الشنيور الدقاق العادي. ده يحافظ بشكل مباشر على المناطق المحيطة من
+              الشروخ ويحمي عمر المبنى.
             </p>
           </div>
         </div>
 
-        <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 flex flex-col md:flex-row gap-6 hover:shadow-md transition-shadow">
-          <div class="w-16 h-16 shrink-0 bg-slate-900 text-yellow-500 rounded-2xl flex items-center justify-center text-3xl font-black">
+        <div
+          class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 flex flex-col md:flex-row gap-6 hover:shadow-md transition-shadow"
+        >
+          <div
+            class="w-16 h-16 shrink-0 bg-slate-900 text-yellow-500 rounded-2xl flex items-center justify-center text-3xl font-black"
+          >
             3
           </div>
           <div>
-            <h3 class="text-2xl font-bold text-slate-800 mb-3">تشطيب أنظف يسهل الأعمال اللاحقة</h3>
+            <h3 class="text-2xl font-bold text-slate-800 mb-3">
+              تشطيب أنظف يسهل الأعمال اللاحقة
+            </h3>
             <p class="text-slate-600 leading-relaxed">
-              الطرق العشوائية تترك حوافاً متعرجة ومكسرة. أما فتحة الكور بتطلع ناعمة الحواف أسطوانية الشكل ومثالية، وده
-              يسهل جداً تركيب المواسير أو عمل العزل المائي الدقيق، أو تثبيت الجلب (Sleeves) المعدنية والـ PVC بدون الحاجة
-              لأعمال محارة وإعادة تكسير وترميم مكلفة.
+              الطرق العشوائية تترك حوافاً متعرجة ومكسرة. أما فتحة الكور بتطلع
+              ناعمة الحواف أسطوانية الشكل ومثالية، وده يسهل جداً تركيب المواسير
+              أو عمل العزل المائي الدقيق، أو تثبيت الجلب (Sleeves) المعدنية والـ
+              PVC بدون الحاجة لأعمال محارة وإعادة تكسير وترميم مكلفة.
             </p>
           </div>
         </div>
 
-        <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 flex flex-col md:flex-row gap-6 hover:shadow-md transition-shadow">
-          <div class="w-16 h-16 shrink-0 bg-slate-900 text-yellow-500 rounded-2xl flex items-center justify-center text-3xl font-black">
+        <div
+          class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 flex flex-col md:flex-row gap-6 hover:shadow-md transition-shadow"
+        >
+          <div
+            class="w-16 h-16 shrink-0 bg-slate-900 text-yellow-500 rounded-2xl flex items-center justify-center text-3xl font-black"
+          >
             4
           </div>
           <div>
-            <h3 class="text-2xl font-bold text-slate-800 mb-3">قوة قاهرة للخرسانة المسلحة والصلبة</h3>
+            <h3 class="text-2xl font-bold text-slate-800 mb-3">
+              قوة قاهرة للخرسانة المسلحة والصلبة
+            </h3>
             <p class="text-slate-600 leading-relaxed">
-              سواء كانت خرسانة عادية، مسلحة بكثافة حديد عالية، أو حتى جدران حجرية، فإن{" "}
-              <strong class="text-slate-800">شركة تخريم خرسانة</strong> محترفة توفر المعدات المناسبة والتقنيات الصحيحة التي
-              تجعل التنفيذ ممكناً، سريعاً، وآمناً في أصعب الظروف الإنشائية.
+              سواء كانت خرسانة عادية، مسلحة بكثافة حديد عالية، أو حتى جدران
+              حجرية، فإن{" "}
+              <strong class="text-slate-800">شركة تخريم خرسانة</strong> محترفة توفر
+              المعدات المناسبة والتقنيات الصحيحة التي تجعل التنفيذ ممكناً، سريعاً،
+              وآمناً في أصعب الظروف الإنشائية.
             </p>
           </div>
         </div>
@@ -331,120 +415,166 @@ const breadcrumbSchema = {
   <section id="services" class="py-20 bg-white">
     <div class="container mx-auto px-4 lg:px-8 max-w-6xl">
       <div class="text-center mb-16">
-        <h2 class="text-3xl md:text-5xl font-bold text-slate-900 mb-6">خدماتنا الأساسية في تخريم الخرسانة بالكور</h2>
+        <h2 class="text-3xl md:text-5xl font-bold text-slate-900 mb-6">
+          خدماتنا الأساسية في تخريم الخرسانة بالكور
+        </h2>
         <p class="text-lg text-slate-600 max-w-3xl mx-auto">
-          نقدم في "{BRAND}" كل ما يتعلق بـ <strong>عمل فتحات كور</strong> داخل الخرسانة، بما يناسب احتياجك الفردي أو
-          مشروعك التجاري بدقة واحترافية عالية:
+          نقدم في "{BRAND}" كل ما يتعلق بـ <strong>عمل فتحات كور</strong> داخل الخرسانة،
+          بما يناسب احتياجك الفردي أو مشروعك التجاري بدقة واحترافية عالية:
         </p>
       </div>
 
       <div class="space-y-12">
-        <div class="flex flex-col md:flex-row gap-8 items-center bg-slate-50 rounded-2xl overflow-hidden border border-slate-100">
+        <div
+          class="flex flex-col md:flex-row gap-8 items-center bg-slate-50 rounded-2xl overflow-hidden border border-slate-100"
+        >
           <div class="w-full md:w-1/3 h-64 bg-slate-200 relative">
             <img
-              src="https://placehold.co/900x600/0f172a/f59e0b?text=Plumbing+Core+Drilling"
+              src="/images/core-drilling-1.webp"
               alt="عمل فتحات في الخرسانة للسباكة والتكييف"
               class="object-cover w-full h-full"
               loading="lazy"
             />
           </div>
           <div class="w-full md:w-2/3 p-6 md:p-8">
-            <h3 class="text-2xl font-bold text-slate-900 mb-4">عمل فتحات في الخرسانة (للسباكة والتكييف والكهرباء)</h3>
+            <h3 class="text-2xl font-bold text-slate-900 mb-4">
+              عمل فتحات في الخرسانة (للسباكة والتكييف والكهرباء)
+            </h3>
             <ul class="space-y-2 text-slate-700 list-disc list-inside mb-4">
               <li>فتحات مواسير مياه الشرب وشبكات الصرف الصحي المعقدة.</li>
-              <li>فتحات مواسير فريون للتكييف (السبليت والمركزي) دون تشويه الواجهات.</li>
+              <li>
+                فتحات مواسير فريون للتكييف (السبليت والمركزي) دون تشويه
+                الواجهات.
+              </li>
               <li>فتحات كابلات وكهرباء للضغط العالي والمنخفض.</li>
               <li>فتحات تثبيت قواعد معدات المصانع والمصاعد.</li>
             </ul>
             <p class="text-slate-600 text-sm">
-              التخريم يتم بأقطار تتناسب تماماً مع مقاس المواسير لضمان عدم تسرب المياه مستقبلاً.
+              التخريم يتم بأقطار تتناسب تماماً مع مقاس المواسير لضمان عدم تسرب
+              المياه مستقبلاً.
             </p>
           </div>
         </div>
 
-        <div class="flex flex-col md:flex-row-reverse gap-8 items-center bg-slate-50 rounded-2xl overflow-hidden border border-slate-100">
+        <div
+          class="flex flex-col md:flex-row-reverse gap-8 items-center bg-slate-50 rounded-2xl overflow-hidden border border-slate-100"
+        >
           <div class="w-full md:w-1/3 h-64 bg-slate-200 relative">
             <img
-              src="https://placehold.co/900x600/0f172a/f59e0b?text=Gas+Line+Coring"
+              src="/images/core-drilling-2.webp"
               alt="عمل فتحات الغاز الطبيعي بالكور"
               class="object-cover w-full h-full"
               loading="lazy"
             />
           </div>
           <div class="w-full md:w-2/3 p-6 md:p-8">
-            <h3 class="text-2xl font-bold text-slate-900 mb-4">عمل فتحات الغاز بأمان تام</h3>
+            <h3 class="text-2xl font-bold text-slate-900 mb-4">
+              عمل فتحات الغاز بأمان تام
+            </h3>
             <p class="text-slate-700 leading-relaxed mb-4">
               توصيل الغاز الطبيعي للمنازل والمطاعم يتطلب معايير أمان صارمة.{" "}
-              <strong class="text-slate-900">عمل فتحات الغاز</strong> يحتاج دقة متناهية في المسار والمقاس ومراعاة أماكن
-              شبكات التسليح والحوائط الحاملة لتجنب إضعافها. نحن في "{BRAND}" بننفذ الفتحات بالمقاس المطلوب من شركات الغاز
-              المعتمدة، مع الحفاظ على جودة المكان المحيط وتجهيز الفتحة للتركيب السليم والمطابق لاشتراطات السلامة.
+              <strong class="text-slate-900">عمل فتحات الغاز</strong> يحتاج دقة متناهية
+              في المسار والمقاس ومراعاة أماكن شبكات التسليح والحوائط الحاملة لتجنب
+              إضعافها. نحن في "{BRAND}" بننفذ الفتحات بالمقاس المطلوب من شركات
+              الغاز المعتمدة، مع الحفاظ على جودة المكان المحيط وتجهيز الفتحة
+              للتركيب السليم والمطابق لاشتراطات السلامة.
             </p>
           </div>
         </div>
 
-        <div class="flex flex-col md:flex-row gap-8 items-center bg-slate-50 rounded-2xl overflow-hidden border border-slate-100">
+        <div
+          class="flex flex-col md:flex-row gap-8 items-center bg-slate-50 rounded-2xl overflow-hidden border border-slate-100"
+        >
           <div class="w-full md:w-1/3 h-64 bg-slate-200 relative">
             <img
-              src="https://placehold.co/900x600/0f172a/f59e0b?text=Heater+Chimney+Hole"
+              src="/images/core-drilling-3.webp"
               alt="عمل فتحة مدخنة السخان الغاز"
               class="object-cover w-full h-full"
               loading="lazy"
             />
           </div>
           <div class="w-full md:w-2/3 p-6 md:p-8">
-            <h3 class="text-2xl font-bold text-slate-900 mb-4">عمل فتحة مدخنة السخان والغلايات</h3>
+            <h3 class="text-2xl font-bold text-slate-900 mb-4">
+              عمل فتحة مدخنة السخان والغلايات
+            </h3>
             <p class="text-slate-700 leading-relaxed mb-4">
-              من أكثر الطلبات شيوعًا في الشقق السكنية: <strong class="text-slate-900">عمل فتحة مدخنة السخان</strong> في
-              حائط خرساني أو سقف أو مكان محدد. هنا نراعي بدقة اتجاه المدخنة لضمان التهوية السليمة، مقاسها (غالباً 4 أو 5
-              بوصة)، وطبيعة الخرسانة. ننفذ العمل بشكل نظيف جداً يقلل الفوضى داخل الشقق المتشطبة ويضمن فتحة مناسبة للتركيب
-              والعزل الحراري الجيد.
+              من أكثر الطلبات شيوعًا في الشقق السكنية: <strong
+                class="text-slate-900">عمل فتحة مدخنة السخان</strong
+              > في حائط خرساني أو سقف أو مكان محدد. هنا نراعي بدقة اتجاه المدخنة
+              لضمان التهوية السليمة، مقاسها (غالباً 4 أو 5 بوصة)، وطبيعة الخرسانة.
+              ننفذ العمل بشكل نظيف جداً يقلل الفوضى داخل الشقق المتشطبة ويضمن فتحة
+              مناسبة للتركيب والعزل الحراري الجيد.
             </p>
           </div>
         </div>
 
-        <div class="flex flex-col md:flex-row-reverse gap-8 items-center bg-slate-50 rounded-2xl overflow-hidden border border-slate-100">
+        <div
+          class="flex flex-col md:flex-row-reverse gap-8 items-center bg-slate-50 rounded-2xl overflow-hidden border border-slate-100"
+        >
           <div class="w-full md:w-1/3 h-64 bg-slate-200 relative">
             <img
-              src="https://placehold.co/900x600/0f172a/f59e0b?text=Ceiling+Coring"
+              src="/images/core-drilling-4.webp"
               alt="تخريم السقف بالكور دريل"
               class="object-cover w-full h-full"
               loading="lazy"
             />
           </div>
           <div class="w-full md:w-2/3 p-6 md:p-8">
-            <h3 class="text-2xl font-bold text-slate-900 mb-4">تخريم السقف وتمرير المواسير الرأسية</h3>
+            <h3 class="text-2xl font-bold text-slate-900 mb-4">
+              تخريم السقف وتمرير المواسير الرأسية
+            </h3>
             <p class="text-slate-700 leading-relaxed mb-4">
-              في أعمال التكييف المركزي، شبكات الإطفاء (الحريق)، أو السباكة المعلقة والدكت:{" "}
-              <strong class="text-slate-900">تخريم السقف</strong> عملية لا تحتمل الخطأ. لازم يتم بحسابات دقيقة وتثبيت قوي
-              جداً للماكينة (لضمان القطع العمودي السليم 100%)، وتحديد مكان الفتحة بعيدًا عن الكابلات المدفونة في السقف أو
-              مسارات الشد اللاحق (Post-tension) إن وجدت.
+              في أعمال التكييف المركزي، شبكات الإطفاء (الحريق)، أو السباكة
+              المعلقة والدكت:{" "}
+              <strong class="text-slate-900">تخريم السقف</strong> عملية لا تحتمل
+              الخطأ. لازم يتم بحسابات دقيقة وتثبيت قوي جداً للماكينة (لضمان القطع
+              العمودي السليم 100%)، وتحديد مكان الفتحة بعيدًا عن الكابلات المدفونة
+              في السقف أو مسارات الشد اللاحق (Post-tension) إن وجدت.
             </p>
           </div>
         </div>
 
-        <div class="flex flex-col md:flex-row gap-8 items-center bg-yellow-50 rounded-2xl overflow-hidden border-2 border-yellow-400 shadow-md">
+        <div
+          class="flex flex-col md:flex-row gap-8 items-center bg-yellow-50 rounded-2xl overflow-hidden border-2 border-yellow-400 shadow-md"
+        >
           <div class="w-full md:w-1/3 h-64 bg-slate-200 relative">
             <img
-              src="https://placehold.co/900x600/0f172a/f59e0b?text=Beam+Coring+Safety"
+              src="/images/core-drilling-5.webp"
               alt="فتح كور في الكمر بحذر"
               class="object-cover w-full h-full"
               loading="lazy"
             />
           </div>
           <div class="w-full md:w-2/3 p-6 md:p-8">
-            <h3 class="text-2xl font-bold text-red-700 mb-4 flex items-center gap-2">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+            <h3
+              class="text-2xl font-bold text-red-700 mb-4 flex items-center gap-2"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-8 w-8"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
+                ></path>
               </svg>
               فتح كور في الكمر (حالات خاصة وخاضعة للدراسة)
             </h3>
 
             <p class="text-slate-800 leading-relaxed mb-4 font-medium">
-              في بعض المشاريع المعمارية الصعبة بيكون مطلوب <strong class="text-slate-900">فتح كور في الكمر</strong> لتمرير
-              مواسير الصرف لتجنب هبوط السقف المستعار. هنا لازم تشخيص صحيح هندسياً للمكان والغرض والمقاس. الكمر عنصر إنشائي
-              حامل وحساس جداً، لذلك التنفيذ لازم يتم بحذر شديد وفي أضيق الحدود المسموح بها هندسياً (في مناطق العزوم
-              الصفرية غالباً)، وبطريقة تقلل أي تأثير غير مرغوب، ومع الالتزام التام بتعليمات مهندس السلامة الإنشائية وعدم
-              التنفيذ العشوائي تحت أي ظرف.
+              في بعض المشاريع المعمارية الصعبة بيكون مطلوب <strong
+                class="text-slate-900">فتح كور في الكمر</strong
+              > لتمرير مواسير الصرف لتجنب هبوط السقف المستعار. هنا لازم تشخيص صحيح
+              هندسياً للمكان والغرض والمقاس. الكمر عنصر إنشائي حامل وحساس جداً، لذلك
+              التنفيذ لازم يتم بحذر شديد وفي أضيق الحدود المسموح بها هندسياً (في
+              مناطق العزوم الصفرية غالباً)، وبطريقة تقلل أي تأثير غير مرغوب، ومع
+              الالتزام التام بتعليمات مهندس السلامة الإنشائية وعدم التنفيذ العشوائي
+              تحت أي ظرف.
             </p>
           </div>
         </div>
@@ -458,43 +588,57 @@ const breadcrumbSchema = {
   <section class="py-16 bg-white border-t border-slate-100">
     <div class="container mx-auto px-4 lg:px-8 max-w-6xl">
       <div class="text-center mb-12">
-        <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4">ماذا يميزنا فعلاً عن أي صنايعي كور عادي؟</h2>
+        <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
+          ماذا يميزنا فعلاً عن أي صنايعي كور عادي؟
+        </h2>
         <p class="text-slate-600 max-w-3xl mx-auto">
-          مش بس أدوات… ده نظام تنفيذ. من أول تحديد مكان فتحات الكور، لغاية التشطيب والتنظيف وتسليم فتحة جاهزة للتركيب.
+          مش بس أدوات… ده نظام تنفيذ. من أول تحديد مكان فتحات الكور، لغاية
+          التشطيب والتنظيف وتسليم فتحة جاهزة للتركيب.
         </p>
       </div>
 
       <div class="grid md:grid-cols-3 gap-6">
         <div class="p-6 rounded-2xl border border-slate-200">
-          <h3 class="text-xl font-bold text-slate-900 mb-2">سلامة إنشائية أولاً</h3>
+          <h3 class="text-xl font-bold text-slate-900 mb-2">
+            سلامة إنشائية أولاً
+          </h3>
           <p class="text-slate-600 leading-relaxed">
-            لا يتم تنفيذ <strong>فتح كور في الكمر</strong> إلا بعد دراسة الموضع وتأكيد عدم المساس بحديد التسليح الرئيسي،
-            ومع الالتزام بتعليمات المهندس المسؤول.
+            لا يتم تنفيذ <strong>فتح كور في الكمر</strong> إلا بعد دراسة الموضع وتأكيد
+            عدم المساس بحديد التسليح الرئيسي، ومع الالتزام بتعليمات المهندس المسؤول.
           </p>
         </div>
 
         <div class="p-6 rounded-2xl border border-slate-200">
-          <h3 class="text-xl font-bold text-slate-900 mb-2">نظافة للشقق المتشطبة</h3>
+          <h3 class="text-xl font-bold text-slate-900 mb-2">
+            نظافة للشقق المتشطبة
+          </h3>
           <p class="text-slate-600 leading-relaxed">
-            تغطية كاملة + تجميع مياه التبريد + تقليل الغبار أثناء <strong>تخريم السقف</strong> وفتح الفتحات داخل الشقق
-            المفروشة.
+            تغطية كاملة + تجميع مياه التبريد + تقليل الغبار أثناء <strong
+              >تخريم السقف</strong
+            > وفتح الفتحات داخل الشقق المفروشة.
           </p>
         </div>
 
         <div class="p-6 rounded-2xl border border-slate-200">
-          <h3 class="text-xl font-bold text-slate-900 mb-2">تحديد القطر والعمق بدقة</h3>
+          <h3 class="text-xl font-bold text-slate-900 mb-2">
+            تحديد القطر والعمق بدقة
+          </h3>
           <p class="text-slate-600 leading-relaxed">
-            المقاس بيتحدد حسب الغرض (غاز/تكييف/مدخنة). ده يمنع الأخطاء ويخلي <strong>سعر فتحة الكور</strong> مبني على
-            متطلبات حقيقية.
+            المقاس بيتحدد حسب الغرض (غاز/تكييف/مدخنة). ده يمنع الأخطاء ويخلي <strong
+              >سعر فتحة الكور</strong
+            > مبني على متطلبات حقيقية.
           </p>
         </div>
       </div>
 
-      <div class="mt-10 bg-slate-900 text-white rounded-2xl p-8 border-l-4 border-yellow-500">
+      <div
+        class="mt-10 bg-slate-900 text-white rounded-2xl p-8 border-l-4 border-yellow-500"
+      >
         <p class="text-lg leading-relaxed">
-          "وجود معدات محترفة وحده مش كفاية—الأهم هو خبرة التشغيل. علشان كده الفريق عندنا مش مجرد عامل، بل هو{" "}
-          <strong class="text-yellow-400">صنايعي كور محترف</strong> وفاهم طبيعة الخرسانة وإجهاداتها وكيفية تنفيذ تخريم كور
-          بدون أي أخطاء فنية في أي مكان في مصر."
+          "وجود معدات محترفة وحده مش كفاية—الأهم هو خبرة التشغيل. علشان كده
+          الفريق عندنا مش مجرد عامل، بل هو{" "}
+          <strong class="text-yellow-400">صنايعي كور محترف</strong> وفاهم طبيعة الخرسانة
+          وإجهاداتها وكيفية تنفيذ تخريم كور بدون أي أخطاء فنية في أي مكان في مصر."
         </p>
       </div>
     </div>
@@ -506,118 +650,202 @@ const breadcrumbSchema = {
   <section id="equipment" class="py-20 bg-slate-900 text-slate-300">
     <div class="container mx-auto px-4 lg:px-8 max-w-6xl">
       <div class="mb-16">
-        <h2 class="text-3xl md:text-4xl font-bold text-yellow-500 mb-6 border-b-2 border-slate-700 pb-4 inline-block">
+        <h2
+          class="text-3xl md:text-4xl font-bold text-yellow-500 mb-6 border-b-2 border-slate-700 pb-4 inline-block"
+        >
           المعدات المستخدمة: التكنولوجيا الألمانية في خدمتك
         </h2>
-        <p class="text-lg leading-relaxed mt-4">التنفيذ الاحترافي يعتمد بشكل أساسي على أدوات مناسبة ومتقدمة. نحن نعتمد على:</p>
+        <p class="text-lg leading-relaxed mt-4">
+          التنفيذ الاحترافي يعتمد بشكل أساسي على أدوات مناسبة ومتقدمة. نحن نعتمد
+          على:
+        </p>
 
         <ul class="mt-6 space-y-4 text-lg">
           <li class="flex items-start gap-3">
-            <svg class="w-6 h-6 text-yellow-500 shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+            <svg
+              class="w-6 h-6 text-yellow-500 shrink-0 mt-1"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M5 13l4 4L19 7"></path>
             </svg>
             <div>
-              <strong class="text-white">ماكينة الكور الماسية:</strong> أساس الشغل في كافة مشاريع فتحات الكور. توفر عزم
-              دوران عالي وقوة اختراق هائلة للخرسانة المسلحة.
+              <strong class="text-white">ماكينة الكور الماسية:</strong> أساس الشغل
+              في كافة مشاريع فتحات الكور. توفر عزم دوران عالي وقوة اختراق هائلة للخرسانة
+              المسلحة.
             </div>
           </li>
 
           <li class="flex items-start gap-3">
-            <svg class="w-6 h-6 text-yellow-500 shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+            <svg
+              class="w-6 h-6 text-yellow-500 shrink-0 mt-1"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M5 13l4 4L19 7"></path>
             </svg>
             <div>
-              <strong class="text-white">قواعد التثبيت الفراغية (Vacuum) أو الميكانيكية:</strong> تُستخدم مع{" "}
-              <strong class="text-white">ماكينة كور تخريم الخرسانة</strong> لضمان الثبات المطلق للماكينة أثناء الدوران
-              السريع، مما يمنع انحراف الفتحة أو تكسر حوافها.
+              <strong class="text-white"
+                >قواعد التثبيت الفراغية (Vacuum) أو الميكانيكية:</strong
+              > تُستخدم مع{" "}
+              <strong class="text-white">ماكينة كور تخريم الخرسانة</strong> لضمان
+              الثبات المطلق للماكينة أثناء الدوران السريع، مما يمنع انحراف الفتحة
+              أو تكسر حوافها.
             </div>
           </li>
 
           <li class="flex items-start gap-3">
-            <svg class="w-6 h-6 text-yellow-500 shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+            <svg
+              class="w-6 h-6 text-yellow-500 shrink-0 mt-1"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M5 13l4 4L19 7"></path>
             </svg>
             <div>
-              <strong class="text-white">دريل كور / كور دريل:</strong> مصطلحات شائعة في السوق لعدة التخريم بالكور المتنقلة،
-              نستخدم منها أحدث الإصدارات التي تتوافق مع الأماكن الضيقة.
+              <strong class="text-white">دريل كور / كور دريل:</strong> مصطلحات شائعة
+              في السوق لعدة التخريم بالكور المتنقلة، نستخدم منها أحدث الإصدارات التي
+              تتوافق مع الأماكن الضيقة.
             </div>
           </li>
 
           <li class="flex items-start gap-3">
-            <svg class="w-6 h-6 text-yellow-500 shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+            <svg
+              class="w-6 h-6 text-yellow-500 shrink-0 mt-1"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M5 13l4 4L19 7"></path>
             </svg>
             <div>
-              <strong class="text-white">أنظمة التبريد المائية المتقدمة:</strong> بنستخدم طرق تبريد مناسبة (حسب الموقع
-              ونظام العمل) للمحافظة على الأداء، تبريد بنط الألماس لضمان جودة القطع، وتقليل الغبار المتطاير بنسبة 99% (أمر
-              حيوي في الشقق المتشطبة والمستشفيات).
+              <strong class="text-white">أنظمة التبريد المائية المتقدمة:</strong
+              > بنستخدم طرق تبريد مناسبة (حسب الموقع ونظام العمل) للمحافظة على الأداء،
+              تبريد بنط الألماس لضمان جودة القطع، وتقليل الغبار المتطاير بنسبة 99%
+              (أمر حيوي في الشقق المتشطبة والمستشفيات).
             </div>
           </li>
         </ul>
       </div>
 
       <div>
-        <h2 class="text-3xl md:text-4xl font-bold text-yellow-500 mb-8 border-b-2 border-slate-700 pb-4 inline-block">
+        <h2
+          class="text-3xl md:text-4xl font-bold text-yellow-500 mb-8 border-b-2 border-slate-700 pb-4 inline-block"
+        >
           خطوات تنفيذ كور تخريم الخرسانة بشكل احترافي
         </h2>
         <p class="text-lg leading-relaxed mb-8">
-          علشان تطمن إن شغلك في أمان وبيتعمل صح، دي طريقة العمل "المحترفة" اللي بنمشي عليها خطوة بخطوة في كل مشروع، سواء
-          كان فتحة واحدة أو 100 فتحة:
+          علشان تطمن إن شغلك في أمان وبيتعمل صح، دي طريقة العمل "المحترفة" اللي
+          بنمشي عليها خطوة بخطوة في كل مشروع، سواء كان فتحة واحدة أو 100 فتحة:
         </p>
 
         <div class="grid md:grid-cols-2 lg:grid-cols-5 gap-6">
-          <div class="bg-slate-800 p-6 rounded-xl border border-slate-700 relative">
-            <div class="absolute -top-4 -right-4 w-10 h-10 bg-yellow-500 text-slate-900 font-bold rounded-full flex items-center justify-center text-xl">
+          <div
+            class="bg-slate-800 p-6 rounded-xl border border-slate-700 relative"
+          >
+            <div
+              class="absolute -top-4 -right-4 w-10 h-10 bg-yellow-500 text-slate-900 font-bold rounded-full flex items-center justify-center text-xl"
+            >
               1
             </div>
-            <h4 class="text-xl font-bold text-white mb-3 mt-2">تحديد المكان بدقة</h4>
+            <h4 class="text-xl font-bold text-white mb-3 mt-2">
+              تحديد المكان بدقة
+            </h4>
             <p class="text-sm text-slate-400">
-              بنحدد مكان فتحات الكور بناءً على المخططات الهندسية، مسار المواسير/الكابلات، والمسافات الآمنة، وطبيعة العنصر
-              الإنشائي (حائط/سقف/كمرة).
+              بنحدد مكان فتحات الكور بناءً على المخططات الهندسية، مسار
+              المواسير/الكابلات، والمسافات الآمنة، وطبيعة العنصر الإنشائي
+              (حائط/سقف/كمرة).
             </p>
           </div>
 
-          <div class="bg-slate-800 p-6 rounded-xl border border-slate-700 relative">
-            <div class="absolute -top-4 -right-4 w-10 h-10 bg-yellow-500 text-slate-900 font-bold rounded-full flex items-center justify-center text-xl">
+          <div
+            class="bg-slate-800 p-6 rounded-xl border border-slate-700 relative"
+          >
+            <div
+              class="absolute -top-4 -right-4 w-10 h-10 bg-yellow-500 text-slate-900 font-bold rounded-full flex items-center justify-center text-xl"
+            >
               2
             </div>
-            <h4 class="text-xl font-bold text-white mb-3 mt-2">اختيار القطر والعمق</h4>
+            <h4 class="text-xl font-bold text-white mb-3 mt-2">
+              اختيار القطر والعمق
+            </h4>
             <p class="text-sm text-slate-400">
-              مقاس الفتحة بيتحدد حسب الغرض: ماسورة غاز، صرف، تكييف، مدخنة. هنا بنضمن إن{" "}
-              <strong class="text-white">سعر فتحة الكور</strong> يبقى مبني على متطلبات حقيقية ومدروسة.
+              مقاس الفتحة بيتحدد حسب الغرض: ماسورة غاز، صرف، تكييف، مدخنة. هنا
+              بنضمن إن{" "}
+              <strong class="text-white">سعر فتحة الكور</strong> يبقى مبني على متطلبات
+              حقيقية ومدروسة.
             </p>
           </div>
 
-          <div class="bg-slate-800 p-6 rounded-xl border border-slate-700 relative">
-            <div class="absolute -top-4 -right-4 w-10 h-10 bg-yellow-500 text-slate-900 font-bold rounded-full flex items-center justify-center text-xl">
+          <div
+            class="bg-slate-800 p-6 rounded-xl border border-slate-700 relative"
+          >
+            <div
+              class="absolute -top-4 -right-4 w-10 h-10 bg-yellow-500 text-slate-900 font-bold rounded-full flex items-center justify-center text-xl"
+            >
               3
             </div>
-            <h4 class="text-xl font-bold text-white mb-3 mt-2">تثبيت ماكينة الكور</h4>
+            <h4 class="text-xl font-bold text-white mb-3 mt-2">
+              تثبيت ماكينة الكور
+            </h4>
             <p class="text-sm text-slate-400">
-              التثبيت الجيد القوي (بواسطة مسامير التثبيت الميكانيكية) يمنع أي انحراف للماكينة أثناء التشغيل ويخلي فتحة الكور
-              مستقيمة ونظيفة تماماً.
+              التثبيت الجيد القوي (بواسطة مسامير التثبيت الميكانيكية) يمنع أي
+              انحراف للماكينة أثناء التشغيل ويخلي فتحة الكور مستقيمة ونظيفة
+              تماماً.
             </p>
           </div>
 
-          <div class="bg-slate-800 p-6 rounded-xl border border-slate-700 relative">
-            <div class="absolute -top-4 -right-4 w-10 h-10 bg-yellow-500 text-slate-900 font-bold rounded-full flex items-center justify-center text-xl">
+          <div
+            class="bg-slate-800 p-6 rounded-xl border border-slate-700 relative"
+          >
+            <div
+              class="absolute -top-4 -right-4 w-10 h-10 bg-yellow-500 text-slate-900 font-bold rounded-full flex items-center justify-center text-xl"
+            >
               4
             </div>
-            <h4 class="text-xl font-bold text-white mb-3 mt-2">تنفيذ التخريم</h4>
+            <h4 class="text-xl font-bold text-white mb-3 mt-2">
+              تنفيذ التخريم
+            </h4>
             <p class="text-sm text-slate-400">
-              بننفذ <strong class="text-white">كور تخريم</strong> تدريجيًا وبشكل منظم لقطع الخرسانة والحديد. الهدف هنا هو
-              تقليل الاهتزاز لأقصى درجة وتحسين جودة الحواف الإسطوانية.
+              بننفذ <strong class="text-white">كور تخريم</strong> تدريجيًا وبشكل
+              منظم لقطع الخرسانة والحديد. الهدف هنا هو تقليل الاهتزاز لأقصى درجة
+              وتحسين جودة الحواف الإسطوانية.
             </p>
           </div>
 
-          <div class="bg-slate-800 p-6 rounded-xl border border-slate-700 relative">
-            <div class="absolute -top-4 -right-4 w-10 h-10 bg-yellow-500 text-slate-900 font-bold rounded-full flex items-center justify-center text-xl">
+          <div
+            class="bg-slate-800 p-6 rounded-xl border border-slate-700 relative"
+          >
+            <div
+              class="absolute -top-4 -right-4 w-10 h-10 bg-yellow-500 text-slate-900 font-bold rounded-full flex items-center justify-center text-xl"
+            >
               5
             </div>
-            <h4 class="text-xl font-bold text-white mb-3 mt-2">تنظيف وتجهيز الفتحة</h4>
+            <h4 class="text-xl font-bold text-white mb-3 mt-2">
+              تنظيف وتجهيز الفتحة
+            </h4>
             <p class="text-sm text-slate-400">
-              بعد التنفيذ، بنستخرج "قلب الخرسانة" (الأسطوانة المقطوعة)، ونشيل البواقي وننظف المكان ليكون جاهزاً فوراً لتركيب
-              المواسير أو العزل.
+              بعد التنفيذ، بنستخرج "قلب الخرسانة" (الأسطوانة المقطوعة)، ونشيل
+              البواقي وننظف المكان ليكون جاهزاً فوراً لتركيب المواسير أو العزل.
             </p>
           </div>
         </div>
@@ -636,9 +864,12 @@ const breadcrumbSchema = {
         </h2>
         <div class="w-24 h-1 bg-yellow-500 mx-auto rounded-full mb-6"></div>
         <p class="text-lg text-slate-600">
-          الناس بتسأل كتير باستمرار عن <strong class="text-slate-900">اسعار فتحات الكور</strong> أو{" "}
-          <strong class="text-slate-900">سعر فتحة الكور</strong> الواحدة—والحقيقة إن التسعير في مجال المقاولات المتخصصة
-          ليس رقماً ثابتاً عشوائياً، بل يتأثر بعوامل واضحة جداً، أهمها:
+          الناس بتسأل كتير باستمرار عن <strong class="text-slate-900"
+            >اسعار فتحات الكور</strong
+          > أو{" "}
+          <strong class="text-slate-900">سعر فتحة الكور</strong> الواحدة—والحقيقة
+          إن التسعير في مجال المقاولات المتخصصة ليس رقماً ثابتاً عشوائياً، بل يتأثر
+          بعوامل واضحة جداً، أهمها:
         </p>
       </div>
 
@@ -646,31 +877,49 @@ const breadcrumbSchema = {
         <div class="grid md:grid-cols-2 gap-8">
           <ul class="space-y-4">
             <li class="flex gap-4 items-start">
-              <span class="w-6 h-6 rounded-full bg-yellow-100 text-yellow-600 flex items-center justify-center shrink-0 mt-1">✔</span>
+              <span
+                class="w-6 h-6 rounded-full bg-yellow-100 text-yellow-600 flex items-center justify-center shrink-0 mt-1"
+                >✔</span
+              >
               <div>
-                <strong class="block text-slate-900 text-lg mb-1">قطر الفتحة (Diameter):</strong>
+                <strong class="block text-slate-900 text-lg mb-1"
+                  >قطر الفتحة (Diameter):</strong
+                >
                 <span class="text-slate-600 text-sm">
-                  التخريم بقطر 2 بوصة يختلف تماماً عن قطر 10 بوصة. كل ما كبر القطر، زاد المجهود واستهلاك بنط الألماس المكلفة.
+                  التخريم بقطر 2 بوصة يختلف تماماً عن قطر 10 بوصة. كل ما كبر
+                  القطر، زاد المجهود واستهلاك بنط الألماس المكلفة.
                 </span>
               </div>
             </li>
 
             <li class="flex gap-4 items-start">
-              <span class="w-6 h-6 rounded-full bg-yellow-100 text-yellow-600 flex items-center justify-center shrink-0 mt-1">✔</span>
+              <span
+                class="w-6 h-6 rounded-full bg-yellow-100 text-yellow-600 flex items-center justify-center shrink-0 mt-1"
+                >✔</span
+              >
               <div>
-                <strong class="block text-slate-900 text-lg mb-1">سمك الخرسانة والعمق:</strong>
+                <strong class="block text-slate-900 text-lg mb-1"
+                  >سمك الخرسانة والعمق:</strong
+                >
                 <span class="text-slate-600 text-sm">
-                  يوجد فرق كبير في الجهد والوقت بين اختراق حائط طوب أو خرسانة بسمك 12 سم، وبين اختراق سقف سميك أو قاعدة خرسانية بعمق 60 سم.
+                  يوجد فرق كبير في الجهد والوقت بين اختراق حائط طوب أو خرسانة
+                  بسمك 12 سم، وبين اختراق سقف سميك أو قاعدة خرسانية بعمق 60 سم.
                 </span>
               </div>
             </li>
 
             <li class="flex gap-4 items-start">
-              <span class="w-6 h-6 rounded-full bg-yellow-100 text-yellow-600 flex items-center justify-center shrink-0 mt-1">✔</span>
+              <span
+                class="w-6 h-6 rounded-full bg-yellow-100 text-yellow-600 flex items-center justify-center shrink-0 mt-1"
+                >✔</span
+              >
               <div>
-                <strong class="block text-slate-900 text-lg mb-1">نوع الخرسانة والإجهاد:</strong>
+                <strong class="block text-slate-900 text-lg mb-1"
+                  >نوع الخرسانة والإجهاد:</strong
+                >
                 <span class="text-slate-600 text-sm">
-                  تخريم الخرسانة المسلحة عالية الإجهاد والمليئة بأسياخ الحديد غالباً أصعب وتستهلك المعدات أكثر من الخرسانة العادية أو الطوب.
+                  تخريم الخرسانة المسلحة عالية الإجهاد والمليئة بأسياخ الحديد
+                  غالباً أصعب وتستهلك المعدات أكثر من الخرسانة العادية أو الطوب.
                 </span>
               </div>
             </li>
@@ -678,31 +927,51 @@ const breadcrumbSchema = {
 
           <ul class="space-y-4">
             <li class="flex gap-4 items-start">
-              <span class="w-6 h-6 rounded-full bg-yellow-100 text-yellow-600 flex items-center justify-center shrink-0 mt-1">✔</span>
+              <span
+                class="w-6 h-6 rounded-full bg-yellow-100 text-yellow-600 flex items-center justify-center shrink-0 mt-1"
+                >✔</span
+              >
               <div>
-                <strong class="block text-slate-900 text-lg mb-1">مكان التنفيذ وصعوبة الوصول:</strong>
+                <strong class="block text-slate-900 text-lg mb-1"
+                  >مكان التنفيذ وصعوبة الوصول:</strong
+                >
                 <span class="text-slate-600 text-sm">
-                  العمل على ارتفاعات عالية تتطلب سقالات، أو في أماكن ضيقة جداً تصعب فيها عملية تثبيت الماكينة، يرفع من تكلفة التنفيذ والمخاطرة.
+                  العمل على ارتفاعات عالية تتطلب سقالات، أو في أماكن ضيقة جداً
+                  تصعب فيها عملية تثبيت الماكينة، يرفع من تكلفة التنفيذ
+                  والمخاطرة.
                 </span>
               </div>
             </li>
 
             <li class="flex gap-4 items-start">
-              <span class="w-6 h-6 rounded-full bg-yellow-100 text-yellow-600 flex items-center justify-center shrink-0 mt-1">✔</span>
+              <span
+                class="w-6 h-6 rounded-full bg-yellow-100 text-yellow-600 flex items-center justify-center shrink-0 mt-1"
+                >✔</span
+              >
               <div>
-                <strong class="block text-slate-900 text-lg mb-1">عدد الفتحات (الكمية):</strong>
+                <strong class="block text-slate-900 text-lg mb-1"
+                  >عدد الفتحات (الكمية):</strong
+                >
                 <span class="text-slate-600 text-sm">
-                  تنفيذ عدة فتحات في نفس الموقع (مشروع كامل) غالباً يكون أوفر بكثير في إجمالي التكلفة (سعر الفتحة يقل) مقارنة بطلب تنفيذ فتحة واحدة منفردة بسبب تكاليف النقل وتجهيز المعدات.
+                  تنفيذ عدة فتحات في نفس الموقع (مشروع كامل) غالباً يكون أوفر
+                  بكثير في إجمالي التكلفة (سعر الفتحة يقل) مقارنة بطلب تنفيذ
+                  فتحة واحدة منفردة بسبب تكاليف النقل وتجهيز المعدات.
                 </span>
               </div>
             </li>
 
             <li class="flex gap-4 items-start">
-              <span class="w-6 h-6 rounded-full bg-yellow-100 text-yellow-600 flex items-center justify-center shrink-0 mt-1">✔</span>
+              <span
+                class="w-6 h-6 rounded-full bg-yellow-100 text-yellow-600 flex items-center justify-center shrink-0 mt-1"
+                >✔</span
+              >
               <div>
-                <strong class="block text-slate-900 text-lg mb-1">طبيعة التشطيب الحالية:</strong>
+                <strong class="block text-slate-900 text-lg mb-1"
+                  >طبيعة التشطيب الحالية:</strong
+                >
                 <span class="text-slate-600 text-sm">
-                  هل المكان متشطب (سكن فعلي)؟ هذا يتطلب حماية عالية جداً ضد الغبار والمياه وتغليف للأثاث، مما يضيف وقتاً وجهداً إضافياً.
+                  هل المكان متشطب (سكن فعلي)؟ هذا يتطلب حماية عالية جداً ضد
+                  الغبار والمياه وتغليف للأثاث، مما يضيف وقتاً وجهداً إضافياً.
                 </span>
               </div>
             </li>
@@ -712,12 +981,18 @@ const breadcrumbSchema = {
 
       {/* دعوة للتواصل المباشر للحصول على تسعير */}
       <div class="mt-12 max-w-3xl mx-auto">
-        <div class="bg-slate-900 p-8 rounded-2xl text-center border-b-4 border-yellow-500 shadow-xl">
+        <div
+          class="bg-slate-900 p-8 rounded-2xl text-center border-b-4 border-yellow-500 shadow-xl"
+        >
           <p class="text-white text-xl font-bold mb-4">
-            هل تبحث عن تسعير دقيق لـ <span class="text-yellow-400">أعمال الكور وتخريم الخرسانة</span> لمشروعك؟
+            هل تبحث عن تسعير دقيق لـ <span class="text-yellow-400"
+              >أعمال الكور وتخريم الخرسانة</span
+            > لمشروعك؟
           </p>
           <p class="text-slate-300 mb-8 leading-relaxed">
-            يمكنك إرسال تفاصيل مشروعك (مقاس الفتحة، نوع المكان: حائط/سقف/كمرة، والمحافظة) من خلال صفحة التواصل الخاصة بنا، وسنقوم بالرد بتقدير مالي واضح أو تحديد موعد معاينة مجانية في أقرب فرصة.
+            يمكنك إرسال تفاصيل مشروعك (مقاس الفتحة، نوع المكان: حائط/سقف/كمرة،
+            والمحافظة) من خلال صفحة التواصل الخاصة بنا، وسنقوم بالرد بتقدير مالي
+            واضح أو تحديد موعد معاينة مجانية في أقرب فرصة.
           </p>
           <a
             href="/contact"
@@ -742,18 +1017,25 @@ const breadcrumbSchema = {
           </h2>
 
           <p class="text-slate-700 leading-relaxed mb-4">
-            تخريم الخرسانة بالشنيور الدقاق العادي (Hilti Drill) مناسب وممتاز للثقوب الصغيرة جداً (مثل تثبيت مسمار، فيشر، أو
-            خابور صغير). لكن عندما يتعدى القطر 1 أو 2 بوصة، يصبح الشنيور أداة تكسير مدمرة للخرسانة المحيطة ومهلكة للوقت.
+            تخريم الخرسانة بالشنيور الدقاق العادي (Hilti Drill) مناسب وممتاز
+            للثقوب الصغيرة جداً (مثل تثبيت مسمار، فيشر، أو خابور صغير). لكن
+            عندما يتعدى القطر 1 أو 2 بوصة، يصبح الشنيور أداة تكسير مدمرة
+            للخرسانة المحيطة ومهلكة للوقت.
           </p>
 
           <p class="text-slate-700 leading-relaxed mb-6">
-            <strong class="text-slate-900">تخريم كور</strong> هو التطور التكنولوجي المناسب للفتحات الدائرية الكبيرة
-            والمتوسطة، حيث يقوم بالقطع الأسطواني الأملس ويطلع نتيجة نظيفة تحافظ على قوة المبنى. وده السبب الرئيسي إن أغلب{" "}
-            <strong class="text-slate-900">مقاول فتحات كور</strong> والشركات الهندسية الكبرى تعتمد عليه حصرياً في الأعمال
-            الاحترافية.
+            <strong class="text-slate-900">تخريم كور</strong> هو التطور التكنولوجي
+            المناسب للفتحات الدائرية الكبيرة والمتوسطة، حيث يقوم بالقطع الأسطواني
+            الأملس ويطلع نتيجة نظيفة تحافظ على قوة المبنى. وده السبب الرئيسي إن أغلب{
+              " "
+            }
+            <strong class="text-slate-900">مقاول فتحات كور</strong> والشركات الهندسية
+            الكبرى تعتمد عليه حصرياً في الأعمال الاحترافية.
           </p>
 
-          <h3 class="text-xl font-bold text-slate-900 mb-4 mt-8 border-r-4 border-yellow-500 pr-3">
+          <h3
+            class="text-xl font-bold text-slate-900 mb-4 mt-8 border-r-4 border-yellow-500 pr-3"
+          >
             أين تُستخدم فتحات كور خرسانة؟ (مواقع العمل)
           </h3>
 
@@ -767,36 +1049,58 @@ const breadcrumbSchema = {
           </ul>
 
           <p class="text-sm text-slate-500 mt-4 italic">
-            * نعمل في المواقع تحت التشطيب (على الطوب) أو بعد التشطيب النهائي (مع أخذ كافة احتياطات النظافة العالية والتغطية
-            الكاملة).
+            * نعمل في المواقع تحت التشطيب (على الطوب) أو بعد التشطيب النهائي (مع
+            أخذ كافة احتياطات النظافة العالية والتغطية الكاملة).
           </p>
         </div>
 
-        <div class="bg-slate-50 p-8 rounded-2xl border-4 border-slate-100 shadow-xl relative mt-8 md:mt-0">
-          <div class="absolute -top-6 right-8 bg-yellow-500 text-slate-900 font-bold px-6 py-2 rounded-full shadow-lg">
+        <div
+          class="bg-slate-50 p-8 rounded-2xl border-4 border-slate-100 shadow-xl relative mt-8 md:mt-0"
+        >
+          <div
+            class="absolute -top-6 right-8 bg-yellow-500 text-slate-900 font-bold px-6 py-2 rounded-full shadow-lg"
+          >
             ما الذي تبحث عنه حقاً في أي مقاول؟
           </div>
 
           <p class="text-slate-700 mt-6 leading-relaxed mb-6">
-            من خبرتنا الطويلة في سوق المقاولات في جميع محافظات مصر، نعلم تماماً أن أصحاب المشاريع والمهندسين
-            عند بحثهم عن <strong>"فتحات كور"</strong>، يحتاجون إلى ضمانات واضحة تريحهم من قلق التعامل مع مقاولين غير محترفين:
+            من خبرتنا الطويلة في سوق المقاولات في جميع محافظات مصر، نعلم تماماً
+            أن أصحاب المشاريع والمهندسين عند بحثهم عن <strong
+              >"فتحات كور"</strong
+            >، يحتاجون إلى ضمانات واضحة تريحهم من قلق التعامل مع مقاولين غير
+            محترفين:
           </p>
 
           <ul class="space-y-4 text-slate-800 font-medium">
-            <li class="flex gap-3 items-center bg-white p-3 rounded-lg border border-slate-200 shadow-sm">
-              <span class="text-yellow-500">✅</span> جهة مسؤولة تنهي العمل بسرعة وفي الموعد المتفق عليه وبشكل نظيف.
+            <li
+              class="flex gap-3 items-center bg-white p-3 rounded-lg border border-slate-200 shadow-sm"
+            >
+              <span class="text-yellow-500">✅</span> جهة مسؤولة تنهي العمل بسرعة
+              وفي الموعد المتفق عليه وبشكل نظيف.
             </li>
-            <li class="flex gap-3 items-center bg-white p-3 rounded-lg border border-slate-200 shadow-sm">
-              <span class="text-yellow-500">✅</span> فتحة دقيقة بمقاس مضبوط 100% دون تكسير عشوائي أو تشويه.
+            <li
+              class="flex gap-3 items-center bg-white p-3 rounded-lg border border-slate-200 shadow-sm"
+            >
+              <span class="text-yellow-500">✅</span> فتحة دقيقة بمقاس مضبوط 100%
+              دون تكسير عشوائي أو تشويه.
             </li>
-            <li class="flex gap-3 items-center bg-white p-3 rounded-lg border border-slate-200 shadow-sm">
-              <span class="text-yellow-500">✅</span> ضمان السلامة الهندسية التامة، خصوصًا في تخريم الخرسانة المسلحة والأسقف.
+            <li
+              class="flex gap-3 items-center bg-white p-3 rounded-lg border border-slate-200 shadow-sm"
+            >
+              <span class="text-yellow-500">✅</span> ضمان السلامة الهندسية التامة،
+              خصوصًا في تخريم الخرسانة المسلحة والأسقف.
             </li>
-            <li class="flex gap-3 items-center bg-white p-3 rounded-lg border border-slate-200 shadow-sm">
-              <span class="text-yellow-500">✅</span> تسعير واضح، مقايسة احترافية، وشرح صادق لعوامل التكلفة دون مفاجآت.
+            <li
+              class="flex gap-3 items-center bg-white p-3 rounded-lg border border-slate-200 shadow-sm"
+            >
+              <span class="text-yellow-500">✅</span> تسعير واضح، مقايسة احترافية،
+              وشرح صادق لعوامل التكلفة دون مفاجآت.
             </li>
-            <li class="flex gap-3 items-center bg-white p-3 rounded-lg border border-slate-200 shadow-sm">
-              <span class="text-yellow-500">✅</span> حل فوري وعملي لمشكلة طارئة، كفتح مسار غاز آمن أو فتحة مدخنة.
+            <li
+              class="flex gap-3 items-center bg-white p-3 rounded-lg border border-slate-200 shadow-sm"
+            >
+              <span class="text-yellow-500">✅</span> حل فوري وعملي لمشكلة طارئة،
+              كفتح مسار غاز آمن أو فتحة مدخنة.
             </li>
           </ul>
         </div>
@@ -810,34 +1114,60 @@ const breadcrumbSchema = {
   <section id="gallery" class="py-20 bg-slate-50 border-t border-slate-200">
     <div class="container mx-auto px-4 lg:px-8 max-w-6xl">
       <div class="text-center mb-14">
-        <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-5">صور من مشاريعنا في فتحات كور وتخريم الخرسانة</h2>
+        <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-5">
+          صور من مشاريعنا في فتحات كور وتخريم الخرسانة
+        </h2>
         <p class="text-slate-600 max-w-3xl mx-auto">
           صور توضح دقة واحترافية فريق العمل أثناء التنفيذ في مختلف المواقع.
         </p>
       </div>
 
       <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {[
-          { t: "تخريم السقف لتمرير مواسير رأسية", alt: "تخريم السقف وتمرير المواسير الرأسية بالكور" },
-          { t: "عمل فتحة مدخنة السخان", alt: "عمل فتحة مدخنة السخان بالكور دريل" },
-          { t: "عمل فتحات الغاز", alt: "عمل فتحات الغاز الطبيعي بالكور في الخرسانة" },
-          { t: "عمل فتحات في الخرسانة للتكييف", alt: "عمل فتحات في الخرسانة للتكييف سبليت ومركزي" },
-          { t: "كور تخريم الخرسانة المسلحة", alt: "كور تخريم الخرسانة المسلحة بدقة وبدون تكسير" },
-          { t: "فتح كور في الكمر (حالات خاصة)", alt: "فتح كور في الكمر بحذر وتحت الدراسة" }
-        ].map((x) => (
-          <figure class="bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
-            <img
-              src={`https://placehold.co/900x650/0f172a/f59e0b?text=${encodeURIComponent(x.t)}`}
-              alt={x.alt}
-              loading="lazy"
-              class="w-full h-56 object-cover"
-            />
-            <figcaption class="p-4 text-right">
-              <p class="font-bold text-slate-900">{x.t}</p>
-              <p class="text-sm text-slate-600 mt-1">شغل نظيف + مقاس دقيق + تشطيب جاهز للتركيب.</p>
-            </figcaption>
-          </figure>
-        ))}
+        {
+          [
+            {
+              t: "تخريم السقف لتمرير مواسير رأسية",
+              alt: "تخريم السقف وتمرير المواسير الرأسية بالكور",
+            },
+            {
+              t: "عمل فتحة مدخنة السخان",
+              alt: "عمل فتحة مدخنة السخان بالكور دريل",
+            },
+            {
+              t: "عمل فتحات الغاز",
+              alt: "عمل فتحات الغاز الطبيعي بالكور في الخرسانة",
+            },
+            {
+              t: "عمل فتحات في الخرسانة للتكييف",
+              alt: "عمل فتحات في الخرسانة للتكييف سبليت ومركزي",
+            },
+            {
+              t: "كور تخريم الخرسانة المسلحة",
+              alt: "كور تخريم الخرسانة المسلحة بدقة وبدون تكسير",
+            },
+            {
+              t: "فتح كور في الكمر (حالات خاصة)",
+              alt: "فتح كور في الكمر بحذر وتحت الدراسة",
+            },
+          ].map((x) => (
+            <figure class="bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
+              <img
+                src={`https://placehold.co/900x650/0f172a/f59e0b?text=${encodeURIComponent(
+                  x.t
+                )}`}
+                alt={x.alt}
+                loading="lazy"
+                class="w-full h-56 object-cover"
+              />
+              <figcaption class="p-4 text-right">
+                <p class="font-bold text-slate-900">{x.t}</p>
+                <p class="text-sm text-slate-600 mt-1">
+                  شغل نظيف + مقاس دقيق + تشطيب جاهز للتركيب.
+                </p>
+              </figcaption>
+            </figure>
+          ))
+        }
       </div>
 
       <div class="mt-10 text-center">
@@ -854,20 +1184,29 @@ const breadcrumbSchema = {
   {/* ========================================= */}
   {/* 9) FAQ (ID: faq) - مطابق للسكيما */}
   {/* ========================================= */}
-  <section id="faq" class="py-20 bg-slate-900 text-white border-t-4 border-yellow-500">
+  <section
+    id="faq"
+    class="py-20 bg-slate-900 text-white border-t-4 border-yellow-500"
+  >
     <div class="container mx-auto px-4 lg:px-8 max-w-5xl">
       <div class="text-center mb-16">
-        <h2 class="text-3xl md:text-4xl font-bold text-yellow-500 mb-6">أسئلة شائعة (FAQ) حول فتحات الكور والتخريم</h2>
-        <p class="text-slate-300">إجابات شفافة ومباشرة لأكثر الأسئلة التي تشغل بال عملائنا والمهندسين.</p>
+        <h2 class="text-3xl md:text-4xl font-bold text-yellow-500 mb-6">
+          أسئلة شائعة (FAQ) حول فتحات الكور والتخريم
+        </h2>
+        <p class="text-slate-300">
+          إجابات شفافة ومباشرة لأكثر الأسئلة التي تشغل بال عملائنا والمهندسين.
+        </p>
       </div>
 
       <div class="grid md:grid-cols-2 gap-8">
-        {faqItems.map((item) => (
-          <div class="bg-slate-800 p-6 rounded-xl border border-slate-700">
-            <h4 class="font-bold text-yellow-400 mb-3 text-lg">{item.q}</h4>
-            <p class="text-slate-300 text-sm leading-relaxed">{item.a}</p>
-          </div>
-        ))}
+        {
+          faqItems.map((item) => (
+            <div class="bg-slate-800 p-6 rounded-xl border border-slate-700">
+              <h4 class="font-bold text-yellow-400 mb-3 text-lg">{item.q}</h4>
+              <p class="text-slate-300 text-sm leading-relaxed">{item.a}</p>
+            </div>
+          ))
+        }
       </div>
     </div>
   </section>
@@ -875,24 +1214,42 @@ const breadcrumbSchema = {
   {/* ========================================= */}
   {/* 10) Final CTA */}
   {/* ========================================= */}
-  <section class="py-20 bg-yellow-500 text-slate-900 text-center relative overflow-hidden">
-    <div class="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-slate-900 to-transparent"></div>
+  <section
+    class="py-20 bg-yellow-500 text-slate-900 text-center relative overflow-hidden"
+  >
+    <div
+      class="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-slate-900 to-transparent"
+    >
+    </div>
 
     <div class="container mx-auto px-4 lg:px-8 max-w-4xl relative z-10">
-      <h2 class="text-4xl md:text-5xl font-black mb-8 leading-tight">لماذا تختار "{BRAND}" بدل أي صنايعي كور عادي؟</h2>
+      <h2 class="text-4xl md:text-5xl font-black mb-8 leading-tight">
+        لماذا تختار "{BRAND}" بدل أي صنايعي كور عادي؟
+      </h2>
 
-      <div class="bg-white/20 backdrop-blur-sm p-8 rounded-2xl mb-10 text-right md:text-center shadow-lg border border-yellow-400">
+      <div
+        class="bg-white/20 backdrop-blur-sm p-8 rounded-2xl mb-10 text-right md:text-center shadow-lg border border-yellow-400"
+      >
         <div class="flex flex-wrap justify-center gap-6 text-lg font-bold">
-          <span class="bg-slate-900 text-yellow-500 px-4 py-2 rounded-lg">✓ تنفيذ منظم ومدروس</span>
-          <span class="bg-slate-900 text-yellow-500 px-4 py-2 rounded-lg">✓ دقة بالمقاس المليمتري</span>
-          <span class="bg-slate-900 text-yellow-500 px-4 py-2 rounded-lg">✓ مواعيد صارمة وتواصل محترم</span>
-          <span class="bg-slate-900 text-yellow-500 px-4 py-2 rounded-lg">✓ تغطية شاملة لجميع المحافظات</span>
+          <span class="bg-slate-900 text-yellow-500 px-4 py-2 rounded-lg"
+            >✓ تنفيذ منظم ومدروس</span
+          >
+          <span class="bg-slate-900 text-yellow-500 px-4 py-2 rounded-lg"
+            >✓ دقة بالمقاس المليمتري</span
+          >
+          <span class="bg-slate-900 text-yellow-500 px-4 py-2 rounded-lg"
+            >✓ مواعيد صارمة وتواصل محترم</span
+          >
+          <span class="bg-slate-900 text-yellow-500 px-4 py-2 rounded-lg"
+            >✓ تغطية شاملة لجميع المحافظات</span
+          >
         </div>
       </div>
 
       <p class="text-2xl mb-10 font-bold drop-shadow-sm">
-        لو محتاج <strong class="text-slate-900 bg-white/50 px-2 rounded">عمل فتحات بالكور</strong> أو عندك استفسار عن أسعار
-        العمليات لترتيب ميزانية مشروعك..
+        لو محتاج <strong class="text-slate-900 bg-white/50 px-2 rounded"
+          >عمل فتحات بالكور</strong
+        > أو عندك استفسار عن أسعار العمليات لترتيب ميزانية مشروعك..
       </p>
 
       <div class="flex flex-col sm:flex-row gap-6 justify-center items-center">
@@ -904,7 +1261,9 @@ const breadcrumbSchema = {
         </a>
       </div>
 
-      <p class="mt-6 text-sm font-bold text-slate-800">نصلك أينما كنت في جميع أنحاء جمهورية مصر العربية.</p>
+      <p class="mt-6 text-sm font-bold text-slate-800">
+        نصلك أينما كنت في جميع أنحاء جمهورية مصر العربية.
+      </p>
     </div>
   </section>
 </Layout>

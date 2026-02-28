@@ -18,7 +18,7 @@ const BRAND = "رواد الخرسانة";
 const PHONE = "01070046464"; // مخصص للميتا تايتل فقط
 const SITE_URL = "https://rkhrsana.com";
 const PAGE_URL = `${SITE_URL}/wire-saw`;
-const LOGO_URL = `${SITE_URL}/logo.png`;
+const LOGO_URL = `${SITE_URL}/images/og-wire.webp`;
 
 // ====== SEO ======
 const PAGE_TITLE = `واير تقطيع خرسانة | قص الخرسانة بالواير الماسي | اتصل ${PHONE}`;
@@ -28,145 +28,175 @@ const PAGE_DESCRIPTION = `خدمة واير تقطيع خرسانة (Diamond Wir
 const faqItems = [
   {
     q: "ما هي خدمة واير تقطيع خرسانة (Diamond Wire Saw)؟",
-    a: "واير تقطيع خرسانة هو نظام قص احترافي يستخدم سلك ماسي (Diamond Wire) يدور حول الخرسانة لقصها بدقة عالية. مناسب للكتل الكبيرة والسمكات الضخمة وقص الخرسانة المسلحة بدون تكسير وبدون اهتزاز تقريبًا."
+    a: "واير تقطيع خرسانة هو نظام قص احترافي يستخدم سلك ماسي (Diamond Wire) يدور حول الخرسانة لقصها بدقة عالية. مناسب للكتل الكبيرة والسمكات الضخمة وقص الخرسانة المسلحة بدون تكسير وبدون اهتزاز تقريبًا.",
   },
   {
     q: "متى نستخدم قص الخرسانة بالواير بدل منشار الحائط أو الصاروخ؟",
-    a: "نستخدم القص بالواير عند الحاجة لقص أعماق كبيرة جدًا أو قص قواعد ولبشات وكمرات ضخمة أو إزالة كتلة خرسانية كبيرة أو في مواقع لا تسمح بالمنشار الجداري بسهولة."
+    a: "نستخدم القص بالواير عند الحاجة لقص أعماق كبيرة جدًا أو قص قواعد ولبشات وكمرات ضخمة أو إزالة كتلة خرسانية كبيرة أو في مواقع لا تسمح بالمنشار الجداري بسهولة.",
   },
   {
     q: "هل قص الخرسانة بالواير يسبب شروخ أو تأثير إنشائي؟",
-    a: "عند التنفيذ بواسطة مقاول قص خرسانة محترف ووفق تعليمات المهندس الإنشائي، فإن الواير الماسي يعمل بدون اهتزاز تقريبًا مما يقلل مخاطر الشروخ مقارنة بالتكسير التقليدي."
+    a: "عند التنفيذ بواسطة مقاول قص خرسانة محترف ووفق تعليمات المهندس الإنشائي، فإن الواير الماسي يعمل بدون اهتزاز تقريبًا مما يقلل مخاطر الشروخ مقارنة بالتكسير التقليدي.",
   },
   {
     q: "كيف يتم حساب اسعار قص الخرسانة بالواير؟",
-    a: "اسعار قص الخرسانة بالواير تعتمد على السمك وطول مسار القص بالمتر وكثافة الحديد داخل الخرسانة المسلحة وصعوبة الموقع والارتفاعات ونوع التشغيل (مياه/شفط). للتسعير الدقيق يرجى التواصل معنا."
+    a: "اسعار قص الخرسانة بالواير تعتمد على السمك وطول مسار القص بالمتر وكثافة الحديد داخل الخرسانة المسلحة وصعوبة الموقع والارتفاعات ونوع التشغيل (مياه/شفط). للتسعير الدقيق يرجى التواصل معنا.",
   },
   {
     q: "هل يمكن قص الكمرات والأعمدة والخوازيق بالواير؟",
-    a: "نعم. منشار واير خرسانة مناسب جدًا لأعمال قص الكمرات بالواير وقص الأعمدة بالواير وقص الخوازيق والقواعد الخرسانية واللبشة المسلحة بدقة وبأقل ضوضاء ممكنة."
+    a: "نعم. منشار واير خرسانة مناسب جدًا لأعمال قص الكمرات بالواير وقص الأعمدة بالواير وقص الخوازيق والقواعد الخرسانية واللبشة المسلحة بدقة وبأقل ضوضاء ممكنة.",
   },
   {
     q: "هل لازم مياه أثناء التشغيل؟",
-    a: "غالبًا يتم استخدام مياه للتبريد وتقليل الحرارة وإطالة عمر الواير، لكن طريقة التشغيل تتحدد حسب الموقع وظروفه وإمكانية الشفط وتقليل الفوضى."
+    a: "غالبًا يتم استخدام مياه للتبريد وتقليل الحرارة وإطالة عمر الواير، لكن طريقة التشغيل تتحدد حسب الموقع وظروفه وإمكانية الشفط وتقليل الفوضى.",
   },
   {
     q: "هل يمكن دمج الكور مع الواير؟",
-    a: "نعم. أحيانًا نعمل فتحات كور لتجهيز نقاط بداية/مسار ثم يتم القص بالواير للمساحات أو الأعماق الأكبر."
+    a: "نعم. أحيانًا نعمل فتحات كور لتجهيز نقاط بداية/مسار ثم يتم القص بالواير للمساحات أو الأعماق الأكبر.",
   },
   {
     q: "هل توفرون إزالة ونقل الكتل بعد القص؟",
-    a: "متاح حسب الاتفاق وظروف الموقع، ويمكن توفير فصل/تقطيع الكتلة إلى أجزاء لتسهيل الرفع والنقل."
-  }
+    a: "متاح حسب الاتفاق وظروف الموقع، ويمكن توفير فصل/تقطيع الكتلة إلى أجزاء لتسهيل الرفع والنقل.",
+  },
 ];
 
 // ====== Schema: FAQPage ======
 const faqSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
-  "mainEntity": faqItems.map((x) => ({
+  mainEntity: faqItems.map((x) => ({
     "@type": "Question",
-    "name": x.q,
-    "acceptedAnswer": { "@type": "Answer", "text": x.a }
-  }))
+    name: x.q,
+    acceptedAnswer: { "@type": "Answer", text: x.a },
+  })),
 };
 
 // ====== Schema: LocalBusiness ======
 const localBusinessSchema = {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
-  "name": "رواد الخرسانة لقص وتخريم الخرسانة",
-  "image": LOGO_URL,
-  "address": {
+  name: "رواد الخرسانة لقص وتخريم الخرسانة",
+  image: LOGO_URL,
+  address: {
     "@type": "PostalAddress",
-    "addressCountry": "EG"
+    addressCountry: "EG",
   },
-  "url": PAGE_URL,
-  "priceRange": "$$"
+  url: PAGE_URL,
+  priceRange: "$$",
 };
 
 // ====== Schema: Organization ======
 const orgSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
-  "name": "رواد الخرسانة لقص وتخريم الخرسانة",
-  "url": SITE_URL,
-  "logo": LOGO_URL,
-  "sameAs": [
-    "https://www.facebook.com/",
-    "https://www.instagram.com/"
-  ]
+  name: "رواد الخرسانة لقص وتخريم الخرسانة",
+  url: SITE_URL,
+  logo: LOGO_URL,
+  sameAs: ["https://www.facebook.com/", "https://www.instagram.com/"],
 };
 
 // ====== Schema: Service ======
 const serviceSchema = {
   "@context": "https://schema.org",
   "@type": "Service",
-  "name": "واير تقطيع خرسانة (قص الخرسانة بالواير الماسي)",
-  "serviceType": "Concrete Cutting - Diamond Wire Saw",
-  "provider": {
+  name: "واير تقطيع خرسانة (قص الخرسانة بالواير الماسي)",
+  serviceType: "Concrete Cutting - Diamond Wire Saw",
+  provider: {
     "@type": "LocalBusiness",
-    "name": "رواد الخرسانة لقص وتخريم الخرسانة",
-    "url": PAGE_URL
+    name: "رواد الخرسانة لقص وتخريم الخرسانة",
+    url: PAGE_URL,
   },
-  "areaServed": [
-    { "@type": "Country", "name": "Egypt" }
-  ],
-  "url": PAGE_URL,
-  "description": PAGE_DESCRIPTION
+  areaServed: [{ "@type": "Country", name: "Egypt" }],
+  url: PAGE_URL,
+  description: PAGE_DESCRIPTION,
 };
 
 // ====== Schema: WebPage ======
 const webPageSchema = {
   "@context": "https://schema.org",
   "@type": "WebPage",
-  "name": PAGE_TITLE,
-  "url": PAGE_URL,
-  "isPartOf": { "@type": "WebSite", "name": "rkhrsana", "url": SITE_URL }
+  name: PAGE_TITLE,
+  url: PAGE_URL,
+  isPartOf: { "@type": "WebSite", name: "rkhrsana", url: SITE_URL },
 };
 
 // ====== Schema: Breadcrumb ======
 const breadcrumbSchema = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
-  "itemListElement": [
-    { "@type": "ListItem", "position": 1, "name": "الرئيسية", "item": `${SITE_URL}/` },
-    { "@type": "ListItem", "position": 2, "name": "واير تقطيع خرسانة", "item": PAGE_URL }
-  ]
+  itemListElement: [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: "الرئيسية",
+      item: `${SITE_URL}/`,
+    },
+    {
+      "@type": "ListItem",
+      position: 2,
+      name: "واير تقطيع خرسانة",
+      item: PAGE_URL,
+    },
+  ],
 };
 ---
 
-<Layout title={PAGE_TITLE} description={PAGE_DESCRIPTION}>
+<Layout
+  title={PAGE_TITLE}
+  description={PAGE_DESCRIPTION}
+  image="/images/og-wire.webp"
+>
   {/* ✅ Canonical */}
   <link rel="canonical" href={PAGE_URL} />
 
   {/* ✅ Schema JSON-LD */}
-  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
-  <script type="application/ld+json" set:html={JSON.stringify(localBusinessSchema)} />
-  <script type="application/ld+json" set:html={JSON.stringify(orgSchema)} />
-  <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
-  <script type="application/ld+json" set:html={JSON.stringify(webPageSchema)} />
-  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)}
+  ></script>
+  <script
+    type="application/ld+json"
+    set:html={JSON.stringify(localBusinessSchema)}
+  ></script>
+  <script type="application/ld+json" set:html={JSON.stringify(orgSchema)}
+  ></script>
+  <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)}
+  ></script>
+  <script type="application/ld+json" set:html={JSON.stringify(webPageSchema)}
+  ></script>
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)}
+  ></script>
 
   {/* ========================================= */}
   {/* 1) Hero Section */}
   {/* ========================================= */}
-  <section class="relative bg-slate-900 text-white py-24 lg:py-32 overflow-hidden border-b-4 border-yellow-500">
+  <section
+    class="relative bg-slate-900 text-white py-24 lg:py-32 overflow-hidden border-b-4 border-yellow-500"
+  >
     <div class="absolute inset-0 bg-slate-800 opacity-90"></div>
-    <div class="absolute inset-0 bg-[url('https://placehold.co/1920x1080/0f172a/0f172a?text=Diamond+Wire+Saw')] bg-cover bg-center mix-blend-overlay opacity-25"></div>
+    <div
+      class="absolute inset-0 bg-[url('/images/wire-sawing-hero.webp')] bg-cover bg-center mix-blend-overlay opacity-25"
+    >
+    </div>
 
     <div class="relative z-10 container mx-auto px-4 lg:px-8">
       <div class="max-w-4xl mx-auto text-center">
-        <span class="inline-block bg-yellow-500 text-slate-900 font-bold px-4 py-1 rounded-full text-sm md:text-base mb-6 shadow-lg">
+        <span
+          class="inline-block bg-yellow-500 text-slate-900 font-bold px-4 py-1 rounded-full text-sm md:text-base mb-6 shadow-lg"
+        >
           قص ضخم بدون تكسير وبدون اهتزاز تقريبًا في جميع أنحاء مصر
         </span>
 
-        <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6 leading-tight text-white drop-shadow-lg">
+        <h1
+          class="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6 leading-tight text-white drop-shadow-lg"
+        >
           واير تقطيع خرسانة — قص الخرسانة بالواير الماسي بدقة عالية
         </h1>
 
-        <p class="text-lg md:text-2xl mb-10 text-slate-300 leading-relaxed font-light">
-          لو عندك كتلة خرسانية كبيرة، قاعدة/لبشة، كمرة ضخمة، أو خوازيق — خدمة{" "}
+        <p
+          class="text-lg md:text-2xl mb-10 text-slate-300 leading-relaxed font-light"
+        >
+          لو عندك كتلة خرسانية كبيرة، قاعدة/لبشة، كمرة ضخمة، أو خوازيق — خدمة{
+            " "
+          }
           <strong class="text-white font-bold">قص الخرسانة بالواير</strong>{" "}
           هي الحل الأقوى لأن{" "}
           <strong class="text-white font-bold">Diamond Wire Saw</strong>{" "}
@@ -205,22 +235,40 @@ const breadcrumbSchema = {
         {/* جدول تنقل */}
         <div class="bg-slate-50 border border-slate-200 rounded-2xl p-4 mb-10">
           <div class="flex flex-wrap gap-3 justify-end">
-            <a href="#services" class="px-4 py-2 rounded-lg bg-white border border-slate-200 hover:border-yellow-500">
+            <a
+              href="#services"
+              class="px-4 py-2 rounded-lg bg-white border border-slate-200 hover:border-yellow-500"
+            >
               الخدمات
             </a>
-            <a href="#equipment" class="px-4 py-2 rounded-lg bg-white border border-slate-200 hover:border-yellow-500">
+            <a
+              href="#equipment"
+              class="px-4 py-2 rounded-lg bg-white border border-slate-200 hover:border-yellow-500"
+            >
               المعدات
             </a>
-            <a href="#pricing" class="px-4 py-2 rounded-lg bg-white border border-slate-200 hover:border-yellow-500">
+            <a
+              href="#pricing"
+              class="px-4 py-2 rounded-lg bg-white border border-slate-200 hover:border-yellow-500"
+            >
               الأسعار
             </a>
-            <a href="#gallery" class="px-4 py-2 rounded-lg bg-white border border-slate-200 hover:border-yellow-500">
+            <a
+              href="#gallery"
+              class="px-4 py-2 rounded-lg bg-white border border-slate-200 hover:border-yellow-500"
+            >
               مشاريعنا
             </a>
-            <a href="#faq" class="px-4 py-2 rounded-lg bg-white border border-slate-200 hover:border-yellow-500">
+            <a
+              href="#faq"
+              class="px-4 py-2 rounded-lg bg-white border border-slate-200 hover:border-yellow-500"
+            >
               الأسئلة الشائعة
             </a>
-            <a href="/contact" class="px-4 py-2 rounded-lg bg-yellow-500 font-bold text-slate-900">
+            <a
+              href="/contact"
+              class="px-4 py-2 rounded-lg bg-yellow-500 font-bold text-slate-900"
+            >
               تواصل معنا
             </a>
           </div>
@@ -228,27 +276,30 @@ const breadcrumbSchema = {
 
         <div class="prose prose-lg prose-slate max-w-none">
           <h2 class="text-3xl font-bold text-slate-900 mb-6">
-            الدليل الشامل: ما هو قص الخرسانة بالواير ولماذا هو الأقوى في الأعمال الضخمة؟
+            الدليل الشامل: ما هو قص الخرسانة بالواير ولماذا هو الأقوى في الأعمال
+            الضخمة؟
           </h2>
 
           <p class="text-slate-700 leading-loose mb-6">
-            كثير من المشاريع تواجه مواقف “قص عميق” أو “كتلة خرسانية كبيرة” لا تناسبها حلول الصاروخ أو المنشار الجداري.
-            هنا يأتي دور{" "}
+            كثير من المشاريع تواجه مواقف “قص عميق” أو “كتلة خرسانية كبيرة” لا
+            تناسبها حلول الصاروخ أو المنشار الجداري. هنا يأتي دور{" "}
             <strong class="text-yellow-600">واير تقطيع خرسانة</strong>{" "}
-            أو <strong class="text-slate-900">Diamond Wire Saw</strong>:
-            نظام يعتمد على سلك ماسي يدور حول الخرسانة ويقوم بالقص الأسطواني/المساري بدقة عالية.
+            أو <strong class="text-slate-900">Diamond Wire Saw</strong>: نظام
+            يعتمد على سلك ماسي يدور حول الخرسانة ويقوم بالقص الأسطواني/المساري
+            بدقة عالية.
           </p>
 
           <p class="text-slate-700 leading-loose mb-6">
             أهم ميزة أن{" "}
             <strong class="text-slate-900">قص الخرسانة بالواير</strong>{" "}
-            يقلل الاهتزازات بشكل كبير مقارنة بالتكسير، لذلك يُستخدم بكثرة في:
-            القواعد، اللبشات، الخوازيق، الكمرات الضخمة، الأعمدة، وأعمال البنية التحتية.
+            يقلل الاهتزازات بشكل كبير مقارنة بالتكسير، لذلك يُستخدم بكثرة في: القواعد،
+            اللبشات، الخوازيق، الكمرات الضخمة، الأعمدة، وأعمال البنية التحتية.
           </p>
 
           <p class="text-slate-700 leading-loose">
-            نحن في "{BRAND}" ننفذ القص بخطة تشغيل واضحة: تحديد المسار، تثبيت البكرات والشدّاد، تبريد مناسب، وتسليم حواف
-            نظيفة تقلل أعمال الترميم بعد القص.
+            نحن في "{BRAND}" ننفذ القص بخطة تشغيل واضحة: تحديد المسار، تثبيت
+            البكرات والشدّاد، تبريد مناسب، وتسليم حواف نظيفة تقلل أعمال الترميم
+            بعد القص.
           </p>
         </div>
       </div>
@@ -268,38 +319,40 @@ const breadcrumbSchema = {
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-        {[
-          {
-            n: "1",
-            t: "قدرة على قص أعماق وسمكات ضخمة",
-            p: "مناسب للقواعد واللبشات والكتل الكبيرة والكبارى حيث يصعب القص بالمنشار الجداري أو يصبح غير اقتصادي."
-          },
-          {
-            n: "2",
-            t: "يقطع الخرسانة والحديد معًا",
-            p: "السلك الماسي (Diamond Wire) مصمم للتعامل مع كثافات الحديد داخل الخرسانة المسلحة بدون تكسير عشوائي."
-          },
-          {
-            n: "3",
-            t: "اهتزاز أقل = أمان إنشائي أعلى",
-            p: "القص بالواير يعتمد على القطع وليس الطرق، لذلك يقلل الشروخ الدقيقة ويحافظ على العناصر المجاورة."
-          },
-          {
-            n: "4",
-            t: "دقة أفضل في المسارات المعقدة",
-            p: "يمكن ضبط مسار القص والتحكم به للحصول على نتائج نظيفة في أعمال مثل قص الخوازيق أو فصل كتل خرسانية."
-          }
-        ].map((x) => (
-          <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 flex flex-col md:flex-row gap-6 hover:shadow-md transition-shadow">
-            <div class="w-16 h-16 shrink-0 bg-slate-900 text-yellow-500 rounded-2xl flex items-center justify-center text-3xl font-black">
-              {x.n}
+        {
+          [
+            {
+              n: "1",
+              t: "قدرة على قص أعماق وسمكات ضخمة",
+              p: "مناسب للقواعد واللبشات والكتل الكبيرة والكبارى حيث يصعب القص بالمنشار الجداري أو يصبح غير اقتصادي.",
+            },
+            {
+              n: "2",
+              t: "يقطع الخرسانة والحديد معًا",
+              p: "السلك الماسي (Diamond Wire) مصمم للتعامل مع كثافات الحديد داخل الخرسانة المسلحة بدون تكسير عشوائي.",
+            },
+            {
+              n: "3",
+              t: "اهتزاز أقل = أمان إنشائي أعلى",
+              p: "القص بالواير يعتمد على القطع وليس الطرق، لذلك يقلل الشروخ الدقيقة ويحافظ على العناصر المجاورة.",
+            },
+            {
+              n: "4",
+              t: "دقة أفضل في المسارات المعقدة",
+              p: "يمكن ضبط مسار القص والتحكم به للحصول على نتائج نظيفة في أعمال مثل قص الخوازيق أو فصل كتل خرسانية.",
+            },
+          ].map((x) => (
+            <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 flex flex-col md:flex-row gap-6 hover:shadow-md transition-shadow">
+              <div class="w-16 h-16 shrink-0 bg-slate-900 text-yellow-500 rounded-2xl flex items-center justify-center text-3xl font-black">
+                {x.n}
+              </div>
+              <div>
+                <h3 class="text-2xl font-bold text-slate-800 mb-3">{x.t}</h3>
+                <p class="text-slate-600 leading-relaxed">{x.p}</p>
+              </div>
             </div>
-            <div>
-              <h3 class="text-2xl font-bold text-slate-800 mb-3">{x.t}</h3>
-              <p class="text-slate-600 leading-relaxed">{x.p}</p>
-            </div>
-          </div>
-        ))}
+          ))
+        }
       </div>
     </div>
   </section>
@@ -310,89 +363,124 @@ const breadcrumbSchema = {
   <section id="services" class="py-20 bg-white">
     <div class="container mx-auto px-4 lg:px-8 max-w-6xl">
       <div class="text-center mb-16">
-        <h2 class="text-3xl md:text-5xl font-bold text-slate-900 mb-6">خدماتنا الأساسية في واير تقطيع خرسانة</h2>
+        <h2 class="text-3xl md:text-5xl font-bold text-slate-900 mb-6">
+          خدماتنا الأساسية في واير تقطيع خرسانة
+        </h2>
         <p class="text-lg text-slate-600 max-w-3xl mx-auto">
-          نقدم في "{BRAND}" كل أعمال <strong>قص الخرسانة بالواير الماسي</strong> للمشاريع الثقيلة بدقة واحتراف.
+          نقدم في "{BRAND}" كل أعمال <strong>قص الخرسانة بالواير الماسي</strong>
+          للمشاريع الثقيلة بدقة واحتراف.
         </p>
       </div>
 
       <div class="space-y-12">
-        <div class="flex flex-col md:flex-row gap-8 items-center bg-slate-50 rounded-2xl overflow-hidden border border-slate-100">
+        <div
+          class="flex flex-col md:flex-row gap-8 items-center bg-slate-50 rounded-2xl overflow-hidden border border-slate-100"
+        >
           <div class="w-full md:w-1/3 h-64 bg-slate-200 relative">
             <img
-              src="https://placehold.co/900x600/0f172a/f59e0b?text=Footings+Raft+Wire+Saw"
+              src="/images/wire-sawing-1.webp"
               alt="قص القواعد واللبشات بالواير"
               class="object-cover w-full h-full"
               loading="lazy"
             />
           </div>
           <div class="w-full md:w-2/3 p-6 md:p-8 text-right">
-            <h3 class="text-2xl font-bold text-slate-900 mb-4">قص القواعد واللبشات والكتل الكبيرة</h3>
+            <h3 class="text-2xl font-bold text-slate-900 mb-4">
+              قص القواعد واللبشات والكتل الكبيرة
+            </h3>
             <ul class="space-y-2 text-slate-700 list-disc list-inside mb-4">
               <li>قص قواعد خرسانية سميكة ولبشات مسلحة.</li>
               <li>فصل كتل خرسانية كبيرة لتسهيل الرفع والنقل.</li>
               <li>حل مثالي للمشاريع الصناعية والبنية التحتية.</li>
             </ul>
-            <p class="text-slate-600 text-sm">تجهيز مسار القص وتثبيت البكرات/الشدّاد يضمن نتيجة مستقيمة ونظيفة.</p>
+            <p class="text-slate-600 text-sm">
+              تجهيز مسار القص وتثبيت البكرات/الشدّاد يضمن نتيجة مستقيمة ونظيفة.
+            </p>
           </div>
         </div>
 
-        <div class="flex flex-col md:flex-row-reverse gap-8 items-center bg-slate-50 rounded-2xl overflow-hidden border border-slate-100">
+        <div
+          class="flex flex-col md:flex-row-reverse gap-8 items-center bg-slate-50 rounded-2xl overflow-hidden border border-slate-100"
+        >
           <div class="w-full md:w-1/3 h-64 bg-slate-200 relative">
             <img
-              src="https://placehold.co/900x600/0f172a/f59e0b?text=Beams+Columns+Wire+Saw"
+              src="/images/wire-sawing-2.webp"
               alt="قص الكمرات والأعمدة بالواير"
               class="object-cover w-full h-full"
               loading="lazy"
             />
           </div>
           <div class="w-full md:w-2/3 p-6 md:p-8 text-right">
-            <h3 class="text-2xl font-bold text-slate-900 mb-4">قص الكمرات والأعمدة (تعديلات إنشائية محسوبة)</h3>
+            <h3 class="text-2xl font-bold text-slate-900 mb-4">
+              قص الكمرات والأعمدة (تعديلات إنشائية محسوبة)
+            </h3>
             <p class="text-slate-700 leading-relaxed mb-4">
-              قص الكمرات والأعمدة بالواير مناسب عندما تكون الدقة وتقليل الاهتزاز أولوية. التنفيذ يكون بعد تحديد المسار
-              ومراعاة متطلبات السلامة والتعليمات الإنشائية للموقع.
+              قص الكمرات والأعمدة بالواير مناسب عندما تكون الدقة وتقليل الاهتزاز
+              أولوية. التنفيذ يكون بعد تحديد المسار ومراعاة متطلبات السلامة
+              والتعليمات الإنشائية للموقع.
             </p>
           </div>
         </div>
 
-        <div class="flex flex-col md:flex-row gap-8 items-center bg-slate-50 rounded-2xl overflow-hidden border border-slate-100">
+        <div
+          class="flex flex-col md:flex-row gap-8 items-center bg-slate-50 rounded-2xl overflow-hidden border border-slate-100"
+        >
           <div class="w-full md:w-1/3 h-64 bg-slate-200 relative">
             <img
-              src="https://placehold.co/900x600/0f172a/f59e0b?text=Piles+Infrastructure+Wire+Saw"
+              src="/images/wire-sawing-3.webp"
               alt="قص الخوازيق بالواير"
               class="object-cover w-full h-full"
               loading="lazy"
             />
           </div>
           <div class="w-full md:w-2/3 p-6 md:p-8 text-right">
-            <h3 class="text-2xl font-bold text-slate-900 mb-4">قص الخوازيق وأعمال البنية التحتية</h3>
+            <h3 class="text-2xl font-bold text-slate-900 mb-4">
+              قص الخوازيق وأعمال البنية التحتية
+            </h3>
             <p class="text-slate-700 leading-relaxed mb-4">
-              منشار واير خرسانة مناسب جدًا لقص الخوازيق والقواعد والقطاعات الضخمة في مشاريع الكباري والطرق والمرافق، مع
-              تحكم أفضل في الضوضاء والتأثير على العناصر القريبة.
+              منشار واير خرسانة مناسب جدًا لقص الخوازيق والقواعد والقطاعات
+              الضخمة في مشاريع الكباري والطرق والمرافق، مع تحكم أفضل في الضوضاء
+              والتأثير على العناصر القريبة.
             </p>
           </div>
         </div>
 
-        <div class="flex flex-col md:flex-row gap-8 items-center bg-yellow-50 rounded-2xl overflow-hidden border-2 border-yellow-400 shadow-md">
+        <div
+          class="flex flex-col md:flex-row gap-8 items-center bg-yellow-50 rounded-2xl overflow-hidden border-2 border-yellow-400 shadow-md"
+        >
           <div class="w-full md:w-1/3 h-64 bg-slate-200 relative">
             <img
-              src="https://placehold.co/900x600/0f172a/f59e0b?text=Wire+Saw+Site+Safety"
+              src="/images/wire-sawing-4.webp"
               alt="سلامة قص الخرسانة بالواير"
               class="object-cover w-full h-full"
               loading="lazy"
             />
           </div>
           <div class="w-full md:w-2/3 p-6 md:p-8 text-right">
-            <h3 class="text-2xl font-bold text-red-700 mb-4 flex items-center gap-2">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+            <h3
+              class="text-2xl font-bold text-red-700 mb-4 flex items-center gap-2"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-8 w-8"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
+                ></path>
               </svg>
               السلامة أولاً (تنفيذ خاضع لدراسة الموقع)
             </h3>
 
             <p class="text-slate-800 leading-relaxed mb-4 font-medium">
-              القص بالواير يتطلب تجهيز وتثبيت صحيح للبكرات والشداد، وتأمين مسار الكتلة بعد الفصل، ومراعاة متطلبات السلامة
-              بالموقع. نحن ننفذ بخطة واضحة لتقليل المخاطر وضمان تسليم نظيف.
+              القص بالواير يتطلب تجهيز وتثبيت صحيح للبكرات والشداد، وتأمين مسار
+              الكتلة بعد الفصل، ومراعاة متطلبات السلامة بالموقع. نحن ننفذ بخطة
+              واضحة لتقليل المخاطر وضمان تسليم نظيف.
             </p>
           </div>
         </div>
@@ -406,39 +494,51 @@ const breadcrumbSchema = {
   <section class="py-16 bg-white border-t border-slate-100">
     <div class="container mx-auto px-4 lg:px-8 max-w-6xl">
       <div class="text-center mb-12">
-        <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4">ماذا يميزنا فعلاً في قص الخرسانة بالواير؟</h2>
+        <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
+          ماذا يميزنا فعلاً في قص الخرسانة بالواير؟
+        </h2>
         <p class="text-slate-600 max-w-3xl mx-auto">
-          مش بس معدات… ده نظام تجهيز وتشغيل وتسليم. الهدف: قص نظيف + أقل اهتزاز + مسار مضبوط.
+          مش بس معدات… ده نظام تجهيز وتشغيل وتسليم. الهدف: قص نظيف + أقل اهتزاز
+          + مسار مضبوط.
         </p>
       </div>
 
       <div class="grid md:grid-cols-3 gap-6">
         <div class="p-6 rounded-2xl border border-slate-200">
-          <h3 class="text-xl font-bold text-slate-900 mb-2">تجهيز مسار القص بدقة</h3>
+          <h3 class="text-xl font-bold text-slate-900 mb-2">
+            تجهيز مسار القص بدقة
+          </h3>
           <p class="text-slate-600 leading-relaxed">
-            تحديد المسار وتثبيت البكرات والشداد يمنع الانحراف ويضمن قص متساوي وحواف نظيفة.
+            تحديد المسار وتثبيت البكرات والشداد يمنع الانحراف ويضمن قص متساوي
+            وحواف نظيفة.
           </p>
         </div>
 
         <div class="p-6 rounded-2xl border border-slate-200">
-          <h3 class="text-xl font-bold text-slate-900 mb-2">تقليل الاهتزاز والشروخ</h3>
+          <h3 class="text-xl font-bold text-slate-900 mb-2">
+            تقليل الاهتزاز والشروخ
+          </h3>
           <p class="text-slate-600 leading-relaxed">
-            الواير يقطع بدل ما يكسر، وده يقلل التأثير على العناصر المجاورة خصوصًا في المناطق الحساسة.
+            الواير يقطع بدل ما يكسر، وده يقلل التأثير على العناصر المجاورة
+            خصوصًا في المناطق الحساسة.
           </p>
         </div>
 
         <div class="p-6 rounded-2xl border border-slate-200">
           <h3 class="text-xl font-bold text-slate-900 mb-2">حلول دمج ذكية</h3>
           <p class="text-slate-600 leading-relaxed">
-            أحيانًا ندمج الكور لعمل فتحات بداية/مسارات ثم نكمل بالواير للأعماق والكتل الأكبر.
+            أحيانًا ندمج الكور لعمل فتحات بداية/مسارات ثم نكمل بالواير للأعماق
+            والكتل الأكبر.
           </p>
         </div>
       </div>
 
-      <div class="mt-10 bg-slate-900 text-white rounded-2xl p-8 border-l-4 border-yellow-500">
+      <div
+        class="mt-10 bg-slate-900 text-white rounded-2xl p-8 border-l-4 border-yellow-500"
+      >
         <p class="text-lg leading-relaxed">
-          "الفرق الحقيقي: تجهيز صحيح + تشغيل محسوب + تسليم نظيف. علشان كده القص بالواير عندنا موجه للمشاريع الصعبة اللي
-          لا تحتمل الخطأ."
+          "الفرق الحقيقي: تجهيز صحيح + تشغيل محسوب + تسليم نظيف. علشان كده القص
+          بالواير عندنا موجه للمشاريع الصعبة اللي لا تحتمل الخطأ."
         </p>
       </div>
     </div>
@@ -450,63 +550,103 @@ const breadcrumbSchema = {
   <section id="equipment" class="py-20 bg-slate-900 text-slate-300">
     <div class="container mx-auto px-4 lg:px-8 max-w-6xl">
       <div class="mb-16">
-        <h2 class="text-3xl md:text-4xl font-bold text-yellow-500 mb-6 border-b-2 border-slate-700 pb-4 inline-block">
+        <h2
+          class="text-3xl md:text-4xl font-bold text-yellow-500 mb-6 border-b-2 border-slate-700 pb-4 inline-block"
+        >
           المعدات المستخدمة: ماكينة الواير + السلك الماسي
         </h2>
-        <p class="text-lg leading-relaxed mt-4">جودة التنفيذ تعتمد على تجهيز وتشغيل احترافي. نحن نعتمد على:</p>
+        <p class="text-lg leading-relaxed mt-4">
+          جودة التنفيذ تعتمد على تجهيز وتشغيل احترافي. نحن نعتمد على:
+        </p>
 
         <ul class="mt-6 space-y-4 text-lg">
-          {[
-            {
-              t: "ماكينة تقطيع الخرسانة بالواير (Diamond Wire Saw):",
-              d: "قوة تشغيل مناسبة للأعمال الثقيلة مع تحكم في السرعة والتوتر."
-            },
-            {
-              t: "سلك ماسي (Diamond Wire):",
-              d: "مصمم لقص الخرسانة والحديد، ويتم اختيار نوعه حسب كثافة التسليح والسمك."
-            },
-            {
-              t: "بكرات + شدّاد (Pulleys & Tensioner):",
-              d: "لتوجيه الواير وضبط المسار والتوتر ومنع الانحراف."
-            },
-            {
-              t: "تبريد/مياه + شفط عند الحاجة:",
-              d: "لتقليل الحرارة وتحسين الأداء وتقليل الأتربة حسب ظروف الموقع."
-            }
-          ].map((x) => (
-            <li class="flex items-start gap-3">
-              <svg class="w-6 h-6 text-yellow-500 shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-              </svg>
-              <div>
-                <strong class="text-white">{x.t}</strong> {x.d}
-              </div>
-            </li>
-          ))}
+          {
+            [
+              {
+                t: "ماكينة تقطيع الخرسانة بالواير (Diamond Wire Saw):",
+                d: "قوة تشغيل مناسبة للأعمال الثقيلة مع تحكم في السرعة والتوتر.",
+              },
+              {
+                t: "سلك ماسي (Diamond Wire):",
+                d: "مصمم لقص الخرسانة والحديد، ويتم اختيار نوعه حسب كثافة التسليح والسمك.",
+              },
+              {
+                t: "بكرات + شدّاد (Pulleys & Tensioner):",
+                d: "لتوجيه الواير وضبط المسار والتوتر ومنع الانحراف.",
+              },
+              {
+                t: "تبريد/مياه + شفط عند الحاجة:",
+                d: "لتقليل الحرارة وتحسين الأداء وتقليل الأتربة حسب ظروف الموقع.",
+              },
+            ].map((x) => (
+              <li class="flex items-start gap-3">
+                <svg
+                  class="w-6 h-6 text-yellow-500 shrink-0 mt-1"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"
+                  />
+                </svg>
+                <div>
+                  <strong class="text-white">{x.t}</strong> {x.d}
+                </div>
+              </li>
+            ))
+          }
         </ul>
       </div>
 
       <div>
-        <h2 class="text-3xl md:text-4xl font-bold text-yellow-500 mb-8 border-b-2 border-slate-700 pb-4 inline-block">
+        <h2
+          class="text-3xl md:text-4xl font-bold text-yellow-500 mb-8 border-b-2 border-slate-700 pb-4 inline-block"
+        >
           خطوات تنفيذ قص الخرسانة بالواير بشكل احترافي
         </h2>
 
         <div class="grid md:grid-cols-2 lg:grid-cols-5 gap-6">
-          {[
-            ["1", "معاينة وتحديد المسار", "قياس السمك وتحديد مسار القص وتثبيت نقاط التشغيل وفق المخطط."],
-            ["2", "تجهيز البكرات والشداد", "تثبيت نظام التوجيه والشد لضمان مسار صحيح بدون انحراف."],
-            ["3", "تشغيل الواير والتبريد", "ضبط السرعة والتبريد لتحقيق قص ثابت وتقليل استهلاك الواير."],
-            ["4", "فصل الكتلة والتحكم", "تنظيم فصل الكتلة وتقطيعها لأجزاء حسب احتياج الرفع والنقل."],
-            ["5", "تسليم نظيف", "حواف نظيفة وتجهيز للمقاول التالي بدون تكسير عشوائي."]
-          ].map((s) => (
-            <div class="bg-slate-800 p-6 rounded-xl border border-slate-700 relative">
-              <div class="absolute -top-4 -right-4 w-10 h-10 bg-yellow-500 text-slate-900 font-bold rounded-full flex items-center justify-center text-xl">
-                {s[0]}
+          {
+            [
+              [
+                "1",
+                "معاينة وتحديد المسار",
+                "قياس السمك وتحديد مسار القص وتثبيت نقاط التشغيل وفق المخطط.",
+              ],
+              [
+                "2",
+                "تجهيز البكرات والشداد",
+                "تثبيت نظام التوجيه والشد لضمان مسار صحيح بدون انحراف.",
+              ],
+              [
+                "3",
+                "تشغيل الواير والتبريد",
+                "ضبط السرعة والتبريد لتحقيق قص ثابت وتقليل استهلاك الواير.",
+              ],
+              [
+                "4",
+                "فصل الكتلة والتحكم",
+                "تنظيم فصل الكتلة وتقطيعها لأجزاء حسب احتياج الرفع والنقل.",
+              ],
+              [
+                "5",
+                "تسليم نظيف",
+                "حواف نظيفة وتجهيز للمقاول التالي بدون تكسير عشوائي.",
+              ],
+            ].map((s) => (
+              <div class="bg-slate-800 p-6 rounded-xl border border-slate-700 relative">
+                <div class="absolute -top-4 -right-4 w-10 h-10 bg-yellow-500 text-slate-900 font-bold rounded-full flex items-center justify-center text-xl">
+                  {s[0]}
+                </div>
+                <h4 class="text-xl font-bold text-white mb-3 mt-2">{s[1]}</h4>
+                <p class="text-sm text-slate-400">{s[2]}</p>
               </div>
-              <h4 class="text-xl font-bold text-white mb-3 mt-2">{s[1]}</h4>
-              <p class="text-sm text-slate-400">{s[2]}</p>
-            </div>
-          ))}
+            ))
+          }
         </div>
       </div>
     </div>
@@ -523,54 +663,91 @@ const breadcrumbSchema = {
         </h2>
         <div class="w-24 h-1 bg-yellow-500 mx-auto rounded-full mb-6"></div>
         <p class="text-lg text-slate-600">
-          التسعير يعتمد على السمك وطول المسار وكثافة الحديد وصعوبة الموقع وطريقة التشغيل.
+          التسعير يعتمد على السمك وطول المسار وكثافة الحديد وصعوبة الموقع وطريقة
+          التشغيل.
         </p>
       </div>
 
       <div class="bg-white p-8 rounded-2xl shadow-lg border border-slate-100">
         <div class="grid md:grid-cols-2 gap-8">
           <ul class="space-y-4">
-            {[
-              ["السمك/العمق", "كل ما زاد السمك زاد وقت القص واستهلاك الواير."],
-              ["طول مسار القص بالمتر", "يتم حساب تكلفة القص بناءً على الطول الكلي للمسار."],
-              ["كثافة الحديد", "الخرسانة المسلحة تستهلك الواير أكثر من الخرسانة العادية."]
-            ].map(([t, d]) => (
-              <li class="flex gap-4 items-start">
-                <span class="w-6 h-6 rounded-full bg-yellow-100 text-yellow-600 flex items-center justify-center shrink-0 mt-1">✔</span>
-                <div>
-                  <strong class="block text-slate-900 text-lg mb-1">{t}:</strong>
-                  <span class="text-slate-600 text-sm">{d}</span>
-                </div>
-              </li>
-            ))}
+            {
+              [
+                [
+                  "السمك/العمق",
+                  "كل ما زاد السمك زاد وقت القص واستهلاك الواير.",
+                ],
+                [
+                  "طول مسار القص بالمتر",
+                  "يتم حساب تكلفة القص بناءً على الطول الكلي للمسار.",
+                ],
+                [
+                  "كثافة الحديد",
+                  "الخرسانة المسلحة تستهلك الواير أكثر من الخرسانة العادية.",
+                ],
+              ].map(([t, d]) => (
+                <li class="flex gap-4 items-start">
+                  <span class="w-6 h-6 rounded-full bg-yellow-100 text-yellow-600 flex items-center justify-center shrink-0 mt-1">
+                    ✔
+                  </span>
+                  <div>
+                    <strong class="block text-slate-900 text-lg mb-1">
+                      {t}:
+                    </strong>
+                    <span class="text-slate-600 text-sm">{d}</span>
+                  </div>
+                </li>
+              ))
+            }
           </ul>
 
           <ul class="space-y-4">
-            {[
-              ["صعوبة الوصول/الارتفاعات", "أماكن ضيقة أو على ارتفاعات تحتاج تجهيزات أمان/سقالات."],
-              ["المياه/الشفط", "حسب ظروف الموقع يمكن تجهيز تبريد وشفط لتقليل الأتربة."],
-              ["تفريغ/نقل الكتل", "متاح كخدمة إضافية حسب الاتفاق وحجم الكتلة."]
-            ].map(([t, d]) => (
-              <li class="flex gap-4 items-start">
-                <span class="w-6 h-6 rounded-full bg-yellow-100 text-yellow-600 flex items-center justify-center shrink-0 mt-1">✔</span>
-                <div>
-                  <strong class="block text-slate-900 text-lg mb-1">{t}:</strong>
-                  <span class="text-slate-600 text-sm">{d}</span>
-                </div>
-              </li>
-            ))}
+            {
+              [
+                [
+                  "صعوبة الوصول/الارتفاعات",
+                  "أماكن ضيقة أو على ارتفاعات تحتاج تجهيزات أمان/سقالات.",
+                ],
+                [
+                  "المياه/الشفط",
+                  "حسب ظروف الموقع يمكن تجهيز تبريد وشفط لتقليل الأتربة.",
+                ],
+                [
+                  "تفريغ/نقل الكتل",
+                  "متاح كخدمة إضافية حسب الاتفاق وحجم الكتلة.",
+                ],
+              ].map(([t, d]) => (
+                <li class="flex gap-4 items-start">
+                  <span class="w-6 h-6 rounded-full bg-yellow-100 text-yellow-600 flex items-center justify-center shrink-0 mt-1">
+                    ✔
+                  </span>
+                  <div>
+                    <strong class="block text-slate-900 text-lg mb-1">
+                      {t}:
+                    </strong>
+                    <span class="text-slate-600 text-sm">{d}</span>
+                  </div>
+                </li>
+              ))
+            }
           </ul>
         </div>
       </div>
 
       {/* دعوة للتواصل المباشر للحصول على تسعير */}
       <div class="mt-12 max-w-3xl mx-auto">
-        <div class="bg-slate-900 p-8 rounded-2xl text-center border-b-4 border-yellow-500 shadow-xl">
+        <div
+          class="bg-slate-900 p-8 rounded-2xl text-center border-b-4 border-yellow-500 shadow-xl"
+        >
           <p class="text-white text-xl font-bold mb-4">
-            هل تبحث عن تسعير دقيق لـ <span class="text-yellow-400">قص الخرسانة بالواير الماسي</span> لمشروعك؟
+            هل تبحث عن تسعير دقيق لـ <span class="text-yellow-400"
+              >قص الخرسانة بالواير الماسي</span
+            > لمشروعك؟
           </p>
           <p class="text-slate-300 mb-8 leading-relaxed">
-            يمكنك إرسال تفاصيل مشروعك (السمك التقريبي، نوع العنصر، طول المسار، والمحافظة) من خلال صفحة التواصل الخاصة بنا، وسنقوم بالرد بتقدير مالي واضح أو تحديد موعد معاينة مجانية.
+            يمكنك إرسال تفاصيل مشروعك (السمك التقريبي، نوع العنصر، طول المسار،
+            والمحافظة) من خلال صفحة التواصل الخاصة بنا، وسنقوم بالرد بتقدير مالي
+            واضح أو تحديد موعد معاينة مجانية.
           </p>
           <a
             href="/contact"
@@ -589,34 +766,52 @@ const breadcrumbSchema = {
   <section id="gallery" class="py-20 bg-slate-50 border-t border-slate-200">
     <div class="container mx-auto px-4 lg:px-8 max-w-6xl">
       <div class="text-center mb-14">
-        <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-5">صور من مشاريعنا في قص الخرسانة بالواير</h2>
+        <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-5">
+          صور من مشاريعنا في قص الخرسانة بالواير
+        </h2>
         <p class="text-slate-600 max-w-3xl mx-auto">
-          صور توضح قدرة الواير الماسي على التعامل مع الكتل والسمكات الضخمة باحترافية.
+          صور توضح قدرة الواير الماسي على التعامل مع الكتل والسمكات الضخمة
+          باحترافية.
         </p>
       </div>
 
       <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {[
-          { t: "قص قاعدة خرسانية سميكة", alt: "قص قاعدة خرسانية سميكة بالواير الماسي" },
-          { t: "قص لبشة مسلحة", alt: "قص اللبشة المسلحة بالواير بدقة" },
-          { t: "قص كمرة ضخمة", alt: "قص الكمرات بالواير الماسي بأمان" },
-          { t: "قص عمود خرسانى", alt: "قص الأعمدة بالواير بدون اهتزاز" },
-          { t: "قص خوازيق", alt: "قص الخوازيق بالواير في مشاريع البنية التحتية" },
-          { t: "فصل كتلة خرسانية", alt: "فصل كتلة خرسانية كبيرة وتجهيزها للنقل" }
-        ].map((x) => (
-          <figure class="bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
-            <img
-              src={`https://placehold.co/900x650/0f172a/f59e0b?text=${encodeURIComponent(x.t)}`}
-              alt={x.alt}
-              loading="lazy"
-              class="w-full h-56 object-cover"
-            />
-            <figcaption class="p-4 text-right">
-              <p class="font-bold text-slate-900">{x.t}</p>
-              <p class="text-sm text-slate-600 mt-1">قص نظيف + مسار مضبوط + تسليم بدون تكسير عشوائي.</p>
-            </figcaption>
-          </figure>
-        ))}
+        {
+          [
+            {
+              t: "قص قاعدة خرسانية سميكة",
+              alt: "قص قاعدة خرسانية سميكة بالواير الماسي",
+            },
+            { t: "قص لبشة مسلحة", alt: "قص اللبشة المسلحة بالواير بدقة" },
+            { t: "قص كمرة ضخمة", alt: "قص الكمرات بالواير الماسي بأمان" },
+            { t: "قص عمود خرسانى", alt: "قص الأعمدة بالواير بدون اهتزاز" },
+            {
+              t: "قص خوازيق",
+              alt: "قص الخوازيق بالواير في مشاريع البنية التحتية",
+            },
+            {
+              t: "فصل كتلة خرسانية",
+              alt: "فصل كتلة خرسانية كبيرة وتجهيزها للنقل",
+            },
+          ].map((x, index) => (
+            <figure class="bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
+              <img
+                src={`/images/wire-sawing-${index + 1}.webp`}
+                alt={x.alt}
+                loading="lazy"
+                width="900"
+                height="650"
+                class="w-full h-56 object-cover bg-slate-200"
+              />
+              <figcaption class="p-4 text-right">
+                <p class="font-bold text-slate-900">{x.t}</p>
+                <p class="text-sm text-slate-600 mt-1">
+                  قص نظيف + مسار مضبوط + تسليم بدون تكسير عشوائي.
+                </p>
+              </figcaption>
+            </figure>
+          ))
+        }
       </div>
 
       <div class="mt-10 text-center">
@@ -633,20 +828,27 @@ const breadcrumbSchema = {
   {/* ========================================= */}
   {/* 9) FAQ (ID: faq) - مطابق للسكيما */}
   {/* ========================================= */}
-  <section id="faq" class="py-20 bg-slate-900 text-white border-t-4 border-yellow-500">
+  <section
+    id="faq"
+    class="py-20 bg-slate-900 text-white border-t-4 border-yellow-500"
+  >
     <div class="container mx-auto px-4 lg:px-8 max-w-5xl">
       <div class="text-center mb-16">
-        <h2 class="text-3xl md:text-4xl font-bold text-yellow-500 mb-6">أسئلة شائعة (FAQ) حول قص الخرسانة بالواير</h2>
+        <h2 class="text-3xl md:text-4xl font-bold text-yellow-500 mb-6">
+          أسئلة شائعة (FAQ) حول قص الخرسانة بالواير
+        </h2>
         <p class="text-slate-300">إجابات شفافة ومباشرة لأكثر الأسئلة شيوعًا.</p>
       </div>
 
       <div class="grid md:grid-cols-2 gap-8">
-        {faqItems.map((item) => (
-          <div class="bg-slate-800 p-6 rounded-xl border border-slate-700">
-            <h4 class="font-bold text-yellow-400 mb-3 text-lg">{item.q}</h4>
-            <p class="text-slate-300 text-sm leading-relaxed">{item.a}</p>
-          </div>
-        ))}
+        {
+          faqItems.map((item) => (
+            <div class="bg-slate-800 p-6 rounded-xl border border-slate-700">
+              <h4 class="font-bold text-yellow-400 mb-3 text-lg">{item.q}</h4>
+              <p class="text-slate-300 text-sm leading-relaxed">{item.a}</p>
+            </div>
+          ))
+        }
       </div>
     </div>
   </section>
@@ -654,24 +856,42 @@ const breadcrumbSchema = {
   {/* ========================================= */}
   {/* 10) Final CTA */}
   {/* ========================================= */}
-  <section class="py-20 bg-yellow-500 text-slate-900 text-center relative overflow-hidden">
-    <div class="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-slate-900 to-transparent"></div>
+  <section
+    class="py-20 bg-yellow-500 text-slate-900 text-center relative overflow-hidden"
+  >
+    <div
+      class="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-slate-900 to-transparent"
+    >
+    </div>
 
     <div class="container mx-auto px-4 lg:px-8 max-w-4xl relative z-10">
-      <h2 class="text-4xl md:text-5xl font-black mb-8 leading-tight">محتاج قص خرسانة بالواير لمشروع صعب؟</h2>
+      <h2 class="text-4xl md:text-5xl font-black mb-8 leading-tight">
+        محتاج قص خرسانة بالواير لمشروع صعب؟
+      </h2>
 
-      <div class="bg-white/20 backdrop-blur-sm p-8 rounded-2xl mb-10 text-right md:text-center shadow-lg border border-yellow-400">
+      <div
+        class="bg-white/20 backdrop-blur-sm p-8 rounded-2xl mb-10 text-right md:text-center shadow-lg border border-yellow-400"
+      >
         <div class="flex flex-wrap justify-center gap-6 text-lg font-bold">
-          <span class="bg-slate-900 text-yellow-500 px-4 py-2 rounded-lg">✓ سمكات ضخمة</span>
-          <span class="bg-slate-900 text-yellow-500 px-4 py-2 rounded-lg">✓ اهتزاز أقل</span>
-          <span class="bg-slate-900 text-yellow-500 px-4 py-2 rounded-lg">✓ مسار مضبوط</span>
-          <span class="bg-slate-900 text-yellow-500 px-4 py-2 rounded-lg">✓ تغطية لجميع المحافظات</span>
+          <span class="bg-slate-900 text-yellow-500 px-4 py-2 rounded-lg"
+            >✓ سمكات ضخمة</span
+          >
+          <span class="bg-slate-900 text-yellow-500 px-4 py-2 rounded-lg"
+            >✓ اهتزاز أقل</span
+          >
+          <span class="bg-slate-900 text-yellow-500 px-4 py-2 rounded-lg"
+            >✓ مسار مضبوط</span
+          >
+          <span class="bg-slate-900 text-yellow-500 px-4 py-2 rounded-lg"
+            >✓ تغطية لجميع المحافظات</span
+          >
         </div>
       </div>
 
       <p class="text-2xl mb-10 font-bold drop-shadow-sm">
-        أخبرنا بـ <strong class="text-slate-900 bg-white/50 px-2 rounded">السمك + نوع العنصر + طول المسار بالمتر</strong>…
-        وسنرد عليك بتسعير واضح.
+        أخبرنا بـ <strong class="text-slate-900 bg-white/50 px-2 rounded"
+          >السمك + نوع العنصر + طول المسار بالمتر</strong
+        >… وسنرد عليك بتسعير واضح.
       </p>
 
       <div class="flex flex-col sm:flex-row gap-6 justify-center items-center">
