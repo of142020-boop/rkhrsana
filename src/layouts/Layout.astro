@@ -3,7 +3,7 @@
 import "../styles/global.css";
 
 // 1. إضافة متغير image مع صورة افتراضية
-const { title, description, image = "/images/og-default.webp" } = Astro.props;
+const { title, description, image = "/images/brand/og-image-1200x630.webp" } = Astro.props;
 
 // تأكد من أن رابط الصورة هو رابط مطلق (Absolute URL) يدعم تغيير الدومين
 const siteUrl = Astro.site ? new URL(Astro.site).origin : Astro.url.origin;
@@ -23,7 +23,11 @@ const normalizedPath =
 <html lang="ar" dir="rtl" class="scroll-smooth">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="generator" content={Astro.generator} />
 
@@ -33,7 +37,7 @@ const normalizedPath =
     <!-- Preconnect & Preload -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="preload" as="image" href="/images/og-default.webp" />
+    <link rel="preload" as="image" href="/images/brand/logo-header.webp" />
 
     <title>{title} | رواد الخرسانة</title>
     <meta name="description" content={description} />
@@ -60,7 +64,7 @@ const normalizedPath =
         "@context": "https://schema.org",
         "@type": "LocalBusiness",
         "name": "رواد الخرسانة",
-        "image": "https://rkhrsana.com/images/og-default.webp",
+        "image": "https://rkhrsana.com/images/brand/og-image-1200x630.webp",
         "url": "https://rkhrsana.com/",
         "telephone": "+201070046464",
         "address": {
@@ -90,14 +94,8 @@ const normalizedPath =
             aria-label="الرئيسية - رواد الخرسانة"
             class="flex items-center gap-2 group z-50"
           >
-            <div
-              class="w-10 h-10 bg-yellow-500 rounded-lg flex items-center justify-center text-slate-900 font-bold text-xl group-hover:scale-105 transition-transform"
-            >
-              R
-            </div>
-            <span class="text-2xl font-extrabold text-white tracking-tight"
-              >رواد <span class="text-yellow-500">الخرسانة</span>
-            </span>
+            <img src="/images/brand/logo-header.webp" alt="رواد الخرسانة للقص والتخريم" class="h-10 md:h-12 hidden md:block group-hover:scale-105 transition-transform" width="250" height="auto" />
+            <img src="/images/brand/logo-header-mobile.webp" alt="رواد الخرسانة" class="h-10 md:hidden group-hover:scale-105 transition-transform" width="180" height="auto" />
           </a>
 
           <nav class="hidden md:flex gap-6 font-medium">
@@ -303,11 +301,7 @@ const normalizedPath =
               aria-label="الرئيسية - رواد الخرسانة"
               class="flex items-center gap-2 mb-6"
             >
-              <div
-                class="w-10 h-10 bg-yellow-500 rounded-lg flex items-center justify-center text-slate-900 font-bold text-xl"
-              >
-                R
-              </div>
+              <img src="/images/brand/logo-icon-64.webp" alt="أيقونة رواد الخرسانة" class="w-10 h-10 md:w-12 md:h-12" width="64" height="64" />
               <span class="text-2xl font-extrabold text-white tracking-tight"
                 >رواد <span class="text-yellow-500">الخرسانة</span>
               </span>
