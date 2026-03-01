@@ -3,7 +3,7 @@
 import "../styles/global.css";
 
 // 1. إضافة متغير image مع صورة افتراضية
-const { title, description, image = "/images/brand/og-image-1200x630.webp" } = Astro.props;
+const { title, description, image = "/images/og-default.webp" } = Astro.props;
 
 // تأكد من أن رابط الصورة هو رابط مطلق (Absolute URL) يدعم تغيير الدومين
 const siteUrl = Astro.site ? new URL(Astro.site).origin : Astro.url.origin;
@@ -33,7 +33,7 @@ const normalizedPath =
     <!-- Preconnect & Preload -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="preload" as="image" href="/images/brand/logo-header.webp" />
+    <link rel="preload" as="image" href="/images/logo.webp" />
 
     <title>{title} | رواد الخرسانة</title>
     <meta name="description" content={description} />
@@ -60,7 +60,7 @@ const normalizedPath =
         "@context": "https://schema.org",
         "@type": "LocalBusiness",
         "name": "رواد الخرسانة",
-        "image": "https://rkhrsana.com/images/brand/og-image-1200x630.webp",
+        "image": "https://rkhrsana.com/images/og-default.webp",
         "url": "https://rkhrsana.com/",
         "telephone": "+201070046464",
         "address": {
