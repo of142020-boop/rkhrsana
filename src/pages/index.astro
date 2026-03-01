@@ -548,13 +548,28 @@ const buildWhatsAppHomeMessage = (service, city, notes) => {
       <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
         {
           [
-            { img: "/images/gallery-core.webp", t: "تخريم الخرسانة بالكور" },
-            { img: "/images/gallery-saw.webp", t: "قص الخرسانة بالمنشار" },
-            { img: "/images/gallery-wire.webp", t: "قص الخرسانة بالواير" },
-            { img: "/images/gallery-rebar.webp", t: "تزريع الأشاير" },
-            { img: "/images/gallery-ceiling.webp", t: "أعمال تخريم السقف" },
             {
-              img: "/images/gallery-industrial.webp",
+              img: "/images/core-drilling/core-drilling-2.webp",
+              t: "تخريم الخرسانة بالكور",
+            },
+            {
+              img: "/images/saw-cutting/saw-cutting-4.webp",
+              t: "قص الخرسانة بالمنشار",
+            },
+            {
+              img: "/images/wire-sawing/wire-sawing-1.webp",
+              t: "قص الخرسانة بالواير",
+            },
+            {
+              img: "/images/rebar-planting/rebar-planting-1.webp",
+              t: "تزريع الأشاير",
+            },
+            {
+              img: "/images/core-drilling/core-drilling-4.webp",
+              t: "أعمال تخريم السقف",
+            },
+            {
+              img: "/images/core-drilling/core-drilling-6.webp",
               t: "مشاريع المصانع الكبرى",
             },
           ].map((x) => (
@@ -565,7 +580,8 @@ const buildWhatsAppHomeMessage = (service, city, notes) => {
                 loading="lazy"
                 width="800"
                 height="600"
-                class="w-full object-cover bg-slate-200" style="aspect-ratio: 4/3;"
+                class="w-full object-cover bg-slate-200"
+                style="aspect-ratio: 4/3;"
               />
               <figcaption class="p-4 text-right">
                 <p class="font-bold text-slate-900">{x.t}</p>
