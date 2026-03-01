@@ -739,38 +739,45 @@ const breadcrumbSchema = {
         {
           [
             {
+              img: "/images/rebar-planting-1.webp",
               t: "تزريع أشاير لاستكمال أعمدة",
               alt: "تزريع أشاير لاستكمال الأعمدة وربط القديم بالجديد",
             },
             {
+              img: "/images/rebar-planting-2.webp",
               t: "تثبيت أنكر كيميائي لقاعدة معدنية",
               alt: "تثبيت أنكر كيميائي لقاعدة معدنية بمواد معتمدة",
             },
             {
+              img: "/images/rebar-planting-3.webp",
               t: "تزريع للسلالم وربطها بالخرسانة",
               alt: "تزريع أشاير للسلالم وربطها بالخرسانة القديمة",
             },
             {
+              img: "/images/rebar-planting-4.webp",
               t: "تجهيز ثقوب + تنظيف احترافي",
               alt: "تنظيف ثقوب التزريع بالهواء والفرشاة لضمان الالتصاق",
             },
             {
+              img: "/images/rebar-planting-5.webp",
               t: "حقن كيميائي + إدخال السيخ",
               alt: "حقن كيميائي وإدخال السيخ بحركة لولبية",
             },
             {
+              img: "/images/rebar-planting-6.webp",
               t: "اختبار شد عند الطلب",
               alt: "اختبار شد Pull-out Test للتأكد من قوة التثبيت",
             },
-          ].map((x, index) => (
+          ].map((x) => (
             <figure class="bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
               <img
-                src={`/images/rebar-planting-${index + 1}.webp`}
+                src={x.img}
                 alt={x.alt}
                 loading="lazy"
                 width="800"
                 height="600"
-                class="w-full object-cover bg-slate-200" style="aspect-ratio: 4/3;"
+                class="w-full object-cover bg-slate-200"
+                style="aspect-ratio: 4/3;"
               />
               <figcaption class="p-4 text-right">
                 <p class="font-bold text-slate-900">{x.t}</p>

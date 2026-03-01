@@ -779,29 +779,45 @@ const breadcrumbSchema = {
         {
           [
             {
+              img: "/images/wire-sawing-1.webp",
               t: "قص قاعدة خرسانية سميكة",
               alt: "قص قاعدة خرسانية سميكة بالواير الماسي",
             },
-            { t: "قص لبشة مسلحة", alt: "قص اللبشة المسلحة بالواير بدقة" },
-            { t: "قص كمرة ضخمة", alt: "قص الكمرات بالواير الماسي بأمان" },
-            { t: "قص عمود خرسانى", alt: "قص الأعمدة بالواير بدون اهتزاز" },
             {
+              img: "/images/wire-sawing-2.webp",
+              t: "قص لبشة مسلحة",
+              alt: "قص اللبشة المسلحة بالواير بدقة",
+            },
+            {
+              img: "/images/wire-sawing-3.webp",
+              t: "قص كمرة ضخمة",
+              alt: "قص الكمرات بالواير الماسي بأمان",
+            },
+            {
+              img: "/images/wire-sawing-4.webp",
+              t: "قص عمود خرسانى",
+              alt: "قص الأعمدة بالواير بدون اهتزاز",
+            },
+            {
+              img: "/images/wire-sawing-5.webp",
               t: "قص خوازيق",
               alt: "قص الخوازيق بالواير في مشاريع البنية التحتية",
             },
             {
+              img: "/images/wire-sawing-6.webp",
               t: "فصل كتلة خرسانية",
               alt: "فصل كتلة خرسانية كبيرة وتجهيزها للنقل",
             },
-          ].map((x, index) => (
+          ].map((x) => (
             <figure class="bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
               <img
-                src={`/images/wire-sawing-${index + 1}.webp`}
+                src={x.img}
                 alt={x.alt}
                 loading="lazy"
                 width="800"
                 height="600"
-                class="w-full object-cover bg-slate-200" style="aspect-ratio: 4/3;"
+                class="w-full object-cover bg-slate-200"
+                style="aspect-ratio: 4/3;"
               />
               <figcaption class="p-4 text-right">
                 <p class="font-bold text-slate-900">{x.t}</p>

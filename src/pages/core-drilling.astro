@@ -1126,38 +1126,45 @@ const breadcrumbSchema = {
         {
           [
             {
+              img: "/images/core-drilling-1.webp",
               t: "تخريم السقف لتمرير مواسير رأسية",
               alt: "تخريم السقف وتمرير المواسير الرأسية بالكور",
             },
             {
+              img: "/images/core-drilling-2.webp",
               t: "عمل فتحة مدخنة السخان",
               alt: "عمل فتحة مدخنة السخان بالكور دريل",
             },
             {
+              img: "/images/core-drilling-3.webp",
               t: "عمل فتحات الغاز",
               alt: "عمل فتحات الغاز الطبيعي بالكور في الخرسانة",
             },
             {
+              img: "/images/core-drilling-4.webp",
               t: "عمل فتحات في الخرسانة للتكييف",
               alt: "عمل فتحات في الخرسانة للتكييف سبليت ومركزي",
             },
             {
+              img: "/images/core-drilling-5.webp",
               t: "كور تخريم الخرسانة المسلحة",
               alt: "كور تخريم الخرسانة المسلحة بدقة وبدون تكسير",
             },
             {
+              img: "/images/core-drilling-6.webp",
               t: "فتح كور في الكمر (حالات خاصة)",
               alt: "فتح كور في الكمر بحذر وتحت الدراسة",
             },
-          ].map((x, index) => (
+          ].map((x) => (
             <figure class="bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
               <img
-                src={`/images/core-drilling-${index + 1}.webp`}
+                src={x.img}
                 alt={x.alt}
                 loading="lazy"
                 width="800"
                 height="600"
-                class="w-full object-cover bg-slate-200" style="aspect-ratio: 4/3;"
+                class="w-full object-cover bg-slate-200"
+                style="aspect-ratio: 4/3;"
               />
               <figcaption class="p-4 text-right">
                 <p class="font-bold text-slate-900">{x.t}</p>

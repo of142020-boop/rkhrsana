@@ -760,27 +760,46 @@ const breadcrumbSchema = {
       <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {
           [
-            { t: "قص جدار لفتحة باب", alt: "قص جدار بالمنشار لعمل فتحة باب" },
-            { t: "قص جدار لفتحة شباك", alt: "قص جدار بالمنشار لعمل فتحة شباك" },
-            { t: "قص خرسانة السقف", alt: "قص خرسانة السقف لفتحة سلم أو مصعد" },
-            { t: "فواصل تمدد للأرضيات", alt: "قص أرضيات خرسانية وفواصل تمدد" },
             {
+              img: "/images/saw-cutting-1.webp",
+              t: "قص جدار لفتحة باب",
+              alt: "قص جدار بالمنشار لعمل فتحة باب",
+            },
+            {
+              img: "/images/saw-cutting-2.webp",
+              t: "قص جدار لفتحة شباك",
+              alt: "قص جدار بالمنشار لعمل فتحة شباك",
+            },
+            {
+              img: "/images/saw-cutting-3.webp",
+              t: "قص خرسانة السقف",
+              alt: "قص خرسانة السقف لفتحة سلم أو مصعد",
+            },
+            {
+              img: "/images/saw-cutting-4.webp",
+              t: "فواصل تمدد للأرضيات",
+              alt: "قص أرضيات خرسانية وفواصل تمدد",
+            },
+            {
+              img: "/images/saw-cutting-5.webp",
               t: "قص خرسانة مسلحة",
               alt: "قص الخرسانة المسلحة بالمنشار الماسي",
             },
             {
+              img: "/images/saw-cutting-6.webp",
               t: "تعديل دقيق بالمعدات",
               alt: "تعديل وتهذيب دقيق لمسار قص خرسانة",
             },
-          ].map((x, index) => (
+          ].map((x) => (
             <figure class="bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
               <img
-                src={`/images/saw-cutting-${index + 1}.webp`}
+                src={x.img}
                 alt={x.alt}
                 loading="lazy"
                 width="800"
                 height="600"
-                class="w-full object-cover bg-slate-200" style="aspect-ratio: 4/3;"
+                class="w-full object-cover bg-slate-200"
+                style="aspect-ratio: 4/3;"
               />
               <figcaption class="p-4 text-right">
                 <p class="font-bold text-slate-900">{x.t}</p>
