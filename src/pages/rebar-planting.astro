@@ -163,10 +163,14 @@ const breadcrumbSchema = {
     class="relative bg-slate-900 text-white py-24 lg:py-32 overflow-hidden border-b-4 border-yellow-500"
   >
     <div class="absolute inset-0 bg-slate-800 opacity-90"></div>
-    <div
-      class="absolute inset-0 bg-[url('/images/rebar-planting/rebar-planting-hero.webp')] bg-cover bg-center mix-blend-overlay opacity-25"
-    >
-    </div>
+    <img
+      src="/images/rebar-planting/rebar-planting-hero.webp"
+      alt="خلفية تزريع أشاير كيميائي"
+      class="absolute inset-0 w-full h-full object-cover object-center mix-blend-overlay opacity-25"
+      fetchpriority="high"
+      loading="eager"
+      decoding="sync"
+    />
 
     <div class="relative z-10 container mx-auto px-4 lg:px-8">
       <div class="max-w-4xl mx-auto text-center">

@@ -145,11 +145,15 @@ const buildWhatsAppHomeMessage = (service, city, notes) => {
     class="relative block w-full bg-slate-900 text-white py-24 lg:py-32 overflow-hidden border-b-4 border-yellow-500"
   >
     <div class="absolute inset-0 bg-slate-800 opacity-90 z-0"></div>
-    {/* صورة الخلفية بصيغة webp بدلاً من الرابط المؤقت */}
-    <div
-      class="absolute inset-0 bg-[url('/images/og-default.webp')] bg-cover bg-center mix-blend-overlay opacity-25 z-0"
-    >
-    </div>
+    {/* صورة الخلفية بصيغة webp مع أولوية التحميل */}
+    <img
+      src="/images/og-default.webp"
+      alt="خلفية الموقع لرواد الخرسانة"
+      class="absolute inset-0 w-full h-full object-cover object-center mix-blend-overlay opacity-25 z-0"
+      fetchpriority="high"
+      loading="eager"
+      decoding="sync"
+    />
 
     <div class="relative z-10 w-full container mx-auto px-4 lg:px-8">
       <div class="flex flex-col lg:flex-row gap-10 items-center w-full">

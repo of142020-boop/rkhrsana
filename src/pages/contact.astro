@@ -59,7 +59,13 @@ const breadcrumbSchema = {
 };
 
 // ====== دالة بناء رسالة الواتساب ======
-const buildWhatsAppContactMessage = (name, phone, service, city, details) => {
+const buildWhatsAppContactMessage = (
+  name: string,
+  phone: string,
+  service: string,
+  city: string,
+  details?: string
+) => {
   const lines = [
     `مرحباً ${BRAND}،`,
     `لدي طلب تسعير / معاينة جديد من الموقع:`,
@@ -92,10 +98,14 @@ const buildWhatsAppContactMessage = (name, phone, service, city, details) => {
     class="relative block w-full bg-slate-900 text-white py-20 overflow-hidden border-b-4 border-yellow-500"
   >
     <div class="absolute inset-0 bg-slate-800 opacity-90"></div>
-    <div
-      class="absolute inset-0 bg-[url('/images/contact-hero.webp')] bg-cover bg-center mix-blend-overlay opacity-25"
-    >
-    </div>
+    <img
+      src="/images/contact-hero.webp"
+      alt="خلفية تواصل معنا"
+      class="absolute inset-0 w-full h-full object-cover object-center mix-blend-overlay opacity-25"
+      fetchpriority="high"
+      loading="eager"
+      decoding="sync"
+    />
 
     <div class="relative z-10 w-full container mx-auto px-4 lg:px-8">
       <div class="max-w-4xl mx-auto text-center w-full">

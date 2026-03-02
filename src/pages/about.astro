@@ -75,10 +75,14 @@ const jsonLd = JSON.stringify([aboutPageSchema, breadcrumbSchema]);
         <section
             class="relative w-full h-[50vh] flex items-center justify-center overflow-hidden bg-slate-900 border-b-4 border-amber-500"
         >
-            <div
-                class="absolute inset-0 bg-[url('/images/contact-hero.webp')] bg-cover bg-center mix-blend-overlay opacity-25"
-            >
-            </div>
+            <img
+                src="/images/contact-hero.webp"
+                alt="خلفية من نحن"
+                class="absolute inset-0 w-full h-full object-cover object-center mix-blend-overlay opacity-25"
+                fetchpriority="high"
+                loading="eager"
+                decoding="sync"
+            />
             <div
                 class="relative z-10text-center px-4 max-w-4xl mx-auto flex flex-col items-center"
             >
