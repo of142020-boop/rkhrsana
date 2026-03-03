@@ -2,8 +2,31 @@
 // src/layouts/Layout.astro
 import "../styles/global.css";
 
-// 1. إضافة متغير image مع صورة افتراضية
-const { title, description, image = "/images/og-default.webp" } = Astro.props;
+// 1. إضافة متغير image مع صورة افتراضية واستقبال حقول الـ SEO المتقدمة
+const { 
+  title, 
+  description, 
+  image = "/images/og-default.webp",
+  seo = {} // إضافة الـ SEO Props كائن اختياري
+} = Astro.props;
+
+// تحديد العنوان المخصص لمحركات البحث (إذا وجد)
+const finalTitle = seo?.seoTitle ? seo.seoTitle : `${title} | رواد الخرسانة`;
+// تحديد الوصف المخصص لمحركات البحث (إذا وجد)
+const finalDescription = seo?.seoDescription ? seo.seoDescription : description;
+
+// تحديد علامة robots (index/noindex, follow/nofollow)
+let robotsContent = "index, follow";
+if (seo?.noindex && seo?.nofollow) {
+  robotsContent = "noindex, nofollow";
+} else if (seo?.noindex) {
+  robotsContent = "noindex, follow";
+} else if (seo?.nofollow) {
+  robotsContent = "index, nofollow";
+}
+
+// الكلمة المفتاحية (إذا وجدت)
+const focusKeyword = seo?.focusKeyword || "قص خرسانة, تخريم كور, قص بالمنشار, قص بالواير, تزريع أشاير, مدينة نصر, القاهرة, مصر, رواد الخرسانة";
 
 // تأكد من أن رابط الصورة هو رابط مطلق (Absolute URL) يدعم تغيير الدومين
 const siteUrl = Astro.site ? new URL(Astro.site).origin : Astro.url.origin;
@@ -35,23 +58,23 @@ const normalizedPath =
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="preload" as="image" href="/images/logo.webp" />
 
-    <title>{title} | رواد الخرسانة</title>
-    <meta name="description" content={description} />
-    <meta name="robots" content="index, follow" />
+    <title>{finalTitle}</title>
+    <meta name="description" content={finalDescription} />
+    <meta name="robots" content={robotsContent} />
     <meta
       name="keywords"
-      content="قص خرسانة, تخريم كور, قص بالمنشار, قص بالواير, تزريع أشاير, مدينة نصر, القاهرة, مصر, رواد الخرسانة"
+      content={focusKeyword}
     />
 
-    <meta property="og:title" content={`${title} | رواد الخرسانة`} />
-    <meta property="og:description" content={description} />
+    <meta property="og:title" content={finalTitle} />
+    <meta property="og:description" content={finalDescription} />
     <meta property="og:image" content={ogImage} />
     <meta property="og:type" content="website" />
     <meta property="og:url" content={Astro.url.href} />
 
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content={`${title} | رواد الخرسانة`} />
-    <meta name="twitter:description" content={description} />
+    <meta name="twitter:title" content={finalTitle} />
+    <meta name="twitter:description" content={finalDescription} />
     <meta name="twitter:image" content={ogImage} />
 
     <!-- LocalBusiness Schema -->

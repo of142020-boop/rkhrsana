@@ -31,8 +31,24 @@ collections:
     create: true
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     fields:
-      - { label: "العنوان", name: "title", widget: "string" }
+      - { label: "حالة النشر", name: "draft", widget: "boolean", default: false, required: false }
+      - { label: "العنوان الرئيسي", name: "title", widget: "string", hint: "العنوان الظاهر للزوار داخل الموقع" }
       - { label: "تاريخ النشر", name: "date", widget: "datetime" }
-      - { label: "وصف المقال (SEO)", name: "description", widget: "text", required: false }
+      - { label: "وصف ملخص قصير", name: "description", widget: "text", required: false, hint: "نبذة قصيرة تظهر في صفحة قائمة المقالات" }
       - { label: "الصورة الرئيسية", name: "image", widget: "image", required: false }
-      - { label: "محتوى المقال", name: "body", widget: "markdown" }
+      - { label: "محتوى المقال الكامل", name: "body", widget: "markdown" }
+      
+      # إعدادات SEO المتقدمة كأنها في صندوق منفصل (Rank Math Style)
+      - label: "إعدادات SEO والأرشفة المتقدمة لمحركات البحث"
+        name: "seo"
+        widget: "object"
+        required: false
+        collapsed: true
+        summary: "إعدادات الأرشفة والـ Meta (للمحترفين فقط)"
+        fields:
+          - { label: "الكلمة المفتاحية المستهدفة (Focus Keyword)", name: "focusKeyword", widget: "string", required: false, hint: "الكلمة الرئيسية التي ترغب في تصدر نتائج البحث بها (مثال: قص الخرسانة بالكور)" }
+          - { label: "رابط مخصص (Slug Optional)", name: "customSlug", widget: "string", required: false, hint: "لتعديل الرابط ليصبح بالإنجليزية مثلا بدلاً من توليده تلقائياً (مثال: core-cutting-services)" }
+          - { label: "عنوان الـ SEO (SEO Title)", name: "seoTitle", widget: "string", required: false, hint: "العنوان الذي يظهر في جوجل كعلامة تبويب ونتائج البحث. الأفضل بين 40 لـ 60 حرف، إن لم يتم ملؤه سيتم استخدام العنوان الرئيسي." }
+          - { label: "وصف الـ SEO (Meta Description)", name: "seoDescription", widget: "text", required: false, hint: "الوصف الذي يظهر أسفل الرابط في جوجل. 150 لـ 160 حرف. اجعله جذاباً للزوار." }
+          - { label: "منع الأرشفة (NoIndex)", name: "noindex", widget: "boolean", default: false, required: false, hint: "تفعيل هذا الخيار ليطلب من جوجل عدم إظهار هذه الصفحة في نتائج البحث." }
+          - { label: "منع تتبع الروابط (NoFollow)", name: "nofollow", widget: "boolean", default: false, required: false, hint: "تفعيل هذا لمنع زواحف جوجل من تتبع الروابط الموجودة بداخل المقال." }
