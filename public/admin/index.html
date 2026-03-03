@@ -7,12 +7,259 @@
   <title>لوحة التحكم | رواد الخرسانة</title>
   <meta name="robots" content="noindex" />
 
+  <!-- React & ReactDOM (Required for Decap CMS Custom Widgets) -->
+  <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/create-react-class@15.7.0/create-react-class.min.js"></script>
+
+  <style>
+    .seo-analyzer-card {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 16px;
+      margin-bottom: 16px;
+      font-family: inherit;
+    }
+
+    .seo-score-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+      padding-bottom: 16px;
+      border-bottom: 2px solid #e2e8f0;
+    }
+
+    .seo-score-circle {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      font-weight: bold;
+      color: white;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .score-green {
+      background: #22c55e;
+    }
+
+    .score-yellow {
+      background: #eab308;
+    }
+
+    .score-red {
+      background: #ef4444;
+    }
+
+    .seo-metric {
+      margin-bottom: 16px;
+    }
+
+    .seo-metric-header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 6px;
+      font-weight: bold;
+      font-size: 14px;
+      color: #334155;
+    }
+
+    .seo-progress-bg {
+      height: 8px;
+      background: #e2e8f0;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .seo-progress-bar {
+      height: 100%;
+      border-radius: 4px;
+      transition: width 0.3s ease, background 0.3s ease;
+    }
+
+    .seo-checklist {
+      list-style: none;
+      padding: 0;
+      margin: 16px 0 0 0;
+    }
+
+    .seo-check-item {
+      display: flex;
+      align-items: center;
+      font-size: 14px;
+      margin-bottom: 8px;
+      color: #475569;
+    }
+
+    .check-icon {
+      margin-left: 8px;
+      font-weight: bold;
+    }
+
+    .check-pass {
+      color: #22c55e;
+    }
+
+    .check-fail {
+      color: #ef4444;
+    }
+  </style>
 </head>
 
 <body>
-  <!-- Include the script that builds the page and powers Decap CMS -->
+  <!-- Include Decap CMS Script -->
   <script src="https://unpkg.com/decap-cms@^3.4.0/dist/decap-cms.js"></script>
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+
+  <!-- Custom SEO Analyzer Widget Script -->
+  <script>
+    const SEOAnalyzerControl = createReactClass({
+      render: function () {
+        // Read the entry values
+        const entry = this.props.entry;
+        const data = entry.get('data');
+
+        // Extract values, default to empty string if undefined
+        const title = data.getIn(['seo', 'seoTitle']) || data.get('title') || "";
+        const description = data.getIn(['seo', 'seoDescription']) || data.get('description') || "";
+        const focusKeyword = data.getIn(['seo', 'focusKeyword']) || "";
+
+        let score = 0;
+        let checks = [];
+
+        // 1. Title Length Analysis (Optimal: 40 - 60)
+        let titleColor = "score-red";
+        let titleLen = title.length;
+        let titlePct = Math.min((titleLen / 60) * 100, 100);
+
+        if (titleLen >= 40 && titleLen <= 60) {
+          titleColor = "score-green";
+          score += 25;
+          checks.push({ text: "طول العنوان ممتاز (بين 40 و 60 حرف)", pass: true });
+        } else if (titleLen > 10 && titleLen < 40) {
+          titleColor = "score-yellow";
+          score += 15;
+          checks.push({ text: "العنوان قصير جداً، حاول إضافة المزيد من التفاصيل.", pass: false });
+        } else if (titleLen > 60) {
+          titleColor = "score-yellow";
+          score += 15;
+          checks.push({ text: "العنوان طويل جداً وقد لا يظهر كاملاً في محركات البحث.", pass: false });
+        } else {
+          checks.push({ text: "يجب كتابة عنوان واضح.", pass: false });
+        }
+
+        // 2. Description Length Analysis (Optimal: 120 - 160)
+        let descColor = "score-red";
+        let descLen = description.length;
+        let descPct = Math.min((descLen / 160) * 100, 100);
+
+        if (descLen >= 120 && descLen <= 160) {
+          descColor = "score-green";
+          score += 25;
+          checks.push({ text: "طول الوصف جيد جداً (بين 120 و 160 حرف).", pass: true });
+        } else if (descLen > 30 && descLen < 120) {
+          descColor = "score-yellow";
+          score += 15;
+          checks.push({ text: "الوصف يفتقر للتفاصيل.", pass: false });
+        } else if (descLen > 160) {
+          descColor = "score-yellow";
+          score += 10;
+          checks.push({ text: "الوصف طويل جداً، سيتم قطعة في جوجل.", pass: false });
+        } else {
+          checks.push({ text: "الوصف الميتا ضروري لأرشفة الموقع.", pass: false });
+        }
+
+        // Keyword Analyses
+        const keywordLower = focusKeyword.trim().toLowerCase();
+
+        if (!keywordLower) {
+          checks.push({ text: "لم تقم بتحديد كلمة مفتاحية (Focus Keyword).", pass: false });
+        } else {
+          // 3. Keyword in Title
+          if (title.toLowerCase().includes(keywordLower)) {
+            score += 25;
+            checks.push({ text: "الكلمة المفتاحية موجودة في العنوان المهيأ.", pass: true });
+          } else {
+            checks.push({ text: "الكلمة المفتاحية غير موجودة في العنوان.", pass: false });
+          }
+
+          // 4. Keyword in Description
+          if (description.toLowerCase().includes(keywordLower)) {
+            score += 25;
+            checks.push({ text: "الكلمة المفتاحية موجودة في الوصف.", pass: true });
+          } else {
+            checks.push({ text: "الكلمة المفتاحية غير موجودة في الوصف الميتا.", pass: false });
+          }
+        }
+
+        // Final Score Math
+        let finalScoreColor = "score-red";
+        let scoreText = "ضعيف";
+        if (score >= 80) {
+          finalScoreColor = "score-green";
+          scoreText = "ممتاز";
+        } else if (score >= 50) {
+          finalScoreColor = "score-yellow";
+          scoreText = "متوسط";
+        }
+
+        // Create React Elements
+        const el = React.createElement;
+
+        const metricTitle = el('div', { className: 'seo-metric' },
+          el('div', { className: 'seo-metric-header' },
+            el('span', null, 'طول العنوان: Default / SEO'),
+            el('span', null, titleLen + ' \/ 60')
+          ),
+          el('div', { className: 'seo-progress-bg' },
+            el('div', { className: 'seo-progress-bar ' + titleColor, style: { width: titlePct + '%' } })
+          )
+        );
+
+        const metricDesc = el('div', { className: 'seo-metric' },
+          el('div', { className: 'seo-metric-header' },
+            el('span', null, 'طول الوصف الميتا'),
+            el('span', null, descLen + ' \/ 160')
+          ),
+          el('div', { className: 'seo-progress-bg' },
+            el('div', { className: 'seo-progress-bar ' + descColor, style: { width: descPct + '%' } })
+          )
+        );
+
+        const checklistList = checks.map((chk, i) => {
+          return el('li', { key: i, className: 'seo-check-item' },
+            el('span', { className: 'check-icon ' + (chk.pass ? 'check-pass' : 'check-fail') }, chk.pass ? '✓ ' : '✗ '),
+            el('span', null, chk.text)
+          );
+        });
+
+        return el('div', { className: 'seo-analyzer-card', dir: 'rtl' },
+          el('div', { className: 'seo-score-container' },
+            el('div', null,
+              el('h3', { style: { margin: '0 0 8px 0', color: '#1e293b' } }, 'تحليل SEO السريع (Rank Math)'),
+              el('p', { style: { margin: 0, fontSize: '14px', color: '#64748b' } }, 'هذا التقييم يتم حسابه تلقائياً لمساعدتك')
+            ),
+            el('div', { className: 'seo-score-circle ' + finalScoreColor }, score + '/100')
+          ),
+          metricTitle,
+          metricDesc,
+          el('ul', { className: 'seo-checklist' }, checklistList)
+        );
+      }
+    });
+
+    // We don't need a real Preview for an analyzer that shows up in the Control panel
+    const SEOAnalyzerPreview = createReactClass({
+      render: function () { return null; }
+    });
+
+    CMS.registerWidget('seo_analyzer', SEOAnalyzerControl, SEOAnalyzerPreview);
+  </script>
 </body>
 
 </html>

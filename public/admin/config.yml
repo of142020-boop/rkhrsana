@@ -46,6 +46,7 @@ collections:
         collapsed: true
         summary: "إعدادات الأرشفة والـ Meta (للمحترفين فقط)"
         fields:
+          - { label: "مؤشر التقييم الحي (SEO Analyzer)", name: "seoScore", widget: "seo_analyzer", required: false, hint: "قم بملء الحقول أسفله لرؤية التقييم." }
           - { label: "الكلمة المفتاحية المستهدفة (Focus Keyword)", name: "focusKeyword", widget: "string", required: false, hint: "الكلمة الرئيسية التي ترغب في تصدر نتائج البحث بها (مثال: قص الخرسانة بالكور)" }
           - { label: "رابط مخصص (Slug Optional)", name: "customSlug", widget: "string", required: false, hint: "لتعديل الرابط ليصبح بالإنجليزية مثلا بدلاً من توليده تلقائياً (مثال: core-cutting-services)" }
           - { label: "عنوان الـ SEO (SEO Title)", name: "seoTitle", widget: "string", required: false, hint: "العنوان الذي يظهر في جوجل كعلامة تبويب ونتائج البحث. الأفضل بين 40 لـ 60 حرف، إن لم يتم ملؤه سيتم استخدام العنوان الرئيسي." }
