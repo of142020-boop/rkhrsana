@@ -6,7 +6,7 @@ backend:
   # REPLACE WITH YOUR ACTUAL GITHUB USERNAME AND REPO NAME
   repo: of142020-boop/rkhrsana
   branch: main
-  base_url: "https://rkhrsana.com"
+  base_url: "https://rkhrsana.vercel.app"
   auth_endpoint: "api/auth"
 
 # Enable local preview via npx decap-server
@@ -17,9 +17,9 @@ media_folder: "public/images/blog"
 public_folder: "/images/blog"
 
 # Site configuration
-site_url: "https://rkhrsana.com"
-display_url: "https://rkhrsana.com"
-logo_url: "https://rkhrsana.com/images/logo.webp"
+site_url: "https://rkhrsana.vercel.app"
+display_url: "https://rkhrsana.vercel.app"
+logo_url: "https://rkhrsana.vercel.app/images/logo.webp"
 locale: "ar" # Arabic language for the CMS UI
 
 # Define collections
