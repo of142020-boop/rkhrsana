@@ -22,6 +22,7 @@ export default function imageSitemap() {
 
                 // Map pages
                 const pageEntries = [];
+                const postEntries = [];
                 const imageEntries = [];
                 const today = new Date().toISOString().split('T')[0];
 
@@ -144,9 +145,9 @@ export default function imageSitemap() {
                             const fullUrl = `${siteUrl}/blog/${slug}/`;
 
                             // Prevent duplicates
-                            if (!pageEntries.some(p => p.includes(`<loc>${fullUrl}</loc>`))) {
-                                const pageEntry = `  <url>\n    <loc>${fullUrl}</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>0.7</priority>\n  </url>`;
-                                pageEntries.push(pageEntry);
+                            if (!postEntries.some(p => p.includes(`<loc>${fullUrl}</loc>`))) {
+                                const postEntry = `  <url>\n    <loc>${fullUrl}</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>0.8</priority>\n  </url>`;
+                                postEntries.push(postEntry);
 
                                 // Try extracting image
                                 try {
@@ -163,7 +164,14 @@ export default function imageSitemap() {
                                             let imgEntry = `  <url>\n    <loc>${fullUrl}</loc>\n`;
                                             imgEntry += `    <image:image>\n      <image:loc>${imgPath}</image:loc>\n      <image:title>${imgTitle}</image:title>\n    </image:image>\n`;
                                             imgEntry += `  </url>`;
-                                            imageEntries.push(imgEntry);
+
+                                            // Add to postEntries as an image reference if needed, 
+                                            // but standard posts sitemap usually combines tags
+                                            const combinedPostEntry = `  <url>\n    <loc>${fullUrl}</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>0.8</priority>\n    <image:image>\n      <image:loc>${imgPath}</image:loc>\n      <image:title>${imgTitle}</image:title>\n    </image:image>\n  </url>`;
+
+                                            // Replace the basic entry with the combined one
+                                            postEntries.pop();
+                                            postEntries.push(combinedPostEntry);
                                         }
                                     }
                                 } catch (e) {
@@ -195,7 +203,18 @@ ${imageEntries.join('\n')}
                 await writeFile(join(outDir, 'sitemap-images.xml'), imagesContent, 'utf-8');
                 console.log(`✅ Generated Images Sitemap: sitemap-images.xml`);
 
-                // --- 3. Generate Index Sitemap ---
+                // --- 3. Generate Posts Sitemap ---
+                const postsContent = `<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="/sitemap.xsl"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+${postEntries.join('\n')}
+</urlset>
+`;
+                await writeFile(join(outDir, 'sitemap-posts.xml'), postsContent, 'utf-8');
+                console.log(`✅ Generated Posts Sitemap: sitemap-posts.xml`);
+
+                // --- 4. Generate Index Sitemap ---
                 const indexContent = `<?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet type="text/xsl" href="/sitemap.xsl"?>
 <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
@@ -205,6 +224,10 @@ ${imageEntries.join('\n')}
   </sitemap>
   <sitemap>
     <loc>${siteUrl}/sitemap-images.xml</loc>
+    <lastmod>${today}</lastmod>
+  </sitemap>
+  <sitemap>
+    <loc>${siteUrl}/sitemap-posts.xml</loc>
     <lastmod>${today}</lastmod>
   </sitemap>
 </sitemapindex>
