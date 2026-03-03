@@ -10,7 +10,7 @@ backend:
   auth_endpoint: "api/auth"
 
 # Enable local preview via npx decap-server
-local_backend: true
+# local_backend: true
 
 # Define media folders
 media_folder: "public/images/blog"
