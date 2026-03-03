@@ -1,0 +1,38 @@
+# Configure the backend
+# For production without Netlify, you will need a proxy server (e.g., netlify-cms-oauth-provider-go)
+# or you can use your GitHub personal access token (not recommended for production).
+backend:
+  name: github
+  # REPLACE WITH YOUR ACTUAL GITHUB USERNAME AND REPO NAME
+  repo: of142020-boop/rkhrsana
+  branch: main
+  base_url: "https://rkhrsana.com"
+  auth_endpoint: "api/auth"
+
+# Enable local preview via npx decap-server
+local_backend: true
+
+# Define media folders
+media_folder: "public/images/blog"
+public_folder: "/images/blog"
+
+# Site configuration
+site_url: "https://rkhrsana.com"
+display_url: "https://rkhrsana.com"
+logo_url: "https://rkhrsana.com/images/logo.webp"
+locale: "ar" # Arabic language for the CMS UI
+
+# Define collections
+collections:
+  - name: "blog"
+    label: "المدونة (المقالات)"
+    label_singular: "مقال"
+    folder: "src/content/blog"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - { label: "العنوان", name: "title", widget: "string" }
+      - { label: "تاريخ النشر", name: "date", widget: "datetime" }
+      - { label: "وصف المقال (SEO)", name: "description", widget: "text", required: false }
+      - { label: "الصورة الرئيسية", name: "image", widget: "image", required: false }
+      - { label: "محتوى المقال", name: "body", widget: "markdown" }

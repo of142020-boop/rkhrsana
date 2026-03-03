@@ -1,0 +1,114 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { getCollection } from "astro:content";
+
+const allPosts = await getCollection("blog");
+const sortedPosts = allPosts.sort(
+    (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+);
+---
+
+<Layout
+    title="المدونة"
+    description="مقالات وأخبار رواد الخرسانة في مجال قص وتخريم الخرسانة وتزريع الأشاير."
+>
+    <div class="bg-slate-900 py-16 md:py-24 relative overflow-hidden">
+        <div
+            class="absolute inset-0 bg-[url('/images/hero-bg.webp')] opacity-20 bg-cover bg-center"
+        >
+        </div>
+        <div class="absolute inset-0 bg-slate-900/80"></div>
+        <div class="container mx-auto px-4 lg:px-8 relative z-10 text-center">
+            <p class="text-yellow-500 font-bold mb-4 tracking-wider">
+                مقالات وأخبار
+            </p>
+            <h1
+                class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white mb-6 leading-tight"
+            >
+                المدونة <span
+                    class="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-yellow-600"
+                    >الهندسية</span
+                >
+            </h1>
+            <p
+                class="text-slate-300 max-w-2xl mx-auto text-lg md:text-xl leading-relaxed"
+            >
+                اكتشف أحدث المقالات والنصائح في مجال قص وتخريم الخرسانة، وتزريع
+                الأشاير الكيميائية.
+            </p>
+        </div>
+    </div>
+
+    <section class="py-16 md:py-24 bg-slate-50">
+        <div class="container mx-auto px-4 lg:px-8">
+            {
+                sortedPosts.length === 0 ? (
+                    <div class="text-center text-slate-500 py-12">
+                        <p class="text-xl">لا توجد مقالات منشورة حالياً.</p>
+                    </div>
+                ) : (
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        {sortedPosts.map((post) => (
+                            <article class="bg-white rounded-2xl shadow-lg border border-slate-100 overflow-hidden group hover:shadow-2xl transition-all duration-300 flex flex-col h-full hover:border-yellow-300">
+                                {post.data.image && (
+                                    <div class="relative h-64 overflow-hidden">
+                                        <img
+                                            src={post.data.image}
+                                            alt={post.data.title}
+                                            class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500"
+                                            loading="lazy"
+                                        />
+                                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900/70 to-transparent opacity-60" />
+                                        <div class="absolute bottom-4 right-4 bg-yellow-500 text-slate-900 text-xs font-bold px-3 py-1.5 rounded-full shadow-md">
+                                            {post.data.date.toLocaleDateString(
+                                                "ar-EG",
+                                                {
+                                                    year: "numeric",
+                                                    month: "long",
+                                                    day: "numeric",
+                                                }
+                                            )}
+                                        </div>
+                                    </div>
+                                )}
+                                <div class="p-6 flex flex-col flex-grow">
+                                    <h2 class="text-2xl font-bold text-slate-800 mb-3 group-hover:text-yellow-600 transition-colors leading-snug">
+                                        <a
+                                            href={`/blog/${post.slug}`}
+                                            class="focus:outline-none"
+                                        >
+                                            <span
+                                                class="absolute inset-0"
+                                                aria-hidden="true"
+                                            />
+                                            {post.data.title}
+                                        </a>
+                                    </h2>
+                                    <p class="text-slate-600 mb-6 flex-grow leading-relaxed">
+                                        {post.data.description}
+                                    </p>
+                                    <div class="flex items-center text-yellow-600 font-bold group-hover:translate-x-[-5px] transition-transform">
+                                        <span>اقرأ المزيد</span>
+                                        <svg
+                                            class="w-5 h-5 mr-2 transform rotate-180"
+                                            fill="none"
+                                            stroke="currentColor"
+                                            viewBox="0 0 24 24"
+                                        >
+                                            <path
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                stroke-width="2"
+                                                d="M17 8l4 4m0 0l-4 4m4-4H3"
+                                            />
+                                        </svg>
+                                    </div>
+                                </div>
+                            </article>
+                        ))}
+                    </div>
+                )
+            }
+        </div>
+    </section>
+</Layout>
