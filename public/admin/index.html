@@ -114,6 +114,17 @@
   <!-- Custom SEO Analyzer Widget Script -->
   <script>
     const SEOAnalyzerControl = createClass({
+      componentDidMount: function () {
+        // Force an update when the Redux store changes (i.e. user types)
+        this.unsubscribe = window.store ? window.store.subscribe(() => {
+          this.forceUpdate();
+        }) : null;
+      },
+      componentWillUnmount: function () {
+        if (this.unsubscribe) {
+          this.unsubscribe();
+        }
+      },
       render: function () {
         // Read the entry values safely
         const entry = this.props.entry;
