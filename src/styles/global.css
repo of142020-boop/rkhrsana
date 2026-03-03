@@ -1,1 +1,12 @@
 @import "tailwindcss";
+
+/* Ensure Markdown Images never overflow and maintain aspect ratio */
+.prose img {
+    max-width: 100% !important;
+    height: auto !important;
+    border-radius: 1rem !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    display: block !important;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05) !important;
+}
