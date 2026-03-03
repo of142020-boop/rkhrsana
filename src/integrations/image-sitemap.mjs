@@ -144,9 +144,15 @@ ${imageEntries.join('\n')}
                     const robotsPath = join(outDir, 'robots.txt');
                     const robotsContent = await readFile(robotsPath, 'utf-8');
                     let updatedRobots = robotsContent.replace(/Sitemap: .*/g, '').trim();
+
+                    // Ensure /admin is blocked
+                    if (!updatedRobots.includes('Disallow: /admin')) {
+                        updatedRobots = updatedRobots.replace('User-agent: *', 'User-agent: *\nDisallow: /admin');
+                    }
+
                     updatedRobots += `\n\nSitemap: ${siteUrl}/sitemap-index.xml\n`;
                     await writeFile(robotsPath, updatedRobots, 'utf-8');
-                    console.log(`✅ Updated robots.txt with sitemap-index.xml link.`);
+                    console.log(`✅ Updated robots.txt with sitemap-index.xml link and blocked /admin.`);
                 } catch (e) {
                     console.warn("Could not handle robots.txt automatic update:", e.message);
                 }
