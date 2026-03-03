@@ -120,14 +120,21 @@
   <script>
     const SEOAnalyzerControl = createReactClass({
       render: function () {
-        // Read the entry values
+        // Read the entry values safely
         const entry = this.props.entry;
-        const data = entry.get('data');
+        const data = entry ? entry.get('data') : null;
 
-        // Extract values, default to empty string if undefined
-        const title = data.getIn(['seo', 'seoTitle']) || data.get('title') || "";
-        const description = data.getIn(['seo', 'seoDescription']) || data.get('description') || "";
-        const focusKeyword = data.getIn(['seo', 'focusKeyword']) || "";
+        // If data is entirely empty (brand new post immediately on load)
+        if (!data) {
+          return React.createElement('div', { className: 'seo-analyzer-card', dir: 'rtl' }, "جاري التحميل...");
+        }
+
+        const seoData = data.get('seo');
+
+        // Extract values safely
+        const title = (seoData ? seoData.get('seoTitle') : "") || data.get('title') || "";
+        const description = (seoData ? seoData.get('seoDescription') : "") || data.get('description') || "";
+        const focusKeyword = (seoData ? seoData.get('focusKeyword') : "") || "";
 
         let score = 0;
         let checks = [];
@@ -253,9 +260,10 @@
       }
     });
 
-    // We don't need a real Preview for an analyzer that shows up in the Control panel
     const SEOAnalyzerPreview = createReactClass({
-      render: function () { return null; }
+      render: function () {
+        return React.createElement('div', null, '');
+      }
     });
 
     CMS.registerWidget('seo_analyzer', SEOAnalyzerControl, SEOAnalyzerPreview);
