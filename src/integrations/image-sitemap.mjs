@@ -1,6 +1,7 @@
 import { writeFile, readFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
+import fs from 'node:fs';
 
 /**
  * A simple Astro integration to generate an XML sitemap that includes
@@ -75,21 +76,53 @@ export default function imageSitemap() {
                 // Go through routes to generate sitemap
                 let hasImages = false;
 
-                for (const route of routes) {
+                for (const page of pages) {
                     // ignore 404 page
-                    if (route.route === '/404') continue;
+                    if (page.pathname === '404/') continue;
 
-                    let routePath = route.route === '/' ? '/' : `${route.route}/`;
+                    let routePath = `/${page.pathname}`;
                     const fullUrl = `${siteUrl}${routePath === '/' ? '' : routePath}`;
-                    const priority = routePath === '/' ? '1.0' : '0.8';
-                    const changefreq = 'weekly';
+                    let priority = routePath === '/' ? '1.0' : '0.8';
+                    let changefreq = 'weekly';
+
+                    // Reduce priority for blog posts slightly compared to main pages, and set them to monthly
+                    if (routePath.startsWith('/blog/') && routePath !== '/blog/') {
+                        priority = '0.7';
+                        changefreq = 'monthly';
+                    }
 
                     // 1) Page Entry (No images)
                     const pageEntry = `  <url>\n    <loc>${fullUrl}</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>${changefreq}</changefreq>\n    <priority>${priority}</priority>\n  </url>`;
                     pageEntries.push(pageEntry);
 
                     // 2) Image Entry
-                    const images = pageImageMap[routePath] || [];
+                    let images = pageImageMap[routePath] || [];
+
+                    // Dynamic blog images
+                    if (routePath.startsWith('/blog/') && routePath !== '/blog/') {
+                        try {
+                            const slug = routePath.replace('/blog/', '').replace('/', '');
+                            // Attempt to map back to the src markdown file to extract the image
+                            const mdPath = join(process.cwd(), 'src', 'content', 'blog', `${slug}.md`);
+                            if (fs.existsSync(mdPath)) {
+                                const mdContent = fs.readFileSync(mdPath, 'utf-8');
+                                const imageMatch = mdContent.match(/image:\s*(.+)/);
+                                const titleMatch = mdContent.match(/title:\s*(.+)/);
+                                if (imageMatch && imageMatch[1]) {
+                                    let imgPath = imageMatch[1].trim();
+                                    // Make absolute if relative
+                                    if (imgPath.startsWith('/')) {
+                                        imgPath = siteUrl + imgPath;
+                                    }
+                                    const imgTitle = titleMatch ? titleMatch[1].trim() : "صورة المقال";
+                                    images.push({ loc: imgPath, title: imgTitle });
+                                }
+                            }
+                        } catch (e) {
+                            console.warn("Could not extract image for blog post:", routePath);
+                        }
+                    }
+
                     if (images.length > 0) {
                         hasImages = true;
                         let imgEntry = `  <url>\n    <loc>${fullUrl}</loc>\n`;
@@ -98,6 +131,46 @@ export default function imageSitemap() {
                         });
                         imgEntry += `  </url>`;
                         imageEntries.push(imgEntry);
+                    }
+                }
+
+                // Explicitly scan for generated blog posts since Astro `pages` object might miss dynamic routes
+                const distBlogDir = join(outDir, 'blog');
+                if (fs.existsSync(distBlogDir)) {
+                    const blogEntries = fs.readdirSync(distBlogDir, { withFileTypes: true });
+                    for (const entry of blogEntries) {
+                        if (entry.isDirectory() && entry.name !== 'index' && entry.name !== 'page') {
+                            const slug = entry.name;
+                            const fullUrl = `${siteUrl}/blog/${slug}/`;
+
+                            // Prevent duplicates
+                            if (!pageEntries.some(p => p.includes(`<loc>${fullUrl}</loc>`))) {
+                                const pageEntry = `  <url>\n    <loc>${fullUrl}</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>0.7</priority>\n  </url>`;
+                                pageEntries.push(pageEntry);
+
+                                // Try extracting image
+                                try {
+                                    const mdPath = join(process.cwd(), 'src', 'content', 'blog', `${slug}.md`);
+                                    if (fs.existsSync(mdPath)) {
+                                        const mdContent = fs.readFileSync(mdPath, 'utf-8');
+                                        const imageMatch = mdContent.match(/image:\s*(.+)/);
+                                        const titleMatch = mdContent.match(/title:\s*(.+)/);
+                                        if (imageMatch && imageMatch[1]) {
+                                            let imgPath = imageMatch[1].trim();
+                                            if (imgPath.startsWith('/')) imgPath = siteUrl + imgPath;
+                                            const imgTitle = titleMatch ? titleMatch[1].trim() : "صورة المقال";
+
+                                            let imgEntry = `  <url>\n    <loc>${fullUrl}</loc>\n`;
+                                            imgEntry += `    <image:image>\n      <image:loc>${imgPath}</image:loc>\n      <image:title>${imgTitle}</image:title>\n    </image:image>\n`;
+                                            imgEntry += `  </url>`;
+                                            imageEntries.push(imgEntry);
+                                        }
+                                    }
+                                } catch (e) {
+                                    console.warn("Could not extract image for blog post:", slug);
+                                }
+                            }
+                        }
                     }
                 }
 
