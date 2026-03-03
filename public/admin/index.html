@@ -7,11 +7,6 @@
   <title>لوحة التحكم | رواد الخرسانة</title>
   <meta name="robots" content="noindex" />
 
-  <!-- React & ReactDOM (Required for Decap CMS Custom Widgets) -->
-  <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
-  <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
-  <script src="https://unpkg.com/create-react-class@15.7.0/create-react-class.min.js"></script>
-
   <style>
     .seo-analyzer-card {
       background: #f8fafc;
@@ -118,7 +113,7 @@
 
   <!-- Custom SEO Analyzer Widget Script -->
   <script>
-    const SEOAnalyzerControl = createReactClass({
+    const SEOAnalyzerControl = createClass({
       render: function () {
         // Read the entry values safely
         const entry = this.props.entry;
@@ -126,7 +121,7 @@
 
         // If data is entirely empty (brand new post immediately on load)
         if (!data) {
-          return React.createElement('div', { className: 'seo-analyzer-card', dir: 'rtl' }, "جاري التحميل...");
+          return h('div', { className: 'seo-analyzer-card', dir: 'rtl' }, "جاري التحميل...");
         }
 
         const seoData = data.get('seo');
@@ -216,7 +211,7 @@
         }
 
         // Create React Elements
-        const el = React.createElement;
+        const el = h;
 
         const metricTitle = el('div', { className: 'seo-metric' },
           el('div', { className: 'seo-metric-header' },
@@ -260,9 +255,9 @@
       }
     });
 
-    const SEOAnalyzerPreview = createReactClass({
+    const SEOAnalyzerPreview = createClass({
       render: function () {
-        return React.createElement('div', null, '');
+        return h('div', null, '');
       }
     });
 
